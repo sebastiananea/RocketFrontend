@@ -64,7 +64,7 @@ function LandingPage() {
           return history.push('/admin/students')
         else return history.push('/trueHome')
       })
-    await axios.put('https://rocketproject2021.herokuapp.com/user/changes', {
+    await axios.post('https://rocketproject2021.herokuapp.com/user/changes', {
       status: 'Online',
     })
   }
