@@ -1,0 +1,9 @@
+.App {
+  text-align: center;
+}
+
+.adminContainer{
+  height: 89vh;
+  width: 100%;
+  display: flex;
+}
