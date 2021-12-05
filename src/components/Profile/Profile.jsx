@@ -55,7 +55,7 @@ const Profile = () => {
   }
 
   async function handleSubmit(e) {
-    // e.preventDefault();
+    e.preventDefault()
     const newChanges = {
       new_img: field.img,
       new_about: field.about,
