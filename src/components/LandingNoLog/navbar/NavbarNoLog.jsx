@@ -54,7 +54,7 @@ function NavbarNoLog(props) {
                         onClick={()=>{
                         if(localStorage.getItem("token")) return history.push("/trueHome")
                         else return history.push("/signin")
-                    }}>ESTUDIANTES</button>
+                    }}>STUDENT</button>
                 </div>
               
         </div>
