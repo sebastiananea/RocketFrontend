@@ -11,7 +11,7 @@ function Message({name,img,txt }) {
   
           <img 
           className={s.messageImg} 
-          src={img} alt="" 
+          src={img} alt="user icon" 
           />
   
           <p className={s.messageText}>
