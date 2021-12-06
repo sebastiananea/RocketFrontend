@@ -1,26 +1,19 @@
-import React from 'react'
-import s from "./Message.module.css"
+import React from "react";
+import s from "./Message.module.css";
 
-function Message({name,img,txt }) {
+function Message({ name, img, txt }) {
+  let own = false;
 
-  let own = false
+  return (
+    <div className={own ? s.messageOwn : s.message}>
+      <div className={s.messageTop}>
+        
+        <p className={s.messageText}>{txt}</p>
 
-    return (
-      <div className = { own ? s.messageOwn : s.message }>
-        <div className={s.messageTop}>
-  
-          <img 
-          className={s.messageImg} 
-          src={img} alt="user icon" 
-          />
-  
-          <p className={s.messageText}>
-          {txt}
-          </p>
-  
-        </div>
+        <img className={s.messageImg} src={img} alt="user icon" />
+
       </div>
-    );
-  }
-export default Message
-
+    </div>
+  );
+}
+export default Message;
