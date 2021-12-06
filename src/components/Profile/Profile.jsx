@@ -68,6 +68,9 @@ const Profile = () => {
       'https://rocketproject2021.herokuapp.com/user/changes',
       newChanges
     )
+    let myUser = JSON.parse(localStorage.getItem('user'))
+    myUser.img = field.img
+    localStorage.setItem("user", JSON.stringify(myUser))
 
     setField({
       about: null,
