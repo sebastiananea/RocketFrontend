@@ -1,22 +1,22 @@
-.bottom{
-    margin-top: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.chatBox{
-    flex: 5.5;;
+.chatBoxTop {
+  overflow: auto;
+  overflow-y: scroll;
+  height: 600 px;
 }
 
-.chatBoxWrapper{
-    display: flex;
-    flex-direction: column;
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 27 px;
+}
+.chatBox {
+  flex: 5.5;
 }
 
-.chatBoxTop{
-    overflow-y: scroll;
-    height: 100%;
-    padding-right: 10px;  
+.chatBoxWrapper {
+  display: flex;
+  flex-direction: column;
 }
 
 
