@@ -6,8 +6,9 @@ import { ref, onValue, get, child, onChildAdded } from "firebase/database";
 import s from "./ChatContain.module.css";
 import RocketChat from "../Input/RocketChat"
 import Message from "../Message/Message.js";
+import { getJSDocParameterTags } from "typescript";
 
-function ChatContain({table, name , img }) {
+function ChatContain({ params, table }) {
   const [messagesChat, setmessagesChat] = useState("");
   let chatRef = ref(myDatabaseChat);
   let mesaChat = table;
@@ -34,7 +35,7 @@ function ChatContain({table, name , img }) {
           {messagesChat.length
             ? messagesChat.map((m) => {
                 return (
-                    <Message  name={m.name} img={m.img} txt={m.txt}/>
+                    <Message currentId={params._id} name={m.name} img={m.img} txt={m.txt} id={m.userId}/>
                 );
               })
             : null}
@@ -44,7 +45,7 @@ function ChatContain({table, name , img }) {
 
         <div className={s.bottom}>
 
-        <RocketChat img={img} name={name} table={table}/>
+        <RocketChat img={params.img} name={params.name} table={table} id={params._id}/>
 
         </div>
       </div>

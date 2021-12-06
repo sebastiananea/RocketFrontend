@@ -3,7 +3,7 @@ import { myDatabaseChat } from '../../../config/utilsChatDatabase.js'
 import { ref, push, child, update} from "firebase/database";
 
 
-function RocketChat({name,img,table}) {
+function RocketChat({name,img,table,id}) {
 
     const [emoji, setemoji] = useState(false)
     const [messages, setmessages] = useState({ txt: "" })
@@ -25,6 +25,7 @@ function RocketChat({name,img,table}) {
 
 
             const new_msg = {
+                userId:id,
                 name: name,
                 txt: messages.txt,
                 img: img,
