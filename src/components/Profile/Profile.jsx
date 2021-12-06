@@ -5,9 +5,11 @@ import { country_list } from '../index'
 import avatars from '../../avatars/avatarsarr'
 import './Profile.css'
 import avatarPorDefaultAlien from '../../avatars/avatar21-alien.png'
+import { set } from '@firebase/database'
 
 const Profile = () => {
   const [obj, setObj] = useState({})
+  const [boolean, setBoolean] = useState(false)
 
   const [field, setField] = useState({
     about: null,
@@ -22,7 +24,9 @@ const Profile = () => {
     let profile = axios(
       `https://rocketproject2021.herokuapp.com/searchProfileID/${id}`
     ).then((r) => setObj(r.data))
-  }, [])
+    setBoolean(false)
+  }, [boolean])
+  
   // const [checket, setChecket] = useState(obj?.enhableContact);
 
   async function showContact() {
@@ -55,7 +59,7 @@ const Profile = () => {
   }
 
   async function handleSubmit(e) {
-    // e.preventDefault()
+    e.preventDefault()
     const newChanges = {
       new_img: field.img,
       new_about: field.about,
@@ -67,10 +71,11 @@ const Profile = () => {
     await axios.post(
       'https://rocketproject2021.herokuapp.com/user/changes',
       newChanges
-    )
+    ).then(()=>setBoolean(true))
     let myUser = JSON.parse(localStorage.getItem('user'))
     myUser.img = field.img
     localStorage.setItem("user", JSON.stringify(myUser))
+    alert('Tus cambios se han efectuado con éxito')
 
     setField({
       about: null,
