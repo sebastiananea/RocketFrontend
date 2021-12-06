@@ -58,6 +58,9 @@ const Home = () => {
         }
         
       </div>
+      <div>
+      <a href={`https://meet.jit.si/Henry${JSON.parse(localStorage.getItem("user")).table}`}>Join Meet</a>
+    </div>
     </div>
   );
 };
