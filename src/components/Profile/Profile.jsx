@@ -76,19 +76,17 @@ const Profile = () => {
       'https://rocketproject2021.herokuapp.com/user/changes',
       newChanges
     ).then(()=>setBoolean(true))
-    .then(()=>{
-      let myUser = JSON.parse(localStorage.getItem('user'))
-      myUser.img = field.img
-      localStorage.setItem("user", JSON.stringify(myUser))
-      setField({
-        about: null,
-        img: null,
-        country: null,
-        status: null,
-      })
-      dispatch(setUser(JSON.parse(localStorage.getItem("user"))))
-      alert("Cambios exitosos")
+    let myUser = JSON.parse(localStorage.getItem('user'))
+    myUser.img = field.img
+    localStorage.setItem("user", JSON.stringify(myUser))
+    setField({
+      about: null,
+      img: null,
+      country: null,
+      status: null,
     })
+    dispatch(setUser(JSON.parse(localStorage.getItem("user"))))
+    alert("Cambios exitosos")
   }
 
   function setButtonStatus(status) {

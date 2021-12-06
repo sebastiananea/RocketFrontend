@@ -23,7 +23,7 @@ const NavBar = () => {
           />
         </NavLink>
         <div className={style.navbar__div_buttons}>
-          {myUser !== null &&  <User/>}
+          {myUser !== null &&  <User myUser/>}
           {!myUser && (
             <div>
               <NavLink to='/signin'>
