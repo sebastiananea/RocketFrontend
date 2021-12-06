@@ -8,13 +8,13 @@ import User from './user/User'
 const NavBar = () => {
   let history = useHistory()
   let location = useLocation()
-  const myUser = useSelector((state)=>state.user)
-  console.log(myUser, "desde navbar")
+  const myUser = useSelector((state) => state.user)
+  console.log(myUser, 'desde navbar')
 
   if (location.pathname !== '/')
     return (
       <nav className={style.navbar__nav}>
-        <NavLink to='/'>
+        <NavLink to='/trueHome'>
           <img
             alt='logo'
             src={logo}
@@ -23,7 +23,7 @@ const NavBar = () => {
           />
         </NavLink>
         <div className={style.navbar__div_buttons}>
-          {myUser !== null &&  <User myUser/>}
+          {myUser !== null && <User myUser />}
           {!myUser && (
             <div>
               <NavLink to='/signin'>
