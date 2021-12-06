@@ -78,16 +78,14 @@ const Profile = () => {
     ).then(()=>setBoolean(true))
     let myUser = JSON.parse(localStorage.getItem('user'))
     myUser.img = field.img
-    localStorage.setItem("user", JSON.stringify(myUser))
-    alert('Tus cambios se han efectuado con éxito')
-
+    await localStorage.setItem("user", JSON.stringify(myUser))
     setField({
       about: null,
       img: null,
       country: null,
       status: null,
     })
-    dispatch(setUser(JSON.parse(localStorage.getItem("user"))))
+    await dispatch(setUser(JSON.parse(localStorage.getItem("user"))))
     alert("Cambios exitosos")
   }
 
