@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink, useHistory, useLocation } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import style from './NavBar.module.css'
 import logo from '../../logo.png'
 import User from './user/User'
 
 const NavBar = () => {
-  // let location = useLocation(); // borré la importación, useLocation en react-router-dom
-  var myUser = JSON.parse(localStorage.getItem('user'))
   let history = useHistory()
   let location = useLocation()
+  const myUser = useSelector((state)=>state.user)
+  console.log(myUser, "desde navbar")
 
   if (location.pathname !== '/')
     return (
@@ -22,23 +23,7 @@ const NavBar = () => {
           />
         </NavLink>
         <div className={style.navbar__div_buttons}>
-          {myUser && <User />}
-          {/* <div>
-              <button className={style.navbar__link} onClick={()=>history.push("/profile")}>
-                MY PROFILE
-              </button> 
-              <button
-              className={style.navbar__boton_violeta}
-              onClick={() => {
-                localStorage.removeItem('token')
-                localStorage.removeItem('user')
-                history.push("/")
-              }}
-              >
-              LOG OUT
-              </button>
-          </div> */}
-
+          {myUser !== null &&  <User/>}
           {!myUser && (
             <div>
               <NavLink to='/signin'>

@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
-
+import { connect } from 'react-redux'
+import * as actionsCreators from "../../../Actions/index";
+import { bindActionCreators } from 'redux';
 import s from './User.module.css'
 
-function User() {
+function User({setUser}) {
   let history = useHistory()
   const myUser = JSON.parse(localStorage.getItem('user'))
   return (
@@ -37,11 +39,12 @@ function User() {
             onClick={() => {
               localStorage.removeItem('token')
               localStorage.removeItem('user')
-              history.push('/')
+              setUser(null)
               axios.post(
                 'https://rocketproject2021.herokuapp.com/user/changes',
                 { new_status: 'Offline' }
               )
+              history.push('/')
             }}
           >
             Cerrar Sesión
@@ -74,4 +77,9 @@ function User() {
   )
 }
 
-export default User
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators(actionsCreators, dispatch)
+}
+
+export default connect(null, mapDispatchToProps) (User)
