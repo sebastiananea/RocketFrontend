@@ -44,7 +44,7 @@ const Home = () => {
       </div>
       <div className={style.home__chat}>
         <h4>CHAT</h4>
-        {params && params?.name ? (
+        {params && params?.name ? 
           <div>
             <ChatContain
               table={`table${params.institution}${params.table}`}
@@ -52,7 +52,7 @@ const Home = () => {
               img={params.img}
             />
           </div>
-        ) : null}
+         : null}
       </div>
     </div>
   )
