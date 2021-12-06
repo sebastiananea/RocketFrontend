@@ -94,7 +94,7 @@ function LandingPage() {
     <div className='container'>
       <div className='create-container'>
         <div className='signIn'>
-          <h2>Sign In</h2>
+          <h2>Log In</h2>
         </div>
         <div className='create-container-child'>
           <div className='form'>

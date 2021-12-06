@@ -42,7 +42,7 @@ const NavBar = () => {
           {!myUser && (
             <div>
               <NavLink to='/signin'>
-                <button className={style.navbar__link}>SIGN IN</button>
+                <button className={style.navbar__link}>LOG IN</button>
               </NavLink>
               <NavLink to='/signup'>
                 <button className={style.navbar__boton_violeta}>SIGN UP</button>
