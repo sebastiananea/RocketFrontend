@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import GoBackButton from '../goBackButton/GoBackButton'
 import { country_list } from '../index'
 import avatars from '../../avatars/avatarsarr'
 import './Profile.css'
 import avatarPorDefaultAlien from '../../avatars/avatar21-alien.png'
+import {setUser} from "../../Actions"
+import { set } from '@firebase/database'
+
 
 const Profile = () => {
+  const dispatch = useDispatch()
   const [obj, setObj] = useState({})
+  const [boolean, setBoolean] = useState(false)
 
   const [field, setField] = useState({
     about: null,
@@ -22,7 +28,9 @@ const Profile = () => {
     let profile = axios(
       `https://rocketproject2021.herokuapp.com/searchProfileID/${id}`
     ).then((r) => setObj(r.data))
-  }, [])
+    setBoolean(false)
+  }, [boolean])
+  
   // const [checket, setChecket] = useState(obj?.enhableContact);
 
   async function showContact() {
@@ -55,7 +63,7 @@ const Profile = () => {
   }
 
   async function handleSubmit(e) {
-    // e.preventDefault()
+    e.preventDefault()
     const newChanges = {
       new_img: field.img,
       new_about: field.about,
@@ -67,14 +75,18 @@ const Profile = () => {
     await axios.post(
       'https://rocketproject2021.herokuapp.com/user/changes',
       newChanges
-    )
-
+    ).then(()=>setBoolean(true))
+    let myUser = JSON.parse(localStorage.getItem('user'))
+    myUser.img = field.img
+    localStorage.setItem("user", JSON.stringify(myUser))
     setField({
       about: null,
       img: null,
       country: null,
       status: null,
     })
+    dispatch(setUser(JSON.parse(localStorage.getItem("user"))))
+    alert("Cambios exitosos")
   }
 
   function setButtonStatus(status) {

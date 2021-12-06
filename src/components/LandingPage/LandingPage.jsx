@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import GitHub from '../../Images/github.png'
 import Facebook from '../../Images/Facebook.png'
 import Google from '../../Images/google-logo-9808.png'
 import './LandingPage.css'
 import axios from 'axios'
-
+import {setUser} from "../../Actions"
 import {
   facebookProvider,
   githubProvider,
@@ -15,6 +16,7 @@ import {
 import socialMediaAuth from '../../service/Auth'
 
 function LandingPage() {
+  const dispatch = useDispatch()
   let history = useHistory()
   var [log, setLog] = useState({
     email: '',
@@ -47,7 +49,9 @@ function LandingPage() {
     await axios('https://rocketproject2021.herokuapp.com/isLog', {
       method: 'post',
       data: { token: localStorage.getItem('token') },
-    }).then((res) => localStorage.setItem('user', JSON.stringify(res.data)))
+    }).then((res) => {
+      localStorage.setItem('user', JSON.stringify(res.data))
+      dispatch(setUser(JSON.parse(localStorage.getItem("user"))))})
     await axios('https://rocketproject2021.herokuapp.com/user/changes', {
       method: 'post',
       data: {
@@ -76,7 +80,10 @@ function LandingPage() {
       method: 'post',
       data: { token: localStorage.getItem('token') },
     })
-      .then((res) => localStorage.setItem('user', JSON.stringify(res.data)))
+      .then((res) => {
+        localStorage.setItem('user', JSON.stringify(res.data))
+        dispatch(setUser(JSON.parse(localStorage.getItem("user"))))
+      })
       .then(
         async () =>
           await axios.post(
@@ -94,7 +101,7 @@ function LandingPage() {
     <div className='container'>
       <div className='create-container'>
         <div className='signIn'>
-          <h2>Sign In</h2>
+          <h2>Log In</h2>
         </div>
         <div className='create-container-child'>
           <div className='form'>
