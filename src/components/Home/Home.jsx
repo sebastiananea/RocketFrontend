@@ -44,7 +44,9 @@ const Home = () => {
       </div>
       <div className={style.home__chat}>
         <div>
-          <a href={params.meetLink}>Join Meet</a>
+          <a href={JSON.parse(localStorage.getItem('user')).meetLink}>
+            Join Meet
+          </a>
         </div>
         <h4>CHAT</h4>
         {params && params?.name ? (
