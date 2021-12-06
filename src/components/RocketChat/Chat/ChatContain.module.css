@@ -1,3 +1,9 @@
+.chatBoxTop {
+  height: 600 px;
+  overflow: auto;
+  overflow-y: scroll;
+}
+
 .bottom {
   margin-top: 27 px;
   display: flex;
@@ -13,8 +19,4 @@
   flex-direction: column;
 }
 
-.chatBoxTop {
-  height: 600 px;
-  overflow: auto;
-  overflow-y: scroll;
-}
+
