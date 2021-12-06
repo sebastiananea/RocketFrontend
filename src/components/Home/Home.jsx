@@ -44,11 +44,11 @@ const Home = () => {
       </div>
       <div className={style.home__chat}>
         <h4>CHAT</h4>
-        {params && params?.name ? 
+        {params && params?.name ? (
           <div>
             <ChatContain table={`table${params.table}`} params={params} />
           </div>
-         : null}
+        ) : null}
       </div>
     </div>
   )
