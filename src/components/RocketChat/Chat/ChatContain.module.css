@@ -2,13 +2,14 @@
   overflow: auto;
   overflow-y: scroll;
   height: 600px;
+  margin-top: 20px;
 }
 
 .bottom {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 27 px;
+  margin-top: 27px;
 }
 .chatBox {
   flex: 5.5;
