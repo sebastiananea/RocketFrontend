@@ -1,0 +1,49 @@
+.reports{
+    margin-top: 2%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    position: relative;
+}
+.reportContainer{
+    width: 100%;
+    border: 1px solid rgb(228, 0, 0);
+}
+
+.pagContainer{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .pagAct{
+    display: flex;
+    font-family:'Open Sans';
+    justify-content: center;
+    align-items: center;
+    width: 6vw;
+    color: rgb(78, 78, 78);
+  }
+  .currentPage{
+    background-image: linear-gradient( 68.3deg,  rgb(243, 79, 38) 0.4%, rgb(255, 38, 0)65.2% );
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    border-radius: 2px;
+    padding: 5% 12%;
+    margin-right: 5%;
+  }
+  .pagContainer>button{
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    color: rgb(110, 110, 110);
+    gap: 3px;
+  }
+  .pagContainer>button:hover{
+    transform: scale(1.02);
+  }
