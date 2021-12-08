@@ -57,7 +57,7 @@ function Register() {
   async function handleSubmit (e) {
     e.preventDefault();
     if (data.password === data.repeatPass) {
-      axios("https://rocketproject2021.herokuapp.com/signup", {
+      await axios("https://rocketproject2021.herokuapp.com/signup", {
         method: "post",
         data: data,
       }).then(history.push("/active-account/false"));
