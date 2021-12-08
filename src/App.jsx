@@ -13,7 +13,8 @@ import {
   SideBar,
   TrueLandingPage,
   LandingNoLog,
-  InstitutionLogIn
+  InstitutionLogIn,
+  ActiveAccount
 } from './components/index'
 console.log(JSON.parse(localStorage.getItem("user")))
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path='/profile' component={Profile} />
         <Route path='/query/user/:_id' component={QueryUser} />
         <Route path='/institution' component={InstitutionLogIn} />
+        <Route path='/active-account/:token' component={ActiveAccount} />
         <Route path='/admin'> 
             <div className="adminContainer">
             <SideBar/>

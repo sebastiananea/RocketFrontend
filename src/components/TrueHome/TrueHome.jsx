@@ -98,6 +98,7 @@ function TrueHome() {
             <div className={s.pagContainer}>
             {
               <button
+                style={pag.to/9 === 1 ? {"visibility":"hidden"}: null}
                 disabled={pag.from > 0 ? false : true}
                 onClick={() => setPag({ from: pag.from - 9, to: pag.to - 9 })}
               >
@@ -123,6 +124,7 @@ function TrueHome() {
             </div>
             {
               <button
+                style={pag.to>= users.length ? {"visibility":"hidden"} : null}
                 disabled={pag.to < users.length ? false : true}
                 onClick={() => setPag({ from: pag.from + 9, to: pag.to + 9 })}
               >

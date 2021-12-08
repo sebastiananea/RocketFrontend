@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import s from "./Students.module.css";
 import Student from "./Student/Student";
+import Details from "./Student/Details/Details";
 import { myDatabaseChat } from '../../config/utilsChatDatabase'
 import { ref, remove} from "firebase/database";
 
@@ -14,6 +15,7 @@ function Students() {
     from: 0,
     to: 7,
   });
+
   let [orderBy, setOrderBy] = useState("a-z");
 
   async function shuffleTables() {
@@ -24,8 +26,10 @@ function Students() {
         institution: JSON.parse(localStorage.getItem("user")).institution,
       },
     })
+
      //borra chats de mesas
      remove(ref(myDatabaseChat))
+
   }
   async function getStudents() {
     let res = await axios("https://rocketproject2021.herokuapp.com/getUsersByInstitution", {
@@ -119,6 +123,7 @@ function Students() {
                 _id={x._id}
                 score={x.score}
                 reports={x.reports}
+                setDetailsOpen={setDetailsOpen}
               />
             ))}
         <div className={s.pagContainer}>
@@ -169,6 +174,7 @@ function Students() {
           }
         </div>
       </div>
+      {detailsOpen != false && <Details  user={detailsOpen} setDetailsOpen={setDetailsOpen}/>}
     </div>
   );
 }

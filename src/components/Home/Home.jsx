@@ -55,6 +55,11 @@ const Home = () => {
           </div>
         ) : null}
       </div>
+
+      <div>
+      <a href={`https://meet.jit.si/Henry${JSON.parse(localStorage.getItem("user")).table}`} target="_blank">Join Meet</a>
+    </div>
+
     </div>
   )
 }
