@@ -2,13 +2,15 @@ import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
 import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import * as actionsCreators from "../../../Actions/index";
 import { bindActionCreators } from 'redux';
 import s from './User.module.css'
 
 function User({setUser}) {
   let history = useHistory()
-  const myUser = JSON.parse(localStorage.getItem('user'))
+  const myUser = useSelector((state)=>state.user)
+  console.log(myUser, "desde user")
   return (
     <div className={s.container}>
       <div className={s.nombre}>

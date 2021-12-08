@@ -15,7 +15,7 @@ import {
   LandingNoLog,
   InstitutionLogIn
 } from './components/index'
-
+console.log(JSON.parse(localStorage.getItem("user")))
 function App() {
   
   return (
