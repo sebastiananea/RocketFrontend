@@ -45,7 +45,7 @@ function LandingPage() {
           password: '',
         })
         if(r.data.account) return alert("confirm your account is required")
-        alert('User or Password incorrect')
+        else{alert('User or Password incorrect')}
       }
     })
     
