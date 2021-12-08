@@ -36,6 +36,7 @@ function LandingPage() {
       method: 'post',
       data: log,
     }).then((r) => {
+      console.log(r)
       if (r.data.token) {
         localStorage.setItem('token', r.data.token)
       } else {
@@ -43,7 +44,7 @@ function LandingPage() {
           username: '',
           password: '',
         })
-        if(r.account) return alert("confirm your account is required")
+        if(r.data.account) return alert("confirm your account is required")
         alert('User or Password incorrect')
       }
     })
