@@ -7,22 +7,28 @@ import { ref, remove} from "firebase/database";
 
 function Students() {
   const { ordenar } = require("../utils");
-  var [users, setUsers] = useState([]);
-  var [users2, setUsers2] = useState([]);
-  var [pag, setPag] = useState({
+  let [users, setUsers] = useState([]);
+  let [users2, setUsers2] = useState([]);
+  let [group, setGroup] = useState("")
+  let [pag, setPag] = useState({
     from: 0,
     to: 7,
   });
-  var [orderBy, setOrderBy] = useState("a-z");
+  let [orderBy, setOrderBy] = useState("a-z");
 
   async function shuffleTables() {
-    await axios.post("https://rocketproject2021.herokuapp.com/asignTable");
-    console.log("mezclando");
+    await axios("https://rocketproject2021.herokuapp.com/asignTable", {
+      method: "post",
+      data: {
+        group: group,
+        institution: JSON.parse(localStorage.getItem("user")).institution,
+      },
+    })
      //borra chats de mesas
      remove(ref(myDatabaseChat))
   }
   async function getStudents() {
-    var res = await axios("https://rocketproject2021.herokuapp.com/getUsersByInstitution", {
+    let res = await axios("https://rocketproject2021.herokuapp.com/getUsersByInstitution", {
       method: "post",
       data: {
         institution: JSON.parse(localStorage.getItem("user")).institution,
@@ -47,16 +53,25 @@ function Students() {
       )
     );
   };
+
+  const onChange= (e) => {
+    setGroup(e.target.value)
+    console.log(e.target.value)
+  }
+
   return (
     <div className={s.container}>
       <h2>Students Panel</h2>
-      <button onClick={shuffleTables}>Shuffle Tables</button>
+      <button onClick={shuffleTables}>Shuffle Group Tables</button>
       <div className={s.filtros}>
         <div className={s.orderGroup}>
           <h6>Group</h6>
-          <select value="FT 18-A">
-            <option value="FT 18-A">FT 18-A</option>
-            <option value="FT 20-B">FT 20-B</option>
+          <select value="FT 18-A" onChange={e=> onChange(e)}>
+            <option value="">Select Group</option>
+            <option value="1">Grupo 1</option>
+            <option value="2">Grupo 2</option>
+            <option value="3">Grupo 3</option>
+ 
           </select>
         </div>
 
