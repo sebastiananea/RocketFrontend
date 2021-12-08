@@ -294,25 +294,43 @@
     width: 100%;
     height: 90vh;
     display: flex;
-    flex-direction: column;
     margin-bottom: 90vh;
+    background-color: #000000;
 }
 .fourthContainer>.text{
-    width: 100%;
-    height: 10vh;
-    background-color: #FF914D;
+    width: 60%;
+    height: 100%;
     font-family: 'Open sans';
     color: #FFF;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
+    gap: 10px;
+}
+.fourthContainer>.text>h4{
+    font-size: 1.5rem;
+    color: #7333c5;
+}
+.fourthContainer>.text>button{
+    color: #7918F2;
+    width: 15%;
+    height: 8%;
+    background: #fff;
+    border: none;
+    margin-right: 1%;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+.fourthContainer>.text>button:hover{
+    transform: scale(1.02);
 }
 .fourthContainer>.img{
-    width: 100%;
-    height: 80vh;
-    background-image: url("../../media/henry.jpeg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .fifthContainer{

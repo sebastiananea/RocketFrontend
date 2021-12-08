@@ -1,0 +1,97 @@
+.profile_container {
+    margin: auto;
+    width: 70%;
+    height: 60vh;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.profile_card, .profile_changes {
+    margin: 1rem;
+    width: 28%;
+    height: 100%;
+    padding: 0.7rem;
+    font-size: small;
+    background: #99999905;
+}
+
+.profile_stats {
+    margin: 20px auto;
+    width: 70%;
+    height: 22vh;
+    padding: 0.7rem;
+    font-size: small;
+    background: linear-gradient(62deg, #7333c5, #c6a3f3);
+    background: linear-gradient(62deg, #555, #999);
+    color: #fff;
+    border-radius: 30px;
+    border-bottom: 8px solid #7333c5;
+}
+
+.profile_card {
+    flex: 1;
+}
+
+.profile_changes {
+    flex: 3;
+}
+
+.profile_img {
+    border-radius: 50%;
+}
+
+.profile_status, .profile_country, .profile_inst, .profile_about {
+    margin: 6px;
+} 
+
+.profile_changes_label {
+    font-size: medium;
+}
+
+.profile_select, .form_check_input {
+    background: transparent;
+    margin: 0.6rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.profile_textarea {
+    margin: 0.6rem;
+    height: 92px;
+    resize: none;
+    border: none;
+    outline: none;
+    background: transparent;
+    border-left: 1px solid #888;
+    border-bottom: 1px solid #888;
+    padding: 10px;
+}
+
+.profile__button_submit {
+    height: 6vh;
+    width: 20%;
+    border: none;
+    border-radius: 22px;
+    box-shadow: 0 0 2px 0 #222;
+    background: #7333c5;
+    color: #fff;
+    font-family: 'Nunito';
+}
+
+.profile__button_submit:hover {
+    cursor: pointer;
+    background: #7c40ca;
+}
+
+.profile__button_submit:active, .profile__button_submit:focus {
+    box-shadow: inset 0 0 6px 0 #222;
+    background: #7c40ca;
+}
+
+.profile_stats_progress {
+    width: 70%;
+    margin: 4px;
+    margin-left: 15px;
+    cursor: pointer;
+}

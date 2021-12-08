@@ -23,7 +23,7 @@ function LandingNoLog() {
                         </p>
                 </div>
                 <div className={s.img}>
-                    <img src={require("../../media/1.jpeg")} alt="" width="450px"/>
+                    <img src={require("../../media/1.jpeg").default} alt="" width="450px"/>
                 </div>
             </div>
 
@@ -32,7 +32,7 @@ function LandingNoLog() {
            
                 <div className={s.img}>
                 
-                    <img src={require("../../media/4.jpeg")} alt="" width="400px"/>
+                    <img src={require("../../media/4.jpeg").default} alt="" width="400px"/>
                 </div>
                 <div className={s.text}>
                     <p>Nuestra experiencia en Henry nos ha dado a entender que el trabajo en equipo facilita el cumplimiento de objetivos, 
@@ -136,12 +136,17 @@ function LandingNoLog() {
 
             <div className={s.fourthContainer}>
                 <div className={s.text}>
-                    <h2>CONECTAMOS PERSONAS JUNTO A</h2>
+                    <h4>CONECTAMOS PERSONAS JUNTO A</h4>
+                    <img src="https://assets.soyhenry.com/henry-landing/assets/Henry/logo-white.png" alt="" />
+                    <button>APLICA</button>
                 </div>
                 <div className={s.img}>
-   
+                    <img src="https://i.ibb.co/D7Qt6XJ/Whats-App-Image-2021-12-08-at-00-15-08-1.jpg" alt="" width="50%"/>
                 </div>
             </div>
+
+
+
 
             <div className={s.fifthContainer} id='team'>
                 <h1>QUIENES SOMOS</h1>

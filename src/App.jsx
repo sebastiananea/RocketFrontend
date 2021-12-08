@@ -18,6 +18,7 @@ import {
   SidebarInstitution,
   Student,
   Curso
+  ActiveAccount
 } from './components/index'
 console.log(JSON.parse(localStorage.getItem("user")))
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <Route path='/query/user/:_id' component={QueryUser} />
         <Route path='/institution' component={InstitutionLogIn} />
         <Route path='/register' component={RegisterInstitution} />
+        <Route path='/active-account/:token' component={ActiveAccount} />
         <Route path='/admin'> 
             <div className="adminContainer">
             <SideBar/>

@@ -12,6 +12,7 @@ export { default as RocketChat } from "./RocketChat/Input/RocketChat.jsx";
 export { default as LandingNoLog } from "./LandingNoLog/LandingNoLog.jsx"
 export { default as InstitutionLogIn } from "./Institution/institution"
 export { default as RegisterInstitution } from "./Institution register/Register"
+export { default as ActiveAccount } from "./ActiveAccount/ActiveAccount.jsx"
 
 //Institucion
 export { default as Student} from "./institutionComponent/Students"
