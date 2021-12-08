@@ -11,6 +11,7 @@ export { default as TrueLandingPage } from "./TrueLandingPage/TrueLandingPage.js
 export { default as RocketChat } from "./RocketChat/Input/RocketChat.jsx";
 export { default as LandingNoLog } from "./LandingNoLog/LandingNoLog.jsx"
 export { default as InstitutionLogIn } from "./Institution/institution"
+export { default as ActiveAccount } from "./ActiveAccount/ActiveAccount.jsx"
 
 
 /* export { default as Card } from "./Card/Card";

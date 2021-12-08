@@ -43,16 +43,18 @@ function LandingPage() {
           username: '',
           password: '',
         })
+        if(r.account) return alert("confirm your account is required")
         alert('User or Password incorrect')
       }
     })
+    
     await axios('https://rocketproject2021.herokuapp.com/isLog', {
       method: 'post',
       data: { token: localStorage.getItem('token') },
     }).then((res) => {
       localStorage.setItem('user', JSON.stringify(res.data))
       dispatch(setUser(JSON.parse(localStorage.getItem("user"))))})
-    await axios('https://rocketproject2021.herokuapp.com/user/changes', {
+      await axios('https://rocketproject2021.herokuapp.com/user/changes', {
       method: 'post',
       data: {
         new_status: 'Online',
@@ -60,7 +62,7 @@ function LandingPage() {
       },
     }).then(() => {
       if (JSON.parse(localStorage.getItem('user')).moderator === true)
-        return history.push('/admin/students')
+      return history.push('/admin/students')
       else return history.push('/trueHome')
     })
   }
