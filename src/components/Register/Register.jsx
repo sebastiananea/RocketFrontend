@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import s from "./Register.module.css";
 import axios from "axios";
+
+
 function Register() {
+
   let history = useHistory();
   var [data, setData] = useState({
     name: "",
@@ -17,7 +20,7 @@ function Register() {
 
   useEffect(() => {
     setErrors(inputValidate(data));
-  },[data]);
+  }, [data]);
 
   const inputValidate = (input) => {
     const errors = {};
@@ -51,13 +54,14 @@ function Register() {
       [e.target.name]: value,
     });
   }
-  function handleSubmit(e) {
+  async function handleSubmit (e) {
     e.preventDefault();
     if (data.password === data.repeatPass) {
-      axios("https://rocketproject2021.herokuapp.com/signup", {
+      await axios("https://rocketproject2021.herokuapp.com/signup", {
         method: "post",
         data: data,
-      }).then(history.push("/"));
+      }).then(history.push("/active-account/false"));
+
     }
   }
 
