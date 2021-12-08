@@ -11,8 +11,14 @@ export { default as TrueLandingPage } from "./TrueLandingPage/TrueLandingPage.js
 export { default as RocketChat } from "./RocketChat/Input/RocketChat.jsx";
 export { default as LandingNoLog } from "./LandingNoLog/LandingNoLog.jsx"
 export { default as InstitutionLogIn } from "./Institution/institution"
+export { default as RegisterInstitution } from "./Institution register/Register"
 export { default as ActiveAccount } from "./ActiveAccount/ActiveAccount.jsx"
 
+//Institucion
+export { default as Student} from "./institutionComponent/Students"
+ export { default as SidebarInstitution } from "./institutionComponent/sidebarInstitution/SidebarInstitution"
+ export { default as Curso } from "./institutionComponent/Curso/curso"
+ 
 
 /* export { default as Card } from "./Card/Card";
 export { default as Cards } from "./Cards/Cards";
