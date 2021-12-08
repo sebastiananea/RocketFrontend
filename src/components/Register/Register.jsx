@@ -57,9 +57,20 @@ function Register() {
   async function handleSubmit (e) {
     e.preventDefault();
     if (data.password === data.repeatPass) {
+
+      let name = data.name.split(" "); 
+      let nameArr = [];
+
+      for (let n of name) {
+        let word = n.charAt(0).toUpperCase() + n.slice(1).toLowerCase();
+        nameArr.push(word)
+      }
+
+      let DefinitiveName = nameArr.join(' ');
+      
       await axios("https://rocketproject2021.herokuapp.com/signup", {
         method: "post",
-        data: data,
+        data: {...data, name: DefinitiveName}
       }).then(history.push("/active-account/false"));
 
     }

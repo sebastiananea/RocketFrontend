@@ -5,6 +5,7 @@ import GoBackButton from '../goBackButton/GoBackButton'
 import { country_list } from '../index'
 import avatars from '../../avatars/avatarsarr'
 import ss from './Profile.module.css'
+import Swal from 'sweetalert2';
 import avatarPorDefaultAlien from '../../avatars/avatar21-alien.png'
 import {setUser} from "../../Actions"
 import { set } from '@firebase/database'
@@ -64,6 +65,11 @@ const Profile = () => {
 
   async function handleSubmit(e) {
     e.preventDefault()
+    Swal.fire(
+      'Cambios aplicados',
+      'satisfactoriamente!',
+      'success'
+    )
     const newChanges = {
       new_img: field.img,
       new_about: field.about,
@@ -86,7 +92,6 @@ const Profile = () => {
       status: null,
     })
     dispatch(setUser(JSON.parse(localStorage.getItem("user"))))
-    alert("Cambios exitosos")
   }
 
   function setButtonStatus(status) {
