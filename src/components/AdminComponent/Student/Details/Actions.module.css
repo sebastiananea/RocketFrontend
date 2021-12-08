@@ -1,0 +1,45 @@
+@import url("../../../../vars.css");
+.container{
+    width: 80%;
+    height: 70%;
+    border: 1px solid red;
+    display: flex;
+}
+.optionsContainer{
+    width: 35%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5%;
+}
+.option{
+    width: 60%;
+    height: 12%;
+    border: none;
+    color: rgb(43, 43, 43);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.option:hover{
+    transform: scale(1.02);
+    cursor: pointer;
+}
+.option:active{
+    transform: scale(0.97);
+}
+.optionSelected{
+    width: 60%;
+    height: 12%;
+    border: none;
+    background-color: var(--main-color);
+    color: rgb(36, 36, 36);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    transform: scale(1.05);
+}
+
+
+.confirmationContainer{
+    width: 65%;
+    height: 100%;
+}

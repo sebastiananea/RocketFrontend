@@ -21,6 +21,9 @@
     flex-direction: column;
     position: relative;
 }
+.subcontainer>h3{
+    margin-top: 1%;
+}
 .subcontainer>svg{
     position: absolute;
     top: 2%;
