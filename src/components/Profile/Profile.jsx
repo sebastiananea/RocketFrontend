@@ -4,7 +4,7 @@ import axios from 'axios'
 import GoBackButton from '../goBackButton/GoBackButton'
 import { country_list } from '../index'
 import avatars from '../../avatars/avatarsarr'
-import './Profile.css'
+import ss from './Profile.css'
 import avatarPorDefaultAlien from '../../avatars/avatar21-alien.png'
 import {setUser} from "../../Actions"
 import { set } from '@firebase/database'
