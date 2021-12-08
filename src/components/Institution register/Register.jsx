@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import s from "./Register.module.css";
 import axios from "axios";
-function Register() {
+
+
+function RegisterInstitution() { 
   let history = useHistory();
   var [data, setData] = useState({
     name: "",
@@ -24,20 +26,20 @@ function Register() {
     const regex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
     if (!data.name) {
-      errors.name = "Full Name is required!";
+      errors.name = "El nombre de la institucion es obligatorio!";
       setHabilitado(false);
     }
     if (regex.test(data.email) === false) {
-      errors.email = "E-mail is required!";
+      errors.email = "E-mail es obligatorio!";
       setHabilitado(false);
     }
     if (!data.password) {
-      errors.password = "Password is required!";
+      errors.password = "Password es obligatorio!";
       setHabilitado(false);
     }
     if (data.password !== data.repeatPass) {
       console.log(data.repeatPass);
-      errors.repeatPass = "Passwords do not match!";
+      errors.repeatPass = "Passwords no es igual!";
       setHabilitado(false);
     } else setHabilitado(true);
 
@@ -54,10 +56,11 @@ function Register() {
   function handleSubmit(e) {
     e.preventDefault();
     if (data.password === data.repeatPass) {
-      axios("https://rocketproject2021.herokuapp.com/signup/:institution/:curso", {
+      axios("https://rocketproject2021.herokuapp.com/institution/signup", {
         method: "post",
         data: data,
-      }).then(history.push("/"));
+      }).
+      then(history.push("/"));
     }
   }
 
@@ -66,11 +69,11 @@ function Register() {
       <div className={s.container}>
         <div className={s.formContainer}>
           <form onSubmit={handleSubmit}>
-            <h2>Sign Up</h2>
+            <h2>Crear Institucion</h2>
             <input
               className={s.fullname}
               type="text"
-              placeholder="Full Name"
+              placeholder="Nombre Institucion"
               required
               name="name"
               value={data.name}
@@ -106,7 +109,7 @@ function Register() {
             <input
               className={s.repeatPass}
               type="password"
-              placeholder="Repeat your Password"
+              placeholder="Repetir Password"
               required
               name="repeatPass"
               value={data.repeatPass}
@@ -118,7 +121,7 @@ function Register() {
             <input
               className={s.country}
               type="text"
-              placeholder="Country"
+              placeholder="Pais"
               required
               name="country"
               value={data.country}
@@ -130,7 +133,7 @@ function Register() {
               onClick={(e) => handleSubmit(e)}
               className={s.creator_btn}
             >
-              SIGN UP
+              Crear
             </button>
           </form>
         </div>
@@ -153,4 +156,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default RegisterInstitution;
