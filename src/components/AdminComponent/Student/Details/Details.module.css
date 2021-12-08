@@ -1,0 +1,80 @@
+.container{ 
+    z-index: 10;
+    background-color: rgba(255, 255, 255, .15);  
+    backdrop-filter: blur(5px);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: cssAnimation 0.2s;
+}
+.subcontainer{
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    box-shadow: rgba(59, 59, 59, 0.25) 0px 10px 10px 0px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+.subcontainer>svg{
+    position: absolute;
+    top: 2%;
+    right: 2%;
+}
+.subcontainer>svg:hover{
+    transform: scale(1.02);
+}
+.subcontainer>svg:active{
+    transform: scale(0.95);
+}
+.options{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 2%;
+}
+.option{
+    font-family: 'Open sans';
+    font-weight: 400;
+    padding-bottom: 2px;
+}
+.option:hover{
+    cursor: pointer;
+    transform: scale(1.02);
+}
+.option:active{
+    transform: scale(0.95);
+}
+.selected{
+    font-family: 'Open sans';
+    font-weight: 400;
+    padding-bottom: 2px;
+    border-bottom:2px solid #7333c5;
+}
+
+
+@keyframes cssAnimation {
+    0% {opacity: 0;}
+    20% {opacity: 0.2;}
+    30% {opacity: 0.3;}
+    50% {opacity: 0.5;}
+    70% {opacity: 0.7;}
+    100% {opacity: 1;}
+}
+
+@-webkit-keyframes cssAnimation {
+    0% {opacity: 0;}
+    20% {opacity: 0.2;}
+    30% {opacity: 0.3;}
+    50% {opacity: 0.5;}
+    70% {opacity: 0.7;}
+    100% {opacity: 1;}
+}

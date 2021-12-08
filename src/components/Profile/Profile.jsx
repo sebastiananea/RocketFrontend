@@ -4,7 +4,7 @@ import axios from 'axios'
 import GoBackButton from '../goBackButton/GoBackButton'
 import { country_list } from '../index'
 import avatars from '../../avatars/avatarsarr'
-import './Profile.css'
+import ss from './Profile.module.css'
 import avatarPorDefaultAlien from '../../avatars/avatar21-alien.png'
 import {setUser} from "../../Actions"
 import { set } from '@firebase/database'
@@ -90,230 +90,179 @@ const Profile = () => {
   }
 
   function setButtonStatus(status) {
-    if (status === 'Online' || status === 'Available') return '🟢'
-    if (status === 'Busy') return '🟡'
-    if (status === 'Sleeping') return '🔵'
-    if (status === 'Offline') return '⚫'
-  }
-  let buttonStatus = setButtonStatus(obj.status)
+    switch (status) {
+      case  "Online"  : return "🟢";
+      case   "Busy"   : return "🟡";
+      case "Sleeping" : return "🔵";
+      case "Offline"  : return "⚫";
+      default: return "⚪ Status is not defined";
+    };
+  };
+  let buttonStatus = setButtonStatus(obj.status);
 
   return (
-    <div className='profile-supercontainer'>
+    <>
       <GoBackButton />
-      <div className='container profile-container'>
-        <div className='main-body'>
-          <div className='row gutters-sm'>
-            <div className='col-md-4 mb-3' style={{ width: '600px' }}>
-              <div className='card' style={{ minWidth: '300px' }}>
-                <div className='card-body profile-card-body'>
-                  <div className='d-flex flex-column align-items-center text-center'>
-                    <img
-                      src={obj.img ? obj.img : avatarPorDefaultAlien}
-                      alt='avatar'
-                      className='rounded-circle'
-                      width='150'
-                    />
-                    <div className='mt-3'>
-                      <h4>{obj.name ? obj.name : 'User Name'}</h4>
-                      <p className='text-secondary mb-1'>
-                        {buttonStatus} {obj.status}
-                      </p>
-                      <p className='text-muted font-size-sm'>
-                        {obj.country ? obj.country : 'Unspecified country'}
-                      </p>
-                      <p className='text-muted font-size-sm'>
-                        {obj.institution
-                          ? obj.institution
-                          : 'Unspecified institution'}
-                      </p>
-                      <hr />
-                      <h6>About</h6>
-                      <p className='text-muted font-size-sm'>
-                        {obj.about
-                          ? obj.about
-                          : "Introduce yourself... c'mon! tell everybody who you're, don't be shy"}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div className={ss.profile_container}>
+        <div className={ss.profile_card}>
+          <img
+            src={obj.img ? obj.img : avatarPorDefaultAlien}
+            alt="avatar"
+            className={ss.profile_img}
+            width="150"
+          />
+          <div>
+            <h4>{obj.name ? obj.name : "User Name"}</h4>
+            <p className={ss.profile_status}>
+              {buttonStatus} {obj.status}
+            </p>
 
-            <div className='col-md-8'>
-              <div className='card mb-3'>
-                <div className='card-body'>
-                  <form onSubmit={(e) => handleSubmit(e)}>
-                    <div className='row'>
-                      <div className='col-sm-3'>
-                        <h6 className='mb-0'>Country</h6>
-                      </div>
-                      <div className='col-sm-9 text-secondary'>
-                        <select
-                          className='profile-select'
-                          type='text'
-                          name='country'
-                          value={field.country}
-                          onChange={(e) => handleChange(e)}
-                        >
-                          <option disabled selected>
-                            Select your Country...
-                          </option>
-                          {country_list.map((country) => {
-                            return <option key={country}>{country}</option>
-                          })}
-                        </select>
-                      </div>
-                    </div>
-                    <hr />
-                    <div className='row'>
-                      <div className='col-sm-3'>
-                        <h6 className='mb-0'>Avatar</h6>
-                      </div>
-                      <div className='col-sm-9 text-secondary'>
-                        <select
-                          className='profile-select'
-                          name='img'
-                          onChange={(e) => handleChange(e)}
-                        >
-                          <option disabled selected>
-                            Select your Avatar...
-                          </option>
-                          {avatars.map((avatar, index) => (
-                            <option key={index} value={avatar}>
-                              {index + 1}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-                    <hr />
-                    <div className='row'>
-                      <div className='col-sm-3'>
-                        <h6 className='mb-0'>Status</h6>
-                      </div>
-                      <div className='col-sm-9 text-secondary'>
-                        <select
-                          className='profile-select'
-                          type='text'
-                          name='status'
-                          value={field.status}
-                          onChange={(e) => handleChange(e)}
-                        >
-                          <option disabled selected>
-                            Select your Status...
-                          </option>
-                          <option key={1}>Online</option>
-                          <option key={2}>Busy</option>
-                          <option key={3}>Sleeping</option>
-                          <option key={4}>Offline</option>
-                        </select>
-                      </div>
-                    </div>
-                    <hr />
-                    <div className='row'>
-                      <div className='col-sm-3'>
-                        <h6 className='mb-0'>Share Contacts</h6>
-                      </div>
-                      <div className='col-sm-9 text-secondary'>
-                        <div className='form-check form-switch'>
-                          {obj.enhableContact ? (
-                            <input
-                              className='form-check-input'
-                              type='checkbox'
-                              id='flexSwitchCheckDefault'
-                              onChange={() => showContact()}
-                              checked='true'
-                            />
-                          ) : (
-                            <input
-                              className='form-check-input'
-                              type='checkbox'
-                              id='flexSwitchCheckDefault'
-                              onChange={() => showContact()}
-                              checked='false'
-                            />
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                    <hr />
-                    <div className='row'>
-                      <div className='col-sm-3'>
-                        <h6 className='mb-0'>About</h6>
-                      </div>
-                      <div className='col-sm-9 text-secondary'>
-                        <textarea
-                          placeholder='. . .'
-                          className='profile-input'
-                          name='about'
-                          value={field.about}
-                          style={{ width: '92%' }}
-                          onChange={(e) => handleChange(e)}
-                        />
-                      </div>
-                    </div>
-                    <hr />
-                    <div className='row'>
-                      <div className='col-sm-12'>
-                        <button
-                          type='submit'
-                          className='profile__button_submit'
-                        >
-                          {' '}
-                          Apply Changes
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
+            <p className={ss.profile_country}>
+              {obj.country ? obj.country : "Unspecified country"}
+            </p>
+            <p className={ss.profile_inst}>
+              {obj.institution ? obj.institution : "Unspecified institution"}
+            </p>
+            <hr />
 
-              <div className='row gutters-sm'>
-                <div className='col-sm-12 mb-3'>
-                  <div className='card h-100'>
-                    <div className='card-body'>
-                      <h6 className='d-flex align-items-center mb-3'>
-                        <i className='material-icons text-info mr-2' />
-                        MY STATS
-                      </h6>
-                      <small>🚀 Rockets</small>
-                      <div className='progress mb-3' height='5px'>
-                        <div
-                          className='profile-stats-progress'
-                          role='progressbar'
-                          style={{ width: obj.score ? obj.score + '%' : '1%' }}
-                        ></div>
-                      </div>
-                      <small>❌ Abscences</small>
-                      <div className='progress mb-3' height='5px'>
-                        <div
-                          className='profile-stats-progress'
-                          role='progressbar'
-                          style={{
-                            width: obj.absence ? obj.absence + '%' : '1%',
-                          }}
-                        ></div>
-                      </div>
-                      <small>🚫 Reports</small>
-                      <div className='progress mb-3' height='5px'>
-                        <div
-                          className='profile-stats-progress'
-                          role='progressbar'
-                          style={{
-                            width: obj.reports ? obj.reports + '%' : '1%',
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <h6>About</h6>
+            <p className={ss.profile_about}>
+              {obj.about
+                ? obj.about
+                : "Introduce yourself... c'mon! tell everybody who you're, don't be shy!"}
+            </p>
           </div>
         </div>
+
+        <div className={ss.profile_changes}>
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <div>
+            <span className={ss.profile_changes_label}><strong>Country</strong> </span>
+              <select
+                className={ss.profile_select}
+                type="text"
+                name="country"
+                value={field.country}
+                onChange={(e) => handleChange(e)}
+              >
+                <option disabled selected>
+                  Select...
+                </option>
+                {country_list.map((country) => {
+                  return <option key={country}>{country}</option>;
+                })}
+              </select>
+            </div>
+<hr />
+            <div>
+            <span className={ss.profile_changes_label}><strong>Avatar</strong> </span>
+              <select
+                className={ss.profile_select}
+                name="img"
+                onChange={(e) => handleChange(e)}
+              >
+                <option disabled selected>
+                  Select...
+                </option>
+                {avatars.map((avatar, index) => (
+                  <option key={index} value={avatar}>
+                    {index + 1}
+                  </option>
+                ))}
+              </select>
+            </div>
+<hr />
+            <div>
+            <span className={ss.profile_changes_label}><strong>Status</strong> </span>
+              <select
+                className={ss.profile_select}
+                type="text"
+                name="status"
+                value={field.status}
+                onChange={(e) => handleChange(e)}
+              >
+                <option disabled selected>
+                  Select...
+                </option>
+                <option key={1}>Online</option>
+                <option key={2}>Busy</option>
+                <option key={3}>Sleeping</option>
+                <option key={4}>Offline</option>
+              </select>
+            </div>
+<hr />
+            <div>
+              <span className={ss.profile_changes_label}><strong>Share Contacts</strong> </span>
+                {obj.enhableContact ? (
+                  <input
+                    className={ss.form_check_input}
+                    type="checkbox"
+                    id="flexSwitchCheckDefault"
+                    onChange={() => showContact()}
+                    checked="true"
+                  />
+                ) : (
+                  <input
+                    className={ss.form_check_input}
+                    type="checkbox"
+                    id="flexSwitchCheckDefault"
+                    onChange={() => showContact()}
+                    checked="false"
+                  />
+                )}
+            </div>
+<hr />        
+            <div>
+              <span className={ss.profile_changes_label}><strong>About</strong></span>
+            </div>
+            <div>
+              <textarea
+                placeholder="..."
+                className={ss.profile_textarea}
+                name="about"
+                value={field.about}
+                style={{ width: "92%" }}
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+
+            <button type="submit" className={ss.profile__button_submit}>
+              {" "}
+              Apply Changes
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
-  )
-}
+
+      <div className={ss.profile_stats}>
+        <h4>MY STATS</h4>
+          <div>
+            <small>🚀 Rockets</small>
+            <input 
+            type="range" 
+            className={ss.profile_stats_progress} 
+            value={obj.score ? obj.score : 0}/>
+            {obj.score ? obj.score : 0}
+          </div>
+           <div>
+            <small>❌ Abscences</small>
+            <input 
+            type="range" 
+            className={ss.profile_stats_progress} 
+            value={obj.absence ? obj.absence : 0} />
+            {obj.absence ? obj.absence : 0}
+          </div>
+         <div>
+            <small>🚫 Reports</small>
+            <input 
+            type="range" 
+            className={ss.profile_stats_progress} 
+            value={obj.reports ? obj.reports : 0}/>
+            {obj.reports ? obj.reports : 0}
+          </div>
+      </div>
+    </>
+  );
+};
 
 export default Profile

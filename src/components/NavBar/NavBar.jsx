@@ -8,8 +8,10 @@ import User from './user/User'
 const NavBar = () => {
   let history = useHistory()
   let location = useLocation()
-  const myUser = useSelector((state) => state.user)
-  console.log(myUser, 'desde navbar')
+
+  const myUser = useSelector((state)=>state.user)
+  console.log(myUser, "desde navbar")
+
 
   if (location.pathname !== '/')
     return (
@@ -23,7 +25,9 @@ const NavBar = () => {
           />
         </NavLink>
         <div className={style.navbar__div_buttons}>
-          {myUser !== null && <User myUser />}
+
+          {myUser !== null &&  <User/>}
+
           {!myUser && (
             <div>
               <NavLink to='/signin'>
