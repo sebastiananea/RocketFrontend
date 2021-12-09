@@ -17,7 +17,7 @@ import {
   RegisterInstitution,
   SidebarInstitution,
   Student,
-  Curso
+  Curso,
   ActiveAccount
 } from './components/index'
 console.log(JSON.parse(localStorage.getItem("user")))
