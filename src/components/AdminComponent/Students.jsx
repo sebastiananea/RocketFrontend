@@ -5,6 +5,7 @@ import Student from "./Student/Student";
 import Details from "./Student/Details/Details";
 import { myDatabaseChat } from '../../config/utilsChatDatabase'
 import { ref, remove} from "firebase/database";
+import Swal from 'sweetalert2';
 
 function Students() {
   const { ordenar } = require("../utils");
@@ -25,7 +26,11 @@ function Students() {
         group: group,
         institution: JSON.parse(localStorage.getItem("user")).institution,
       },
-    })
+    }).then(Swal.fire(
+      'Mesas mezcladas',
+      'satisfactoriamente!',
+      'success'
+    ))    
 
      //borra chats de mesas
      remove(ref(myDatabaseChat))

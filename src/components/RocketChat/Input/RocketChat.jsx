@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { myDatabaseChat } from '../../../config/utilsChatDatabase.js'
 import { ref, push, child, update} from "firebase/database";
-
+import Swal from 'sweetalert2';
 
 function RocketChat({name,img,table,id}) {
 
@@ -42,7 +42,9 @@ function RocketChat({name,img,table,id}) {
             update(ref(myDatabaseChat), updates);
 
         } catch (e) {
-            alert("Chat on on maintenance", e);
+            Swal.fire(
+                'Chat on on maintenance'
+              );
         }
         setmessages({ txt: "" })
     }
