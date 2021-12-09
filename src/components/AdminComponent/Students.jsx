@@ -63,6 +63,8 @@ function Students() {
     console.log(e.target.value)
   }
 
+  var [detailsOpen,setDetailsOpen] = useState(false)
+
   return (
     <div className={s.container}>
       <h2>Students Panel</h2>

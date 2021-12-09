@@ -2,12 +2,8 @@ import React,{useState} from "react";
 import s from "./Student.module.css";
 
 
-
-
-
 function Student({ img, _id, name, score, reports, setDetailsOpen }) {
   
-
   return (
     <div className={s.container}>
       <div className={s.imgContainer}>
