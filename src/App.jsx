@@ -32,7 +32,7 @@ function App() {
         <Route path='/home' component={Home} />
         <Route path='/trueHome' component={TrueHome} />
         <Route path='/signin' component={LandingPage} />
-        <Route path='/signup/:institution/:curso' component={Register} />
+        <Route path='/signup' component={Register} />
         <Route path='/profile' component={Profile} />
         <Route path='/query/user/:_id' component={QueryUser} />
         <Route path='/institution' component={InstitutionLogIn} />
