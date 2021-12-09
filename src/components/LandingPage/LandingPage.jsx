@@ -49,8 +49,7 @@ function LandingPage() {
           'Por favor, revisa tu email'
         );
         else{  Swal.fire(
-          'Usuario o Contraseña',
-          'incorrectos'
+          'Usuario o Contraseña incorrectos'
         )}
       }
     })
