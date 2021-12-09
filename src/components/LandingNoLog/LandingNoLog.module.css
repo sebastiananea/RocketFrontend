@@ -268,7 +268,18 @@
     display: none;
 }
 
+.integrantes_container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 10px 40px 10px 40px;
+}
 
+.integrantes_footer {
+    margin-top: 12px;
+}
 
 
 
