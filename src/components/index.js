@@ -13,6 +13,8 @@ export { default as LandingNoLog } from "./LandingNoLog/LandingNoLog.jsx"
 export { default as InstitutionLogIn } from "./Institution/institution"
 export { default as RegisterInstitution } from "./Institution register/Register"
 export { default as ActiveAccount } from "./ActiveAccount/ActiveAccount.jsx"
+export { default as Charts } from "./AdminComponent/charts/Charts.jsx"
+
 
 //Institucion
 export { default as Student} from "./institutionComponent/Students"

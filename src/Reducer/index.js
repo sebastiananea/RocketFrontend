@@ -1,5 +1,6 @@
  const initialState = {
-     user: JSON.parse(localStorage.getItem("user")) || null
+     user: JSON.parse(localStorage.getItem("user")) || null,
+     groups: []
 }
 
 export default function rootReducer (state = initialState, {payload, type}){
@@ -9,7 +10,11 @@ export default function rootReducer (state = initialState, {payload, type}){
                     ...state,
                     user: payload
                }
-
+          case "SET_GROUPS":
+               return{
+                    ...state,
+                    groups: payload
+               }
      default: return state     
      }
 }
