@@ -11,6 +11,7 @@ const NavBar = () => {
 
   const myUser = useSelector((state)=>state.user)
 
+
   if (location.pathname !== '/')
     return (
       <nav className={style.navbar__nav}>
