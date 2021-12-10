@@ -16,7 +16,7 @@ function Register() {
     password: "",
     repeatPass: "",
     country: "",
-    sex: "",
+    gender: "",
     age: ""
   });
 
@@ -73,6 +73,9 @@ function Register() {
 
       let DefinitiveName = nameArr.join(' ');
       
+      console.log(DefinitiveName)
+      console.log(data)
+
       await axios("https://rocketproject2021.herokuapp.com/signup/:institution/:curso", {
 
         method: "post",
@@ -147,13 +150,13 @@ function Register() {
             <div className={s.register_div_sexage}>
 
               <label className={s.register_sex}>Male</label>
-              <input type="radio" name="sex" onChange={e => handleChange(e)} value="male"/>
+              <input type="radio" name="gender" onChange={e => handleChange(e)} value="male"/>
 
               <label className={s.register_sex}>Female</label>
-              <input type="radio" name="sex" onChange={e => handleChange(e)} value="female"/>
+              <input type="radio" name="gender" onChange={e => handleChange(e)} value="female"/>
 
               <label className={s.register_sex}>Other</label>
-              <input type="radio" name="sex" onChange={e => handleChange(e)} value="other"/>
+              <input type="radio" name="gender" onChange={e => handleChange(e)} value="other"/>
               
               <label className={s.register_sex}>Age</label>
               <select className={s.register_select} name="age" onChange={e => handleChange(e)}>
