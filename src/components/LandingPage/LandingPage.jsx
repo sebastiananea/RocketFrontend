@@ -22,6 +22,7 @@ function LandingPage() {
     email: '',
     password: '',
   })
+  
   function handleChange(e) {
     const value = e.target.value
     setLog({
@@ -47,7 +48,7 @@ function LandingPage() {
           'La cuenta debe estar confirmada', 
           'Por favor, revisa tu email'
         );
-        else{  Swal.fire(
+        else{ Swal.fire(
           'Usuario o Contraseña incorrectos'
         )}
       }
