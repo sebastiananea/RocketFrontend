@@ -1,10 +1,13 @@
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-// import s from "./Students.module.css";
-// import Student from "./Student/Student";
-// import Details from "./Student/Details/Details";
-// import { myDatabaseChat } from '../../config/utilsChatDatabase'
-// import { ref, remove} from "firebase/database";
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import s from "./Students.module.css";
+import Student from "./Student/Student";
+import Details from "./Student/Details/Details";
+import { myDatabaseChat } from '../../config/utilsChatDatabase'
+import { ref, remove} from "firebase/database";
+import Swal from 'sweetalert2';
+
 
 // function Students() {
 //   const { ordenar } = require("../utils");
@@ -18,14 +21,20 @@
 
 //   let [orderBy, setOrderBy] = useState("a-z");
 
-//   async function shuffleTables() {
-//     await axios("https://rocketproject2021.herokuapp.com/asignTable", {
-//       method: "post",
-//       data: {
-//         group: group,
-//         institution: JSON.parse(localStorage.getItem("user")).institution,
-//       },
-//     })
+
+  async function shuffleTables() {
+    await axios("https://rocketproject2021.herokuapp.com/asignTable", {
+      method: "post",
+      data: {
+        group: group,
+        institution: JSON.parse(localStorage.getItem("user")).institution,
+      },
+    }).then(Swal.fire(
+      'Mesas mezcladas',
+      'satisfactoriamente!',
+      'success'
+    ))    
+
 
 //      //borra chats de mesas
 //      remove(ref(myDatabaseChat))
@@ -63,18 +72,22 @@
 //     console.log(e.target.value)
 //   }
 
-//   return (
-//     <div className={s.container}>
-//       <h2>Students Panel</h2>
-//       <button onClick={shuffleTables}>Shuffle Group Tables</button>
-//       <div className={s.filtros}>
-//         <div className={s.orderGroup}>
-//           <h6>Group</h6>
-//           <select value="FT 18-A" onChange={e=> onChange(e)}>
-//             <option value="">Select Group</option>
-//             <option value="1">Grupo 1</option>
-//             <option value="2">Grupo 2</option>
-//             <option value="3">Grupo 3</option>
+
+  var [detailsOpen,setDetailsOpen] = useState(false)
+
+  return (
+    <div className={s.container}>
+      <h2>Students Panel</h2>
+      <button onClick={shuffleTables}>Shuffle Group Tables</button>
+      <div className={s.filtros}>
+        <div className={s.orderGroup}>
+          <h6>Group</h6>
+          <select value="FT 18-A" onChange={e=> onChange(e)}>
+            <option value="">Select Group</option>
+            <option value="1">Grupo 1</option>
+            <option value="2">Grupo 2</option>
+            <option value="3">Grupo 3</option>
+
  
 //           </select>
 //         </div>

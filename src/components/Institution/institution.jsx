@@ -5,7 +5,7 @@ import Facebook from '../../Images/Facebook.png'
 import Google from '../../Images/google-logo-9808.png'
 import './institution.css'
 import axios from 'axios'
-
+import Swal from 'sweetalert2';
 import {
   facebookProvider,
   githubProvider,
@@ -41,7 +41,10 @@ function InstitutionLogIn() {
           username: '',
           password: '',
         })
-        alert('User or Password incorrect')
+        Swal.fire(
+          'Usuario o Contraseña',
+          'incorrectos'
+        )
       }
     })
     await axios('https://rocketproject2021.herokuapp.com/institution/isLog', {

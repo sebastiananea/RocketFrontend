@@ -1,6 +1,22 @@
 import React, {useState, useEffect} from 'react'
 import NavbarNoLog from './navbar/NavbarNoLog';
+import Tarjeta from "./Tarjeta/Tarjeta.jsx"
 import s from "./LandingNoLog.module.css"
+
+
+    let integrantes = [ 
+        {name: "Anea Sebastian", img: "https://avatars.githubusercontent.com/u/51966711?v=4", github: "https://github.com/sebastiananea", linkedin: "https://www.linkedin.com/in/sebastiananea/"},
+        {name: "Aranda Ignacio", img: "", github: "https://github.com/elnacho02", linkedin: "https://www.linkedin.com/in/ignacio-aranda-webdeveloper/"},
+        {name: "Castagnetto Cristian", img: "https://avatars.githubusercontent.com/u/78769977?v=4", github: "https://github.com/cNikoc", linkedin: "https://www.linkedin.com/in/cristian-nicolas-castagnetto-full-stack-dev/"},
+        {name: "Gómez Micael", img: "https://avatars.githubusercontent.com/u/86027840?v=4", github: "https://github.com/micaelgomez", linkedin: "https://www.linkedin.com/in/micael-alessandro-gomez-fullstack/"},
+        {name: "Marega Liam", img: "", github: "https://github.com/LiamMarega", linkedin: "https://www.linkedin.com/in/liam-marega/"},
+        {name: "Martos Guillermo", img: "", github: "https://github.com/GuillermoMartos", linkedin: "https://www.linkedin.com/in/guillermo-luis-martos-7a01b6156/"},
+        {name: "Varone Franco", img: "", github: "https://github.com/VaroneFranco", linkedin: "https://www.linkedin.com/in/franco-varone/"},
+        {name: "Zárate Lautaro", img: "", github: "https://github.com/LauzarateARG", linkedin: "https://www.linkedin.com/in/lautaro-ariel-zarate-castro-a87a98216/"}  
+    ]; 
+
+
+
 function LandingNoLog() {
     const [scrollHeight, setScrollHeight] = useState(0);
     const handleScroll = () => {
@@ -150,7 +166,18 @@ function LandingNoLog() {
 
             <div className={s.fifthContainer} id='team'>
                 <h1>QUIENES SOMOS</h1>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum quam sequi adipisci nostrum minima maiores dolores eos ducimus, magni vitae molestias dolorem, dolorum quisquam expedita quo eius necessitatibus itaque corrupti.</p>
+                <div className={s.integrantes_container}>
+                {
+                    integrantes && integrantes.map(int => (
+                        <Tarjeta 
+                        name={int.name} 
+                        img={int.img} 
+                        linkedin={int.linkedin} 
+                        github={int.github}/>
+                    ))
+                }
+		        <h6 className={s.integrantes_footer}>Cohorte FT-18a, bootcamp Henry, 2021.</h6>
+                </div>
             </div>
         </div>
     )

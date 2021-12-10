@@ -11,7 +11,7 @@ input:focus, textarea:focus{
 .container{
     background-color: white;
     width: 70%;
-    height: 78vh;
+    height: 82vh;
     border-radius: 0.8rem;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     display: flex;
@@ -112,6 +112,22 @@ form>.country{
     background-color: #22054731;
     color: #7c40ca48;
     cursor: not-allowed;
+}
+
+.register_div_sexage {
+    position: relative;
+    bottom: 10px;
+}
+
+.register_sex {
+    margin: 0 8px 0 8px;
+    color: rgb(59, 59, 59);
+}
+
+.register_select {
+    border: none;
+    outline: none;
+    background: transparent;
 }
 
 .register__err {

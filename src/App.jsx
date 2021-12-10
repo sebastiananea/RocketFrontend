@@ -10,8 +10,8 @@ import {
   QueryUser,
   TrueHome,
   Students,
+  Charts,
   SideBar,
-  TrueLandingPage,
   LandingNoLog,
   InstitutionLogIn,
   RegisterInstitution,
@@ -32,7 +32,7 @@ function App() {
         <Route path='/home' component={Home} />
         <Route path='/trueHome' component={TrueHome} />
         <Route path='/signin' component={LandingPage} />
-        <Route path='/signup/:institution/:curso' component={Register} />
+        <Route path='/signup' component={Register} />
         <Route path='/profile' component={Profile} />
         <Route path='/query/user/:_id' component={QueryUser} />
         <Route path='/institution' component={InstitutionLogIn} />
@@ -42,6 +42,7 @@ function App() {
             <div className="adminContainer">
             <SideBar/>
             <Route exact path='/admin/students' component={Students} />
+            <Route exact path='/admin/stats' component={Charts} />
             </div>
           </Route>  
 

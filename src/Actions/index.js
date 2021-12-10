@@ -11,3 +11,15 @@ export function setUser(data) {
     payload: data,
   };
 }
+
+export function setGroups(data){
+    return{
+        type:"SET_GROUPS",
+        payload:data
+    }
+}
+
+
+
+
+

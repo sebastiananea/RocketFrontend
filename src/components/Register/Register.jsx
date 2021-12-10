@@ -3,6 +3,9 @@ import { useHistory } from "react-router-dom";
 import s from "./Register.module.css";
 import axios from "axios";
 
+let edadMax = 100;
+let edades = [];
+for (let i = 16; i < edadMax; i++) { edades.push(i) };
 
 function Register() {
 
@@ -13,6 +16,8 @@ function Register() {
     password: "",
     repeatPass: "",
     country: "",
+    sex: "",
+    age: ""
   });
 
   const [errors, setErrors] = React.useState({});
@@ -73,7 +78,6 @@ function Register() {
         method: "post",
         data: {...data, name: DefinitiveName}
       }).then(history.push("/active-account/false"));
-
     }
   }
 
@@ -140,6 +144,27 @@ function Register() {
               value={data.country}
               onChange={(e) => handleChange(e)}
             />
+            <div className={s.register_div_sexage}>
+
+              <label className={s.register_sex}>Male</label>
+              <input type="radio" name="sex" onChange={e => handleChange(e)} value="male"/>
+
+              <label className={s.register_sex}>Female</label>
+              <input type="radio" name="sex" onChange={e => handleChange(e)} value="female"/>
+
+              <label className={s.register_sex}>Other</label>
+              <input type="radio" name="sex" onChange={e => handleChange(e)} value="other"/>
+              
+              <label className={s.register_sex}>Age</label>
+              <select className={s.register_select} name="age" onChange={e => handleChange(e)}>
+              <option disabled>Select</option>
+                {
+                  edades && edades.map(edad => (
+                    <option value={data.edad}>{edad}</option>
+                  ))
+                }
+              </select>
+            </div>
             <button
               type="submit"
               disabled={!habilitado}

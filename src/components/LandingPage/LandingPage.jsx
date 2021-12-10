@@ -12,7 +12,7 @@ import {
   githubProvider,
   googleProvider,
 } from '../../config/authMethods'
-
+import Swal from 'sweetalert2';
 import socialMediaAuth from '../../service/Auth'
 
 function LandingPage() {
@@ -36,7 +36,6 @@ function LandingPage() {
       method: 'post',
       data: log,
     }).then((r) => {
-      console.log(r)
       if (r.data.token) {
         localStorage.setItem('token', r.data.token)
       } else {
@@ -44,8 +43,13 @@ function LandingPage() {
           username: '',
           password: '',
         })
-        if(r.data.account) return alert("confirm your account is required")
-        else{alert('User or Password incorrect')}
+        if(r.data.account) return   Swal.fire(
+          'La cuenta debe estar confirmada', 
+          'Por favor, revisa tu email'
+        );
+        else{  Swal.fire(
+          'Usuario o Contraseña incorrectos'
+        )}
       }
     })
     
