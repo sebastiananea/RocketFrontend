@@ -44,7 +44,8 @@ function NavbarNoLog(props) {
                 <div className={s.buttons}>
                     <button className={s.institution} style={props.isScrolling > 20 ? {"color":"white"}:null} 
                      onClick={()=>{
-                         history.push("/institution")
+                        if(localStorage.getItem("token")) return history.push("/institucion/admin/curso")
+                        else return history.push("/institution")
                     }}
                     
                     >

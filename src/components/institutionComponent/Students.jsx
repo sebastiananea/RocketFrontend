@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import s from "./Students.module.css";
 import Student from "./Student/Student";
-import { myDatabaseChat } from '../../config/utilsChatDatabase'
-import { ref, remove} from "firebase/database";
+import { myDatabaseChat } from "../../config/utilsChatDatabase";
+import { ref, remove } from "firebase/database";
 
 function Students() {
   const { ordenar } = require("../utils");
@@ -16,26 +16,44 @@ function Students() {
   });
   var [orderBy, setOrderBy] = useState("a-z");
 
-  async function shuffleTables() {
-    await axios.post("https://rocketproject2021.herokuapp.com/asignTable");
-    console.log("mezclando");
-     //borra chats de mesas
-     remove(ref(myDatabaseChat))
-  }
-  
+  const [institucion, setIntitucion] = useState(
+    JSON.parse(localStorage.getItem("user")).name
+  );
+
+  let cursos = []
+ 
+ 
+
   async function getStudents() {
-    var res = await axios("https://rocketproject2021.herokuapp.com/getUsersByInstitution", {
-      method: "post",
-      data: {
-        institution: JSON.parse(localStorage.getItem("user")).institution,
-      },
-    }).then((x) => x.data);
+    var res = await axios(
+      "https://rocketproject2021.herokuapp.com/getUsersByInstitution",
+      {
+        method: "post",
+        data: {
+          institution: JSON.parse(localStorage.getItem("user")).name,
+        },
+      }
+    ).then((x) => x.data);
+    console.log("FILTER", res);
     setUsers(res);
     setUsers2(res);
   }
+  
   useEffect(() => {
     getStudents();
   }, []);
+
+  
+  
+  useEffect(() => {
+     users.map(u=>{
+      if(!cursos.includes(u.curso) && u.curso){
+        cursos.push(u.curso)
+      }
+    } )
+    cursos.sort()
+    console.log("sort  "+ cursos)
+  }, [users]);
 
   if (users) ordenar(users, orderBy);
 
@@ -49,22 +67,28 @@ function Students() {
       )
     );
   };
+
   return (
     <div className={s.container}>
-      <h2>Students Panel</h2>
-      <button onClick={shuffleTables}>Shuffle Tables</button>
+      <h2>Alumnos</h2>
+
       <div className={s.filtros}>
         <div className={s.orderGroup}>
-          <h6>Group</h6>
-          <select value="FT 18-A">
-            <option value="FT 18-A">FT 18-A</option>
-            <option value="FT 20-B">FT 20-B</option>
+          <h6>Curso</h6>
+          <select onChange={(e) => getStudents(e)}>
+            <option value={institucion}>{institucion}</option>
+            {/* <option value="FT 20-B">FT 20-B</option> */}
+            {cursos && cursos.map(c=> {
+              return(
+                <option>{c}</option>
+              )
+              })}
           </select>
         </div>
 
         <form>
           <input
-            placeholder="Find students..."
+            placeholder="Buscar Estudiantes..."
             onChange={(e) => handleChange(e)}
             className={s.formInput}
             type="text"
@@ -86,7 +110,7 @@ function Students() {
           </button>
         </form>
         <div className={s.orderBy}>
-          <h6>Order By</h6>
+          <h6>Ordenar</h6>
           <select value={orderBy} onChange={(e) => setOrderBy(e.target.value)}>
             <option value="a-z">A-Z</option>
             <option value="z-a">Z-A</option>

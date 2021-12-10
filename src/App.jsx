@@ -46,7 +46,7 @@ function App() {
             </div>
           </Route>  
 
-          <Route path='/institucion/admin'> 
+          <Route path='/institucion/admin/'> 
             <div className="adminContainer">
             <SidebarInstitution/>
             <Route exact path='/institucion/admin/estudiantes' component={Student}  />

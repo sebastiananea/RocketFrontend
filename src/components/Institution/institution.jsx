@@ -53,7 +53,7 @@ function InstitutionLogIn() {
     })
       .then((res) => localStorage.setItem('user', JSON.stringify(res.data)))
       .then(() => {
-        if (JSON.parse(localStorage.getItem('user'))._id = "61afd0b5a1ad8d32192bb5d0" ) return history.push('/institucion/admin')
+        if (JSON.parse(localStorage.getItem('user')) ) return history.push('/institucion/admin/curso')
         else return history.push('/')
       })
   }

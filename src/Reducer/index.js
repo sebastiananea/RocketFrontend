@@ -1,3 +1,4 @@
+
  const initialState = {
      user: JSON.parse(localStorage.getItem("user")) || null,
      groups: []
@@ -18,3 +19,4 @@ export default function rootReducer (state = initialState, {payload, type}){
      default: return state     
      }
 }
+
