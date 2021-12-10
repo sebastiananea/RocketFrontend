@@ -1,14 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import GitHub from '../../Images/github.png'
-import Facebook from '../../Images/Facebook.png'
 import Google from '../../Images/google-logo-9808.png'
 import './LandingPage.css'
 import axios from 'axios'
 
 import {
-  facebookProvider,
-  githubProvider,
   googleProvider,
 } from '../../config/authMethods'
 
@@ -20,6 +16,7 @@ function LandingPage() {
     email: '',
     password: '',
   })
+
   function handleChange(e) {
     const value = e.target.value
     setLog({
@@ -140,12 +137,6 @@ function LandingPage() {
           <h5>or login with</h5>
 
           <div className='landingPage__image'>
-            <button onClick={() => handleOnClick(facebookProvider)}>
-              <img src={Facebook} alt='Facebook' />
-            </button>
-            <button onClick={() => handleOnClick(githubProvider)}>
-              <img src={GitHub} alt='Github' />
-            </button>
             <button onClick={() => handleOnClick(googleProvider)}>
               <img src={Google} alt='Google' />
             </button>

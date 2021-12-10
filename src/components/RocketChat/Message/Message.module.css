@@ -1,6 +1,7 @@
 .message {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   margin-top: 20px;
   margin-left: 20px;
 }
@@ -14,6 +15,7 @@
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
+  margin-right: 10px;
 }
 
 .messageText {
@@ -25,14 +27,13 @@
 }
 
 .messageBottom {
-  text-align: left;
   font-size: 12px;
-  margin-top: 10px;
 }
 
 .messageOwn {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction:column;
+  align-items: flex-end;
   margin-top: 20px;
   margin-left: 20px;
   right: 0px;
