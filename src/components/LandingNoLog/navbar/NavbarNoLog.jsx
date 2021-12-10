@@ -22,10 +22,10 @@ function NavbarNoLog(props) {
     return (
         <div className={props.isScrolling > 20 ? s.scrolling : s.navbar}>
                 {props.isScrolling < 20 && (
-                    <img src={require("../../../logo.png")} alt="" width="90px"/>
+                    <img src={require("../../../logo.png").default} alt="" width="90px"/>
                 )}
                 {props.isScrolling > 20 && (
-                    <img src={require("../../../logoBlanco.png")} alt="" width="90px" onClick={()=>{
+                    <img src={require("../../../logoBlanco.png").default} alt="" width="90px" onClick={()=>{
                         setSelected("first")
                         window.scrollTo({top:0, left:0, behavior:'smooth'})
                     }}/>
@@ -44,7 +44,8 @@ function NavbarNoLog(props) {
                 <div className={s.buttons}>
                     <button className={s.institution} style={props.isScrolling > 20 ? {"color":"white"}:null} 
                      onClick={()=>{
-                         history.push("/institution")
+                        if(localStorage.getItem("token")) return history.push("/institucion/admin/curso")
+                        else return history.push("/institution")
                     }}
                     
                     >
@@ -54,7 +55,7 @@ function NavbarNoLog(props) {
                         onClick={()=>{
                         if(localStorage.getItem("token")) return history.push("/trueHome")
                         else return history.push("/signin")
-                    }}>STUDENT</button>
+                    }}>ALUMNO</button>
                 </div>
               
         </div>

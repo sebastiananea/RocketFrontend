@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import Google from '../../Images/google-logo-9808.png'
 import './LandingPage.css'
 import axios from 'axios'
-
+import { setUser } from "../../Actions"
 import {
   googleProvider,
 } from '../../config/authMethods'
-
+import Swal from 'sweetalert2';
 import socialMediaAuth from '../../service/Auth'
 
 function LandingPage() {
+  const dispatch = useDispatch()
   let history = useHistory()
   var [log, setLog] = useState({
     email: '',
@@ -25,6 +27,7 @@ function LandingPage() {
     })
   }
 
+
   async function handleSubmit(e) {
     e.preventDefault()
     await axios('https://rocketproject2021.herokuapp.com/signin', {
@@ -33,18 +36,27 @@ function LandingPage() {
     }).then((r) => {
       if (r.data.token) {
         localStorage.setItem('token', r.data.token)
-      } else {
-        setLog({
-          username: '',
-          password: '',
-        })
-        alert('User or Password incorrect')
+      } else if (!r.data.token) {
+        setLog({...log, password:""})
+        if (r.data.account === "confirm your account is required") return Swal.fire(
+          'La cuenta debe estar confirmada',
+          'Por favor, revisa tu email'
+        );
+        else {
+          return Swal.fire(
+            'Usuario o Contraseña incorrectos'
+          )
+        }
       }
     })
+
     await axios('https://rocketproject2021.herokuapp.com/isLog', {
       method: 'post',
       data: { token: localStorage.getItem('token') },
-    }).then((res) => localStorage.setItem('user', JSON.stringify(res.data)))
+    }).then((res) => {
+      localStorage.setItem('user', JSON.stringify(res.data))
+      dispatch(setUser(JSON.parse(localStorage.getItem("user"))))
+    })
     await axios('https://rocketproject2021.herokuapp.com/user/changes', {
       method: 'post',
       data: {
@@ -73,7 +85,10 @@ function LandingPage() {
       method: 'post',
       data: { token: localStorage.getItem('token') },
     })
-      .then((res) => localStorage.setItem('user', JSON.stringify(res.data)))
+      .then((res) => {
+        localStorage.setItem('user', JSON.stringify(res.data))
+        dispatch(setUser(JSON.parse(localStorage.getItem("user"))))
+      })
       .then(
         async () =>
           await axios.post(
@@ -91,7 +106,7 @@ function LandingPage() {
     <div className='container'>
       <div className='create-container'>
         <div className='signIn'>
-          <h2>Sign In</h2>
+          <h2>Log In</h2>
         </div>
         <div className='create-container-child'>
           <div className='form'>
@@ -107,6 +122,7 @@ function LandingPage() {
                   type='email'
                   name='email'
                   value={log.email}
+                  id="myInput"
                   onChange={(e) => handleChange(e)}
                   required
                   autoComplete='off'

@@ -10,12 +10,17 @@ import {
   QueryUser,
   TrueHome,
   Students,
+  Charts,
   SideBar,
-  TrueLandingPage,
   LandingNoLog,
-  InstitutionLogIn
+  InstitutionLogIn,
+  RegisterInstitution,
+  SidebarInstitution,
+  Student,
+  Curso,
+  ActiveAccount
 } from './components/index'
-
+console.log(JSON.parse(localStorage.getItem("user")))
 function App() {
   
   return (
@@ -31,12 +36,25 @@ function App() {
         <Route path='/profile' component={Profile} />
         <Route path='/query/user/:_id' component={QueryUser} />
         <Route path='/institution' component={InstitutionLogIn} />
+        <Route path='/register' component={RegisterInstitution} />
+        <Route path='/active-account/:token' component={ActiveAccount} />
         <Route path='/admin'> 
             <div className="adminContainer">
             <SideBar/>
             <Route exact path='/admin/students' component={Students} />
+            <Route exact path='/admin/stats' component={Charts} />
             </div>
-          </Route>   
+          </Route>  
+
+          <Route path='/institucion/admin/'> 
+            <div className="adminContainer">
+            <SidebarInstitution/>
+            <Route exact path='/institucion/admin/estudiantes' component={Student}  />
+            <Route exact path='/institucion/admin/curso' component={Curso}  />
+            </div>
+          </Route>  
+
+          
       </div>
     </BrowserRouter>
   )

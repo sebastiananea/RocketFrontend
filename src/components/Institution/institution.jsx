@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import Google from '../../Images/google-logo-9808.png'
 import './institution.css'
 import axios from 'axios'
-
+import Swal from 'sweetalert2';
 import {
   googleProvider,
 } from '../../config/authMethods'
@@ -37,7 +37,10 @@ function InstitutionLogIn() {
           username: '',
           password: '',
         })
-        alert('User or Password incorrect')
+        Swal.fire(
+          'Usuario o Contraseña',
+          'incorrectos'
+        )
       }
     })
     await axios('https://rocketproject2021.herokuapp.com/institution/isLog', {
@@ -46,10 +49,12 @@ function InstitutionLogIn() {
     })
       .then((res) => localStorage.setItem('user', JSON.stringify(res.data)))
       .then(() => {
-        if (JSON.parse(localStorage.getItem('user'))) return history.push('/')
+        if (JSON.parse(localStorage.getItem('user')) ) return history.push('/institucion/admin/curso')
         else return history.push('/')
       })
   }
+
+
 
   const handleOnClick = async (provider) => {
     const user = await socialMediaAuth(provider)
@@ -84,7 +89,7 @@ function InstitutionLogIn() {
     <div className='container'>
       <div className='create-container'>
         <div className='signIn'>
-          <h2>Sign In Institution</h2>
+          <h2>Ingresar Institution</h2>
         </div>
         <div className='create-container-child'>
           <div className='form'>
@@ -122,8 +127,14 @@ function InstitutionLogIn() {
               <div className='landingPage__button'>
                 <button className='landingPage__button_login' type='submit'>
                   <h4 className='landingPage__button_text'>LOG IN </h4>
-                </button>
+                </button>             
               </div>
+              <div>
+                <h4> ¿No tienes cuenta?</h4>
+                <Link to="/register">
+                  <h4>Crear Institución</h4>
+                </Link>
+                </div>
             </form>
           </div>
           <div className='landingPage__login_image'></div>
