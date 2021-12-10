@@ -43,7 +43,7 @@ function Silla({ img, name, _id }) {
 
       let stats={group:myUser.curso, date:`${mes}-${año}`}
       
-      axios.post(`https://rocketproject2021.herokuapp.com/admin/like`,
+      axios.post(`https://rocketproject2021.herokuapp.com/admin/report`,
       {
         stats
       });
