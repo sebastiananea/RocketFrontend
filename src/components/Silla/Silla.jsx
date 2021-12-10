@@ -2,15 +2,29 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./Silla.module.css";
 import axios from "axios";
+import { useSelector } from 'react-redux'
 
 function Silla({ img, name, _id }) {
   //variables que sirven para deshabilitar botones like/report cuando se presionan
   const [likeOrReport, setlikeOrReport] = useState({ like: false, report: "" });
+  const myUser = useSelector((state)=>state.user)
 
   const onChange = async (e) => {
     e.preventDefault();
     if (e.target.value === "like") {
       axios.put(`https://rocketproject2021.herokuapp.com/increaseLike/${_id}`);
+     
+      const fecha = new Date()
+      const mes = fecha.getMonth()
+      const año = fecha.getFullYear()
+
+      let stats={group:myUser.curso, date:`${mes}-${año}`}
+      
+      axios.post(`https://rocketproject2021.herokuapp.com/admin/like`,
+      {
+        stats
+      });
+
       setlikeOrReport({ ...likeOrReport, like: true });
     }
     if (e.target.value === "reports") {
@@ -20,7 +34,20 @@ function Silla({ img, name, _id }) {
         {
           reportText,
         }
+        
       );
+     
+      const fecha = new Date()
+      const mes = fecha.getMonth()
+      const año = fecha.getFullYear()
+
+      let stats={group:myUser.curso, date:`${mes}-${año}`}
+      
+      axios.post(`https://rocketproject2021.herokuapp.com/admin/like`,
+      {
+        stats
+      });
+     
       setlikeOrReport({ ...likeOrReport, report: reportText });
     }
   };
@@ -40,24 +67,24 @@ function Silla({ img, name, _id }) {
         {likeOrReport.like === false ? (
           <option value="like" name="">
             Like{" "}👍
-        
+
           </option>
         ) : (
           <option disabled value="like" name="">
             Like{" "}👍
-      
+
           </option>
         )}
 
         {likeOrReport.report === "" ? (
           <option value="reports">
             Report{" "}🚫
-       
+
           </option>
         ) : (
           <option disabled value="reports">
             Report{" "}🚫
-     
+
           </option>
         )}
       </select>

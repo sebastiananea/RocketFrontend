@@ -10,7 +10,6 @@ const NavBar = () => {
   let location = useLocation()
 
   const myUser = useSelector((state)=>state.user)
-  console.log(myUser, "desde navbar")
 
 
   if (location.pathname !== '/')
