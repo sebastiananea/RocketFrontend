@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import GitHub from '../../Images/github.png'
@@ -6,7 +6,7 @@ import Facebook from '../../Images/Facebook.png'
 import Google from '../../Images/google-logo-9808.png'
 import './LandingPage.css'
 import axios from 'axios'
-import {setUser} from "../../Actions"
+import { setUser } from "../../Actions"
 import {
   facebookProvider,
   githubProvider,
@@ -22,6 +22,9 @@ function LandingPage() {
     email: '',
     password: '',
   })
+
+
+
   function handleChange(e) {
     const value = e.target.value
     setLog({
@@ -30,36 +33,37 @@ function LandingPage() {
     })
   }
 
+
   async function handleSubmit(e) {
     e.preventDefault()
-    await axios('https://rocketproject2021.herokuapp.com/signin', {
+    await axios('http://localhost:3001/signin', {
       method: 'post',
       data: log,
     }).then((r) => {
       if (r.data.token) {
         localStorage.setItem('token', r.data.token)
-      } else {
-        setLog({
-          username: '',
-          password: '',
-        })
-        if(r.data.account) Swal.fire(
-          'La cuenta debe estar confirmada', 
+      } else if (!r.data.token) {
+        setLog({...log, password:""})
+        if (r.data.account === "confirm your account is required") return Swal.fire(
+          'La cuenta debe estar confirmada',
           'Por favor, revisa tu email'
         );
-        else{  Swal.fire(
-          'Usuario o Contraseña incorrectos'
-        )}
+        else {
+          return Swal.fire(
+            'Usuario o Contraseña incorrectos'
+          )
+        }
       }
     })
-    
+
     await axios('https://rocketproject2021.herokuapp.com/isLog', {
       method: 'post',
       data: { token: localStorage.getItem('token') },
     }).then((res) => {
       localStorage.setItem('user', JSON.stringify(res.data))
-      dispatch(setUser(JSON.parse(localStorage.getItem("user"))))})
-      await axios('https://rocketproject2021.herokuapp.com/user/changes', {
+      dispatch(setUser(JSON.parse(localStorage.getItem("user"))))
+    })
+    await axios('https://rocketproject2021.herokuapp.com/user/changes', {
       method: 'post',
       data: {
         new_status: 'Online',
@@ -67,7 +71,7 @@ function LandingPage() {
       },
     }).then(() => {
       if (JSON.parse(localStorage.getItem('user')).moderator === true)
-      return history.push('/admin/students')
+        return history.push('/admin/students')
       else return history.push('/trueHome')
     })
   }
@@ -124,6 +128,7 @@ function LandingPage() {
                   type='email'
                   name='email'
                   value={log.email}
+                  id="myInput"
                   onChange={(e) => handleChange(e)}
                   required
                   autoComplete='off'
