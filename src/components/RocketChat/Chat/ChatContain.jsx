@@ -13,6 +13,7 @@ function ChatContain({ params, table }) {
   let chatRef = ref(myDatabaseChat);
   let mesaChat = table;
   chatRef = child(chatRef, mesaChat);
+  const day = ["lun","mar","mie","jue","vie","sab","dom"]
 
   useEffect(() => {
     onValue(chatRef, (snapshot) => {
@@ -21,9 +22,9 @@ function ChatContain({ params, table }) {
       } else console.log("no hay chat aun");
     });
 
-    //onChildAdded(chatRef, (snapshot) => {
-    //  setmessagesChat(Object.values(snapshot.val()));
-    //});
+    let c = new Date
+    console.log(`${c.getHours()}:${c.getMinutes()}`)
+
   }, []);
 
   return (
@@ -32,10 +33,11 @@ function ChatContain({ params, table }) {
 
         <div className={s.chatBoxTop}>
             
+
           {messagesChat.length
             ? messagesChat.map((m) => {
                 return (
-                    <Message currentId={params._id} name={m.name} img={m.img} txt={m.txt} id={m.userId}/>
+                    <Message currentId={params._id} name={m.name} img={m.img} txt={m.txt} hour={m.hour} day={day[m.day]} id={m.userId} file={m?.file}/>
                 );
               })
             : null}
