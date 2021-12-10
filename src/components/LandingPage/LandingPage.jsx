@@ -36,7 +36,7 @@ function LandingPage() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    await axios('http://localhost:3001/signin', {
+    await axios('https://rocketproject2021.herokuapp.com/signin', {
       method: 'post',
       data: log,
     }).then((r) => {
