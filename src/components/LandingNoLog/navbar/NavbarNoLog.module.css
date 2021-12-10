@@ -61,9 +61,12 @@
     font-family: 'Nunito';
     font-size: 20px;
     font-weight: 600;
+    padding: 0 10px;
 }
 .link:hover{
     cursor: pointer;
+    background-color:#FF914D ;
+    border-radius: 10px; 
 }
 .link:active{
     transform: scale(0.95);
