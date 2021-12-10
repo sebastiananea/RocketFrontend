@@ -17,7 +17,7 @@ import {
   RegisterInstitution,
   SidebarInstitution,
   Student,
-  Curso
+  Curso,
   ActiveAccount
 } from './components/index'
 console.log(JSON.parse(localStorage.getItem("user")))
@@ -45,7 +45,7 @@ function App() {
             </div>
           </Route>  
 
-          <Route path='/institucion/admin'> 
+          <Route path='/institucion/admin/'> 
             <div className="adminContainer">
             <SidebarInstitution/>
             <Route exact path='/institucion/admin/estudiantes' component={Student}  />
