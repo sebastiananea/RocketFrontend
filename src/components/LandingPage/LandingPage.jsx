@@ -23,8 +23,6 @@ function LandingPage() {
     password: '',
   })
 
-
-
   function handleChange(e) {
     const value = e.target.value
     setLog({

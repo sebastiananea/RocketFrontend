@@ -4,7 +4,7 @@ import { PieChart, Pie, Tooltip, Sector, Cell, ResponsiveContainer } from 'recha
 
   const COLORS = ['#ED5A43', '#008AFE'];
 function PieReportsLikes({data}) {
-    return (
+     return (
         <PieChart width={210} height={200} >
         <Pie
         data={data}
