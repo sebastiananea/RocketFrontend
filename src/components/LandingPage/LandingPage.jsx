@@ -43,7 +43,7 @@ function LandingPage() {
           username: '',
           password: '',
         })
-        if(r.data.account) return   Swal.fire(
+        if(r.data.account) Swal.fire(
           'La cuenta debe estar confirmada', 
           'Por favor, revisa tu email'
         );
