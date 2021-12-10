@@ -10,8 +10,8 @@ import {
   QueryUser,
   TrueHome,
   Students,
+  Charts,
   SideBar,
-  TrueLandingPage,
   LandingNoLog,
   InstitutionLogIn,
   RegisterInstitution,
@@ -42,6 +42,7 @@ function App() {
             <div className="adminContainer">
             <SideBar/>
             <Route exact path='/admin/students' component={Students} />
+            <Route exact path='/admin/stats' component={Charts} />
             </div>
           </Route>  
 

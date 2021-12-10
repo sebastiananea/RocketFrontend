@@ -1,12 +1,26 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import { connect } from 'react-redux'
+import * as actionsCreators from "../../../Actions/index";
+import { bindActionCreators } from 'redux';
+import { useSelector } from 'react-redux';
 import s from "./Sidebar.module.scss"
 import {Links} from "../data/data"
 import Item from "../item/Item"
+import axios from 'axios'
 
 
-function Sidebar() {
-    
-  
+function Sidebar({setGroups}){  
+    let groups = useSelector((state)=>state.groups)
+    useEffect(()=>{
+      async function getGroups(){
+        await axios("https://rocketproject2021.herokuapp.com/admin/getCohortes")
+        .then(x => {
+          setGroups(x.data)
+        })
+      }
+      if(!groups.length)getGroups()
+    },[setGroups, groups])
+
     var [open, setOpen] = useState(false)
     return (
         <div className={open ? s.sidebarOpen : s.sidebar}>
@@ -30,4 +44,9 @@ function Sidebar() {
       );
 }
 
-export default Sidebar
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators(actionsCreators, dispatch)
+}
+
+export default connect(null, mapDispatchToProps) (Sidebar)

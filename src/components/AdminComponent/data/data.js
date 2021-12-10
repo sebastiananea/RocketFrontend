@@ -29,7 +29,7 @@ export const Links = [
       ),
     },
     {
-      to: '/admin/stadistics',
+      to: '/admin/stats',
       text: 'Stadistics',
       svg: (
         <svg
