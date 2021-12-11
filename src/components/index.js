@@ -16,10 +16,12 @@ export { default as ActiveAccount } from "./ActiveAccount/ActiveAccount.jsx"
 export { default as Charts } from "./AdminComponent/charts/Charts.jsx"
 
 
+
 //Institucion
 export { default as Student} from "./institutionComponent/Students"
  export { default as SidebarInstitution } from "./institutionComponent/sidebarInstitution/SidebarInstitution"
  export { default as Curso } from "./institutionComponent/Curso/curso"
+ 
  
 
 /* export { default as Card } from "./Card/Card";
