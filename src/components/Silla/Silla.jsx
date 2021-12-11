@@ -18,37 +18,40 @@ function Silla({ img, name, _id }) {
       const mes = fecha.getMonth()
       const año = fecha.getFullYear()
 
-      let stats={group:myUser.curso, date:`${mes}-${año}`}
-      
-      axios.post(`https://rocketproject2021.herokuapp.com/admin/like`,
+      let group=myUser.curso;
+      let date=`${mes}-${año}`
+      axios.post(`http://localhost:3001/admin/like`,
       {
-        stats
+        group:group, date:date
       });
 
       setlikeOrReport({ ...likeOrReport, like: true });
     }
+
     if (e.target.value === "reports") {
-      let reportText = prompt(`Por que quieres reportar a ${name}?`);
-      axios.post(
+      let reportText = prompt(`¿Por qué quieres reportar a ${name}?`);
+      
+      const fecha = new Date()
+      const mes = fecha.getMonth()
+      const año = fecha.getFullYear()
+
+      
+      let group=myUser.curso;
+      let date=`${mes}-${año}`
+      axios.post(`http://localhost:3001/admin/report`,
+      {
+        group:group, date:date
+      }).then( axios.post(
         `https://rocketproject2021.herokuapp.com/increaseReports/${_id}`,
         {
           reportText,
         }
         
-      );
-     
-      const fecha = new Date()
-      const mes = fecha.getMonth()
-      const año = fecha.getFullYear()
+      )).then(setlikeOrReport({ ...likeOrReport, report: reportText }));
 
-      let stats={group:myUser.curso, date:`${mes}-${año}`}
-      
-      axios.post(`https://rocketproject2021.herokuapp.com/admin/report`,
-      {
-        stats
-      });
      
-      setlikeOrReport({ ...likeOrReport, report: reportText });
+      
+      
     }
   };
 

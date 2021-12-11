@@ -60,6 +60,14 @@ const Home = () => {
           </div>
         ) : null}
       </div>
+
+
+      <div>
+        <a href={`${JSON.parse(localStorage.getItem("user")).meetLink}`} target="_blank">Join Meet</a>
+      </div>
+
+
+
     </div>
   )
 }
