@@ -7,6 +7,7 @@ import Details from "./Student/Details/Details";
 import { myDatabaseChat } from '../../config/utilsChatDatabase'
 import { ref, remove} from "firebase/database";
 import Swal from 'sweetalert2';
+import { createUnparsedSourceFile } from "typescript";
 
 
  function Students() {
@@ -14,80 +15,114 @@ import Swal from 'sweetalert2';
    let [users, setUsers] = useState([]);
    let [users2, setUsers2] = useState([]);
    let [group, setGroup] = useState("")
+   let [groups, setGroups] = useState("")
    let [pag, setPag] = useState({
      from: 0,
      to: 7,
-   });
-
+   })
    let [orderBy, setOrderBy] = useState("a-z");
 
 
   async function shuffleTables() {
-    await axios("https://rocketproject2021.herokuapp.com/asignTable", {
+
+    if(group!==""){await axios("https://rocketproject2021.herokuapp.com/asignTable", {
       method: "post",
       data: {
-        group: group,
+        curso: group,
         institution: JSON.parse(localStorage.getItem("user")).institution,
       },
     }).then(Swal.fire(
       'Mesas mezcladas',
-      'satisfactoriamente!',
+      'Satisfactoriamente!',
       'success'
-    ))    
+    ))}
+    else Swal.fire(
+      'Por favor, seleccione un grupo para mezclar'
+    ) 
+    remove(ref(myDatabaseChat))}
+    
+  async function shuffleTablesRnm() {
+
+    if(group!==""){await axios("https://rocketproject2021.herokuapp.com/asignTableRandom", {
+      method: "post",
+      data: {
+        curso: group,
+        institution: JSON.parse(localStorage.getItem("user")).institution,
+      },
+    }).then(Swal.fire(
+      'Mesas mezcladas',
+      'Satisfactoriamente!',
+      'success'
+    ))}
+    else Swal.fire(
+      'Por favor, seleccione un grupo para mezclar'
+    )
+  
 
 
 //      //borra chats de mesas
-//      remove(ref(myDatabaseChat))
-
+     remove(ref(myDatabaseChat))
+ 
   }
-   async function getStudents() {
+   async function getStudentsAndGroups() {
      let res = await axios("https://rocketproject2021.herokuapp.com/getUsersByInstitution", {
        method: "post",
        data: {
          institution: JSON.parse(localStorage.getItem("user")).institution,
       },
     }).then((x) => x.data);
+    let res2 = await axios(`https://rocketproject2021.herokuapp.com/admin/getCohortes/${JSON.parse(localStorage.getItem("user")).institution}`).then(x=>x.data)
     setUsers(res);
     setUsers2(res);
+    setGroups(res2)//Acá ya llegan los cohortes de la institución. No pude hacer que se muestren en el options dinamicamente.
   }
   useEffect(() => {
-    getStudents();
+    getStudentsAndGroups();
   }, []);
-  console.log(JSON.parse(localStorage.getItem("user")))
   if (users) ordenar(users, orderBy);
 
   const handleChange = (e) => {
     if (e.target.value === "") {
       setUsers(users2);
     }
-    setUsers(
+    else setUsers(
       users2.filter((u) =>
         u.name.toLowerCase().includes(e.target.value.toLowerCase())
       )
     );
+    setPag({
+      from: 0,
+      to: 7,
+    })
   };
 
   const onChange= (e) => {
     setGroup(e.target.value)
-    console.log(e.target.value)
+    if(e.target.value==="") setUsers(users2)
+    else setUsers(users2.filter(user=> user.curso === e.target.value))
+    setPag({
+      from: 0,
+      to: 7,
+    })
   }
-
-
   var [detailsOpen,setDetailsOpen] = useState(false)
 
   return (
     <div className={s.container}>
       <h2>Students Panel</h2>
-      <button onClick={shuffleTables}>Shuffle Group Tables</button>
+      <button onClick={shuffleTablesRnm}>Random Shuffle Tables</button>
+      <button onClick={shuffleTables}>Smart Shuffle Tables</button>
       <div className={s.filtros}>
         <div className={s.orderGroup}>
           <h6>Group</h6>
-          <select value="FT 18-A" onChange={e=> onChange(e)}>
+          <select onChange={e=> onChange(e)}>
             <option value="">Select Group</option>
-            <option value="1">Grupo 1</option>
-            <option value="2">Grupo 2</option>
-            <option value="3">Grupo 3</option>
-
+            <option value="18A">Cohorte 18A</option>
+            <option value="18B">Cohorte 18B</option>
+            <option value="19A">Cohorte 19A</option>
+            <option value="19B">Cohorte 19B</option>
+            <option value="20A">Cohorte 20A</option>
+            <option value="20B">Cohorte 20B</option>
  
            </select>
        </div>
@@ -191,4 +226,4 @@ import Swal from 'sweetalert2';
    );
  }
 
- export default Students;
+export default Students;
