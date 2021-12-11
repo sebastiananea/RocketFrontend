@@ -48,7 +48,10 @@ function TrueHome() {
         u.name.toLowerCase().includes(e.target.value.toLowerCase())
       )
     );
-    setPag(0)
+    setPag({
+      from: 0,
+      to: 9
+    })
   };
 
   async function handleClick(e) {

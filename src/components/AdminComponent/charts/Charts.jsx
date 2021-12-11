@@ -21,7 +21,7 @@ function Charts() {
         }
         getData()
     }, [selected])
-    console.log(data)
+    console.log(data, "esta es mi data")
    if(data) return (
         <div className={s.container}>
             <h2>ESTADISTICAS</h2>
@@ -45,18 +45,18 @@ function Charts() {
                 </div>
             )}         
 
-            {selected === "general" && data.length && (
+            {selected === "general" && data.likesreports !== undefined && (
                 <div className={s.stats}>
                     <div className={s.pie}>
                         Likes - Reports
-                        <PieReportsLikes data={data}/>
+                        <PieReportsLikes data={data.likesreports}/>
                     </div>
                 </div>
             )}
-                {selected === "general" && data.length && (
+                {selected === "general" && data.students !== undefined && (
                     <div className={s.bar}>
                         Estudiantes activos en Rocket por grupo
-                        <BarStudentsPerGroup />
+                        <BarStudentsPerGroup data={data.students}/>
                     </div>
                 )}
         </div>

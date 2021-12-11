@@ -1,14 +1,15 @@
 import firebase from "firebase/compat"
+import dotenv from "dotenv"
 
+dotenv.config()
 const firebaseConfig = {
-    apiKey: "AIzaSyDebxZHb3bShM6ZxtNu6NGAsStNlnXD4Y4",
-    authDomain: "rocket-app-333217.firebaseapp.com",
-    databaseURL: "https://rocket-app-333217-default-rtdb.firebaseio.com/",
-    projectId: "rocket-app-333217",
-    storageBucket: "rocket-app-333217.appspot.com",
-    messagingSenderId: "658395953513",
-    appId: "1:658395953513:web:57fb578a9c77c5c56925f8",
-    measurementId: "G-TEGHQ85RVZ"
+    apiKey:process.env.REACT_APP_FIREBASE_APIKEY,
+    authDomain:process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+    databaseURL:process.env.REACT_APP_FIREBASE_DATABASEURL,
+    projectId:process.env.REACT_APP_FIREBASE_PROJECTID,
+    storageBucket:process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+    messagingSenderId:process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID,
+    appId:process.env.REACT_APP_FIREBASE_APPID,
 };
 
 firebase.initializeApp(firebaseConfig)

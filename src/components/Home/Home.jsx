@@ -41,13 +41,18 @@ const Home = () => {
             <Loading />
           )}
         </div>
+        <div>
+          <button className={style.home__btnlink}>
+            <a className={style.home__btnlink_link} href={`https://meet.jit.si/Henry${JSON.parse(localStorage.getItem("user")).table}`} target="_blank">Join Meet</a>
+          </button>
+        </div>
       </div>
       <div className={style.home__chat}>
-        <div>
+        {/* <div>
           <a href={JSON.parse(localStorage.getItem('user')).meetLink}>
             Join Meet
           </a>
-        </div>
+        </div> */}
         <h4>CHAT</h4>
         {params && params?.name ? (
           <div>
@@ -56,9 +61,12 @@ const Home = () => {
         ) : null}
       </div>
 
+
       <div>
-      <a href={`${JSON.parse(localStorage.getItem("user")).meetLink}`} target="_blank">Join Meet</a>
-    </div>
+        <a href={`${JSON.parse(localStorage.getItem("user")).meetLink}`} target="_blank">Join Meet</a>
+      </div>
+
+
 
     </div>
   )
