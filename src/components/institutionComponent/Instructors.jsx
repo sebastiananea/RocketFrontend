@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import s from "./Students.module.css";
+import s from "./Instructors.module.css";
 import Student from "./Student/Student";
+import Instructors from "./Instructors/instructors"
 import { myDatabaseChat } from "../../config/utilsChatDatabase";
 import { ref, remove, set } from "firebase/database";
 const { ordenar } = require("../utils");
 
-function Students() {
+function Instructor() {
   var obj = {
     id: JSON.parse(localStorage.getItem("user"))._id,
     name: JSON.parse(localStorage.getItem("user")).name,
@@ -21,12 +22,8 @@ function Students() {
   });
   var [orderBy, setOrderBy] = useState("a-z");
 
-
-
-
-  
   async function getStudents(e) {
-    var res = await axios("https://rocketproject2021.herokuapp.com/institution/alumnos", {
+    var res = await axios("https://rocketproject2021.herokuapp.com/institution/instructores", {
       method: "post",
       data: {
         name: institucion.name,
@@ -88,7 +85,7 @@ function Students() {
 
   return (
     <div className={s.container}>
-      <h2>Alumnos</h2>
+      <h2>Instructores</h2>
 
       <div className={s.filtros}>
         <div className={s.orderGroup}>
@@ -104,7 +101,7 @@ function Students() {
 
         <form>
           <input
-            placeholder="Buscar Estudiantes..."
+            placeholder="Buscar Instructores..."
             onChange={(e) => handleChange(e)}
             className={s.formInput}
             type="text"
@@ -140,7 +137,7 @@ function Students() {
           users
             .slice(pag.from, pag.to)
             .map((x) => (
-              <Student
+              <Instructors
                 img={x.img}
                 name={x.name}
                 _id={x._id}
@@ -201,4 +198,4 @@ function Students() {
   );
 }
 
-export default Students;
+export default Instructor;

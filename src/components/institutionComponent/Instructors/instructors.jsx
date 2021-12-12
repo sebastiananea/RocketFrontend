@@ -1,23 +1,21 @@
 import React from "react";
-import s from "./Student.module.css";
+import s from "./Instructors.module.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
+function Instructors({ img, _id, name, score, reports, curso }) {
+    let history = useHistory()
 
-function Student({ img, _id, name, score, reports, curso }) {
-  let history = useHistory()
-  async function instructor(e) {
-    
+  async function offInstructor(e) {
     var res = await axios("https://rocketproject2021.herokuapp.com/institution/setInstructor", {
       method: "post",
       data: {
         id: _id,
-        moderator: true
+        moderator: false
       }
     }).then((x) => x.data);
 
-    history.push("/institucion/admin/instructores")
-    
+    history.push("/institucion/admin/estudiantes")
   }
 
 
@@ -72,7 +70,7 @@ function Student({ img, _id, name, score, reports, curso }) {
         </div>
       </div>
       <div className={s.details}>
-        <button onClick={() => instructor()}>Instuctor</button>
+        <button onClick={() => offInstructor()}>Quitar</button>
         {/* <svg
           width="116"
           height="26"
@@ -101,4 +99,4 @@ function Student({ img, _id, name, score, reports, curso }) {
   );
 }
 
-export default Student;
+export default Instructors;

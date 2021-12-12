@@ -21,7 +21,7 @@ export { default as Charts } from "./AdminComponent/charts/Charts.jsx"
 export { default as Student} from "./institutionComponent/Students"
  export { default as SidebarInstitution } from "./institutionComponent/sidebarInstitution/SidebarInstitution"
  export { default as Curso } from "./institutionComponent/Curso/curso"
- 
+ export { default as Instructor } from "./institutionComponent/Instructors" 
  
 
 /* export { default as Card } from "./Card/Card";

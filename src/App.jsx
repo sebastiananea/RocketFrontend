@@ -52,7 +52,7 @@ function App() {
             <SidebarInstitution/>
             <Route exact path='/institucion/admin/estudiantes' component={Student}  />
             <Route exact path='/institucion/admin/curso' component={Curso}  />
-            
+            <Route exact path='/institucion/admin/instructores' component={Instructor}  />
             </div>
           </Route>  
 
