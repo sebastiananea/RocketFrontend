@@ -36,22 +36,33 @@
 }
 
 .home__chat {
+    /* background: url("https://i.pinimg.com/originals/f5/c8/56/f5c85695a614f649d17ad9b85742ad80.jpg"); */
     border: 1px solid #999;
     width: 28vw;
+    /* height: 75vh; */
     margin: 2%;
+    padding: 10px;
 }
+/* 
+.home__chat_inputs {
+    position: relative;
+    bottom: 320px;
+} */
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 415px) {
     .home__container {
     display: flex;
     margin-top: 2%;
     margin-left: 1%;
-}
+    width: 92%;
+    flex-wrap: wrap;
+    margin: 3% auto;
+    }
 
 .home__mesa {
-    width: 85vw;
-    height: 80vh;
+    width: 100vw;
+    height: 78vh;
     background-image: radial-gradient(
       circle at 120.71% 50%,
       #fff 0,
@@ -80,8 +91,19 @@
 
 .home__chat {
     border: 1px solid #999;
-    width: 28vw;
+    width: 100%;
     margin: 2%;
+}
+.home__btnlink  {
+    margin-bottom: 4rem;
+    height: 32px;
+    width: 200px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 0 2px 0 #222;
+    background: #7333C5;
+    color: #fff;
+    font-family: 'Nunito';
 }
 }
 

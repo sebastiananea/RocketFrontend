@@ -117,3 +117,16 @@ select:focus {
     opacity: 0;
   }
 }
+
+@media screen and (max-width: 415px) {
+  .checkbox:checked ~ .topPanel {
+    top: 9vh;
+    z-index: 3;
+    animation: myAnim 0.5s ease-in-out;
+    width: 100px;
+  }
+  .container .profile img {
+    border-radius: 50%;
+    transform: scale(80%)
+  }
+}
