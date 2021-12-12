@@ -61,11 +61,6 @@ function App() {
               path='/institucion/admin/payment'
               component={Payment}
             />
-            <Route
-              exact
-              path='/institucion/admin/verify-sale/:verif'
-              component={VerifySale}
-            />
           </div>
         </Route>
       </div>
