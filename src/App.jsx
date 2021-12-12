@@ -21,6 +21,7 @@ import {
   ActiveAccount,
   VerifySale,
   Payment,
+  TrueLandingPage,
 } from './components/index'
 
 function App() {
