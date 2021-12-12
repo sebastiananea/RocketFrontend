@@ -55,21 +55,16 @@ const Home = () => {
             Join Meet
           </a>
         </div> */}
-        <h4>CHAT</h4>
+        <h4 style={{background:"orange", borderRadius:"20px"}}>CHAT</h4>
         {params && params?.name ? (
-          <div>
+          <div className={style.home__chat_inputs}>
             <ChatContain table={`table${params.table}`} params={params} />
           </div>
         ) : null}
       </div>
-
-
-      <div>
+      {/* <div>
         <a href={`${JSON.parse(localStorage.getItem("user")).meetLink}`} target="_blank">Join Meet</a>
-      </div>
-
-
-
+      </div> */}
     </div>
   )
 }
