@@ -32,7 +32,7 @@ const Home = () => {
     <div className={style.home__container}>
       <div className={style.home__mesa}>
         <div>
-          <h2>My Team</h2>
+          <h2 className={style.home_myteam}>My Team</h2>
         </div>
         <div className={style.home__mesa__child}>
           {profiles.length ? (
