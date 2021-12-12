@@ -20,6 +20,8 @@ const Home = () => {
     let profiles = await axios
       .post('https://rocketproject2021.herokuapp.com/filterUserByTable', {
         table: userr.table,
+        institution: userr.institution,
+        curso:userr.curso        
       })
       .then((r) => r.data)
     setProfiles(profiles)
