@@ -1,17 +1,16 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useLocation,useHistory } from 'react-router-dom'
 import s from './Payment.module.css'
 
 const Payment = ({ data }) => {
-  let history = useHistory()
+  let success = new URLSearchParams(useLocation().search).get("success")
   const productos = [
     { title: 'Plan Mensual', quantity: 1, unit_price: 2000 },
     { title: 'Plan Trimestral', quantity: 1, unit_price: 4500 },
     { title: 'Plan Anual', quantity: 1, unit_price: 12500 },
   ]
-
-  const [pay, setpay] = useState(null)
+  
 
   const askSlot = async (e, product) => {
     e.preventDefault()
@@ -24,7 +23,7 @@ const Payment = ({ data }) => {
     var token = function () {
       return rand() + rand()
     }
-
+    sessionStorage.setItem("compra",JSON.stringify(product))
     await axios('http://localhost:3001/payment/ask-pay', {
       method: 'post',
       data: {
@@ -35,12 +34,18 @@ const Payment = ({ data }) => {
         quantity: product.quantity,
         unit_price: product.unit_price,
       },
-    }).then((r) => {
-      window.open(r.data.res, '_blank').focus()
+    })
+    .then((r) => {
+      return window.open(r.data.res, '_blank').focus()
     })
   }
-
-  return (
+ 
+  if(success === "true") return (
+      <div>
+        Gracias por tu compra de {JSON.parse(sessionStorage.getItem("compra")).title}
+      </div>
+  )
+  else return (
     <div className={s.main_container}>
       <h2 style={{ marginTop: '3%' }}>Elegi tu plan</h2>
       {!productos ? null : (
