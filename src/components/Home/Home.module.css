@@ -36,18 +36,14 @@
 }
 
 .home__chat {
-    /* background: url("https://i.pinimg.com/originals/f5/c8/56/f5c85695a614f649d17ad9b85742ad80.jpg"); */
+    background: url("https://i.pinimg.com/originals/f5/c8/56/f5c85695a614f649d17ad9b85742ad80.jpg");
     border: 1px solid #999;
     width: 28vw;
-    /* height: 75vh; */
+    height: 73vh;
     margin: 2%;
     padding: 10px;
+    box-sizing: border-box;
 }
-/* 
-.home__chat_inputs {
-    position: relative;
-    bottom: 320px;
-} */
 
 .home__btnlink  {
     margin-bottom: 2rem;
@@ -137,12 +133,9 @@
 }
 }
   
-
-  
-
-
-
-  
-
- 
-  
+@media screen and (min-width: 415px) {
+    .home__chat {
+        position: relative;
+        bottom: 18px;
+    }
+}

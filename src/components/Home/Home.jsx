@@ -55,9 +55,9 @@ const Home = () => {
             Join Meet
           </a>
         </div> */}
-        <h4 style={{background:"orange", borderRadius:"20px"}}>CHAT</h4>
+        <h4 style={{background:"#ffa600cc", borderRadius:"20px"}}>CHAT</h4>
         {params && params?.name ? (
-          <div className={style.home__chat_inputs}>
+          <div>
             <ChatContain table={`table${params.table}`} params={params} />
           </div>
         ) : null}
