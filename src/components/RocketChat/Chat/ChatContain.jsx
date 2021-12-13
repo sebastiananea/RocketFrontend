@@ -37,7 +37,7 @@ function ChatContain({ params, table }) {
           {messagesChat.length
             ? messagesChat.map((m) => {
                 return (
-                    <Message currentId={params._id} name={m.name} img={m.img} txt={m.txt} hour={m.hour} day={day[m.day]} id={m.userId} file={m?.file}/>
+                    <Message currentId={params._id} table={table} name={m.name} img={m.img} txt={m.txt} hour={m.hour} day={day[m.day]} id={m.userId} file={m?.file}/>
                 );
               })
             : null}
