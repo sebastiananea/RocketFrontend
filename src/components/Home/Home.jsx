@@ -28,11 +28,20 @@ const Home = () => {
     console.log(profiles)
   }, [])
 
+  const onClick = ()=>{
+    await axios("https://rocketproject2021.herokuapp.com/addPrecense", {
+      method: "post",
+      data: {
+        ID :JSON.parse(localStorage.getItem("user"))._id,
+      },
+    });
+  }
+
   return (
     <div className={style.home__container}>
       <div className={style.home__mesa}>
         <div>
-          <h2 className={style.home_myteam}>My Team</h2>
+          <h2>My Team</h2>
         </div>
         <div className={style.home__mesa__child}>
           {profiles.length ? (
@@ -45,26 +54,21 @@ const Home = () => {
         </div>
         <div>
           <button className={style.home__btnlink}>
-            <a className={style.home__btnlink_link} href={`https://meet.jit.si/Henry${JSON.parse(localStorage.getItem("user")).table}`} target="_blank">Join Meet</a>
+            <a className={style.home__btnlink_link} href={JSON.parse(localStorage.getItem("user")).meetLink} onClick={onClick} target="_blank">Join Meet</a>
           </button>
         </div>
       </div>
       <div className={style.home__chat}>
-        {/* <div>
-          <a href={JSON.parse(localStorage.getItem('user')).meetLink}>
-            Join Meet
-          </a>
-        </div> */}
-        <h4 style={{background:"#ffa600cc", borderRadius:"20px"}}>CHAT</h4>
+
+        <h4>CHAT</h4>
         {params && params?.name ? (
           <div>
             <ChatContain table={`table${params.table}`} params={params} />
           </div>
         ) : null}
       </div>
-      {/* <div>
-        <a href={`${JSON.parse(localStorage.getItem("user")).meetLink}`} target="_blank">Join Meet</a>
-      </div> */}
+
+
     </div>
   )
 }

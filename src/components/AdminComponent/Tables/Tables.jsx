@@ -18,6 +18,13 @@ function Tables() {
             }
         })
         Swal.fire("Se mezclaron aleatoriamente las mesas del grupo "+group.toUpperCase()+" con exito!")
+        await axios("https://rocketproject2021.herokuapp.com/addClass", {
+            method: "post",
+            data: {
+              curso: group,
+              institution: JSON.parse(localStorage.getItem("user")).institution,
+            },
+          });
     }
     async function assignTableSmart(){
         await axios("https://rocketproject2021.herokuapp.com/asignTable",{
@@ -28,6 +35,13 @@ function Tables() {
             }
         })
         Swal.fire("Se mezclaron inteligentemente las mesas del grupo "+group.toUpperCase()+" con exito!")
+        await axios("https://rocketproject2021.herokuapp.com/addClass", {
+            method: "post",
+            data: {
+              curso: group,
+              institution: JSON.parse(localStorage.getItem("user")).institution,
+            },
+          });
     }
     return (
         <div className={s.container}>
