@@ -15,12 +15,15 @@ export { default as RegisterInstitution } from './Institution register/Register'
 export { default as ActiveAccount } from './ActiveAccount/ActiveAccount.jsx'
 export { default as Charts } from './AdminComponent/charts/Charts.jsx'
 
+
 //Institucion
-export { default as Student } from './institutionComponent/Students'
-export { default as SidebarInstitution } from './institutionComponent/sidebarInstitution/SidebarInstitution'
-export { default as Curso } from './institutionComponent/Curso/curso'
+export { default as Student} from "./institutionComponent/Students"
+ export { default as SidebarInstitution } from "./institutionComponent/sidebarInstitution/SidebarInstitution"
+ export { default as Curso } from "./institutionComponent/Curso/curso"
+ export { default as Instructor } from "./institutionComponent/Instructors" 
 export { default as Payment } from './Payment/Payment.jsx'
 export { default as VerifySale } from './Payment/VerifySale.jsx'
+
 
 /* export { default as Card } from "./Card/Card";
 export { default as Cards } from "./Cards/Cards";
