@@ -4,16 +4,21 @@
     height: 55%;
     width: 17%;
     border-bottom-left-radius: 27%;
-    background: linear-gradient(to top, #9993, transparent);
+    background: linear-gradient(to top, #1114, transparent);
 }
 
 .silla__img {
     position: relative;
     bottom: 35px;
-    height: 120px;
-    width: 120px;
+    height: 110px;
+    width: 110px;
     border-radius: 50%;
     margin-bottom: -20px;
+}
+
+.silla__name {
+    font-size: 12px;
+    font-style: italic;
 }
 
 .silla__select {
@@ -24,6 +29,11 @@
     border-top: 1.8px solid #fff;
     padding: 6px;
     background-color: transparent;
+    cursor: pointer;
+}
+
+.silla__name_user {
+    margin-top: 1.4rem;
 }
 
 @media screen and (max-width: 415px) {
@@ -45,6 +55,7 @@
     }
     .silla__name {
         font-size: 9px;
+        font-style: italic;
     }
     .silla__select {
         margin-top: 20px;
@@ -55,5 +66,7 @@
         outline: none;
         background-color: transparent;
     }
+    .silla__name_user {
+        display: none;
+    }
 }
-

@@ -93,6 +93,7 @@
   align-items: center;
   color: rgb(110, 110, 110);
   gap: 3px;
+  cursor: pointer;
 }
 .pagContainer>button:hover{
   transform: scale(1.02);
