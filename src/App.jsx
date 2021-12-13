@@ -19,7 +19,7 @@ import {
   Student,
   Curso,
   ActiveAccount,
-  Instructor
+  Instructor,
   VerifySale,
   Payment,
   TrueLandingPage,
@@ -58,6 +58,7 @@ function App() {
             <Route exact path='/institucion/admin/payment'  component={Payment}/>
           </div>
         </Route>
+       </div> 
     </BrowserRouter>
   )
 }
