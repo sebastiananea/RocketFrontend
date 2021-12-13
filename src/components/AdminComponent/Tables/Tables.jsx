@@ -14,9 +14,9 @@ function Tables() {
             method:"post",
             data:{
                 institution:JSON.parse(localStorage.getItem("user")).institution,
-                curso:group
+                curso:group.toUpperCase()
             }
-        })
+        }).then(x => console.log(x.data))
         Swal.fire("Se mezclaron aleatoriamente las mesas del grupo "+group.toUpperCase()+" con exito!")
     }
     async function assignTableSmart(){
@@ -24,7 +24,7 @@ function Tables() {
             method:"post",
             data:{
                 institution:JSON.parse(localStorage.getItem("user")).institution,
-                curso:group
+                curso:group.toUpperCase()
             }
         })
         Swal.fire("Se mezclaron inteligentemente las mesas del grupo "+group.toUpperCase()+" con exito!")
