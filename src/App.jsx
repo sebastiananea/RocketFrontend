@@ -20,9 +20,8 @@ import {
   Curso,
   ActiveAccount,
   Instructor,
-  VerifySale,
   Payment,
-  TrueLandingPage,
+  Tables
 } from './components/index'
 
 function App() {
@@ -46,6 +45,7 @@ function App() {
             <SideBar />
             <Route exact path='/admin/students' component={Students} />
             <Route exact path='/admin/stats' component={Charts} />
+            <Route exact path='/admin/tables' component={Tables} />
             </div>
           </Route>  
 

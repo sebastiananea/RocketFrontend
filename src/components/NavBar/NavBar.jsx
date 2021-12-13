@@ -20,7 +20,7 @@ const NavBar = () => {
             : style.navbar__nav
         }
       >
-        <NavLink to='/trueHome'>
+        <NavLink to='/'>
           <img
             alt='logo'
             src={

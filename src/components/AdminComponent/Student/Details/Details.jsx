@@ -4,7 +4,7 @@ import Reports from './Reports'
 import s from "./Details.module.css"
 function Details({user, setDetailsOpen}) {
     var [selected, setSelected] = useState("reports")
-    console.log(user, "desde details")
+ 
     return (
         <div className={s.container}>
             <div className={s.subcontainer}>
@@ -17,7 +17,7 @@ function Details({user, setDetailsOpen}) {
                     <h4 className={selected === "actions" ? s.selected : s.option} onClick={()=>setSelected("actions")}>Actions</h4>
                  </div>
                  {selected === "reports" && <Reports reports={user.reports}/>}
-                {selected === "actions" && <Actions id={user._id} name={user.name}/> }
+                {selected === "actions" && <Actions id={user._id} name={user.name} group={user.group}/> }
             </div>     
         </div>
     )
