@@ -20,6 +20,8 @@ const Home = () => {
     let profiles = await axios
       .post('https://rocketproject2021.herokuapp.com/filterUserByTable', {
         table: userr.table,
+        institution: userr.institution,
+        curso:userr.curso        
       })
       .then((r) => r.data)
     setProfiles(profiles)
@@ -30,7 +32,7 @@ const Home = () => {
     <div className={style.home__container}>
       <div className={style.home__mesa}>
         <div>
-          <h2>My Team</h2>
+          <h2 className={style.home_myteam}>My Team</h2>
         </div>
         <div className={style.home__mesa__child}>
           {profiles.length ? (
@@ -41,25 +43,28 @@ const Home = () => {
             <Loading />
           )}
         </div>
+        <div>
+          <button className={style.home__btnlink}>
+            <a className={style.home__btnlink_link} href={`https://meet.jit.si/Henry${JSON.parse(localStorage.getItem("user")).table}`} target="_blank">Join Meet</a>
+          </button>
+        </div>
       </div>
       <div className={style.home__chat}>
-        <div>
+        {/* <div>
           <a href={JSON.parse(localStorage.getItem('user')).meetLink}>
             Join Meet
           </a>
-        </div>
-        <h4>CHAT</h4>
+        </div> */}
+        <h4 style={{background:"#ffa600cc", borderRadius:"20px"}}>CHAT</h4>
         {params && params?.name ? (
           <div>
             <ChatContain table={`table${params.table}`} params={params} />
           </div>
         ) : null}
       </div>
-
-      <div>
-      <a href={`https://meet.jit.si/Henry${JSON.parse(localStorage.getItem("user")).table}`} target="_blank">Join Meet</a>
-    </div>
-
+      {/* <div>
+        <a href={`${JSON.parse(localStorage.getItem("user")).meetLink}`} target="_blank">Join Meet</a>
+      </div> */}
     </div>
   )
 }

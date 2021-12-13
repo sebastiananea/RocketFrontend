@@ -3,6 +3,7 @@ import { myDatabaseChat } from '../../../config/utilsChatDatabase.js'
 import { ref, push, child, update} from "firebase/database";
 import firebase from 'firebase/compat';
 import Swal from 'sweetalert2';
+import s from "./Input.module.css";
 
 
 function RocketChat({name,img,table,id}) {
@@ -57,7 +58,7 @@ function RocketChat({name,img,table,id}) {
 
         } catch (e) {
             Swal.fire(
-                'Chat on on maintenance'
+                'Chat on maintenance'
              );
         }
         setmessages({ txt: "" })
@@ -91,30 +92,29 @@ function RocketChat({name,img,table,id}) {
     }
 
     return (
-        <div>
+        <div className={s.inputchat_container}>
             <form onSubmit={e => handleSubmit(e)}>
-                <input type="text" value={messages.txt} name="input" onChange={(e) => handleChange(e)}></input>
-                <input type="file" onChange={readFile} ></input>
-                <button type="submit" >🚀</button>
-                <button name="emoji" onClick={(e) => emojiWorld(e)}>😃</button>
+                <button className={s.inputchat_btn} name="emoji" onClick={(e) => emojiWorld(e)}>😃</button>
+                <textarea className={s.inputchat_input} type="text" value={messages.txt} name="input" onChange={(e) => handleChange(e)}></textarea>
+                <button className={s.inputchat_btn2} type="submit" >🚀</button>
                 {emoji ?
-                    <div>
-                        <h3>emojis</h3>
-                        <button name="😀" onClick={(e) => insertEmoji(e)}>😀</button>
-                        <button name="😅" onClick={(e) => insertEmoji(e)}>😅</button>
-                        <button name="🙃" onClick={(e) => insertEmoji(e)}>🙃</button>
-                        <button name="😍" onClick={(e) => insertEmoji(e)}>😍</button>
-                        <button name="🤪" onClick={(e) => insertEmoji(e)}>🤪</button>
-                        <button name="🤒" onClick={(e) => insertEmoji(e)}>🤒</button>
-                        <button name="🙄" onClick={(e) => insertEmoji(e)}>🙄</button>
-                        <button name="🥱" onClick={(e) => insertEmoji(e)}>🥱</button>
-                        <button name="💯" onClick={(e) => insertEmoji(e)}>💯</button>
-                        <button name="🚀" onClick={(e) => insertEmoji(e)}>🚀</button>
+                    <div className={s.inputchat_emojiscontainer}>
+                        <h6>Emojis</h6>
+                        <button className={s.inputchat_btnemoji} name="😀" onClick={(e) => insertEmoji(e)}>😀</button>
+                        <button className={s.inputchat_btnemoji} name="😅" onClick={(e) => insertEmoji(e)}>😅</button>
+                        <button className={s.inputchat_btnemoji} name="🙃" onClick={(e) => insertEmoji(e)}>🙃</button>
+                        <button className={s.inputchat_btnemoji} name="😍" onClick={(e) => insertEmoji(e)}>😍</button>
+                        <button className={s.inputchat_btnemoji} name="🤪" onClick={(e) => insertEmoji(e)}>🤪</button>
+                        <button className={s.inputchat_btnemoji} name="🤒" onClick={(e) => insertEmoji(e)}>🤒</button>
+                        <button className={s.inputchat_btnemoji} name="🙄" onClick={(e) => insertEmoji(e)}>🙄</button>
+                        <button className={s.inputchat_btnemoji} name="🥱" onClick={(e) => insertEmoji(e)}>🥱</button>
+                        <button className={s.inputchat_btnemoji} name="💯" onClick={(e) => insertEmoji(e)}>💯</button>
+                        <button className={s.inputchat_btnemoji} name="🚀" onClick={(e) => insertEmoji(e)}>🚀</button>
                     </div>
                     :
                     null}
+                    <input type="file" onChange={readFile}></input>
             </form>
-
         </div>
     )
 }

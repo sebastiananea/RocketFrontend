@@ -26,4 +26,34 @@
     background-color: transparent;
 }
 
+@media screen and (max-width: 415px) {
+    .silla__container {
+        display: flex;
+        height: 10%;
+        width: 100%;
+        margin: 10px 0 10px 0;
+        background: linear-gradient(to top, #9993, transparent);
+    }
+    .silla__img {
+        position: relative;
+        bottom: 20px;
+        height: 37px;
+        width: 37px;
+        border-radius: 50%;
+        margin-bottom: -22px;
+        margin-right: 3px;
+    }
+    .silla__name {
+        font-size: 9px;
+    }
+    .silla__select {
+        margin-top: 20px;
+        width: 50%;
+        height: 30%;
+        margin: auto;
+        border: none;
+        outline: none;
+        background-color: transparent;
+    }
+}
 

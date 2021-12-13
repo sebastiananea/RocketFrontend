@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
 export const Links = [
   {
-    to: "/institucion/admin/curso",
-    text: "Curso nuevo",
+    to: '/institucion/admin/curso',
+    text: 'Curso nuevo',
     svg: (
     <svg
         width="20"
@@ -42,6 +42,7 @@ export const Links = [
     svg: (
     
       <svg
+
         width="22"
         height="22"
         viewBox="0 0 22 22"
@@ -58,10 +59,11 @@ export const Links = [
     ),
   },
   {
-    to: "/institucion/admin/instructores",
-    text: "Instructores",
+    to: '/institucion/admin/instructores',
+    text: 'Instructores',
     svg: (
       <svg
+
       width="22"
       height="22"
       viewBox="0 0 22 22"
@@ -77,4 +79,4 @@ export const Links = [
     </svg>
     ),
   },
-];
+]

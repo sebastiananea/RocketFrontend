@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter, Route, useLocation } from 'react-router-dom'
 import './App.css'
 import {
@@ -20,16 +20,18 @@ import {
   Curso,
   ActiveAccount,
   Instructor
+  VerifySale,
+  Payment,
+  TrueLandingPage,
 } from './components/index'
-console.log(JSON.parse(localStorage.getItem("user")))
+
 function App() {
-  
   return (
     <BrowserRouter>
       <div className='App'>
         {/* <Route exact path="/" component={TrueLandingPage} /> */}
-        <Route path='/' component={NavBar} /> 
-        <Route exact path="/" component={LandingNoLog} />
+        <Route path='/' component={NavBar} />
+        <Route exact path='/' component={LandingNoLog} />
         <Route path='/home' component={Home} />
         <Route path='/trueHome' component={TrueHome} />
         <Route path='/signin' component={LandingPage} />
@@ -39,9 +41,9 @@ function App() {
         <Route path='/institution' component={InstitutionLogIn} />
         <Route path='/register' component={RegisterInstitution} />
         <Route path='/active-account/:token' component={ActiveAccount} />
-        <Route path='/admin'> 
-            <div className="adminContainer">
-            <SideBar/>
+        <Route path='/admin'>
+          <div className='adminContainer'>
+            <SideBar />
             <Route exact path='/admin/students' component={Students} />
             <Route exact path='/admin/stats' component={Charts} />
             </div>
@@ -53,11 +55,9 @@ function App() {
             <Route exact path='/institucion/admin/estudiantes' component={Student}  />
             <Route exact path='/institucion/admin/curso' component={Curso}  />
             <Route exact path='/institucion/admin/instructores' component={Instructor}  />
-            </div>
-          </Route>  
-
-          
-      </div>
+            <Route exact path='/institucion/admin/payment'  component={Payment}/>
+          </div>
+        </Route>
     </BrowserRouter>
   )
 }
