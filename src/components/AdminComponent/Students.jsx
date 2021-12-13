@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from "react";
+import { useSelector } from 'react-redux'
 import axios from "axios";
 import s from "./Students.module.css";
 import Student from "./Student/Student";
@@ -7,15 +8,15 @@ import Details from "./Student/Details/Details";
 import { myDatabaseChat } from '../../config/utilsChatDatabase'
 import { ref, remove} from "firebase/database";
 import Swal from 'sweetalert2';
-import { createUnparsedSourceFile } from "typescript";
+
 
 
  function Students() {
-   const { ordenar } = require("../utils");
+  var groups = useSelector((state)=>state.groups) 
+  const { ordenar } = require("../utils");
    let [users, setUsers] = useState([]);
    let [users2, setUsers2] = useState([]);
    let [group, setGroup] = useState("")
-   let [groups, setGroups] = useState("")
    let [pag, setPag] = useState({
      from: 0,
      to: 7,
@@ -64,21 +65,21 @@ import { createUnparsedSourceFile } from "typescript";
      remove(ref(myDatabaseChat))
  
   }
-   async function getStudentsAndGroups() {
+   async function getStudents() {
      let res = await axios("https://rocketproject2021.herokuapp.com/getUsersByInstitution", {
        method: "post",
        data: {
          institution: JSON.parse(localStorage.getItem("user")).institution,
       },
     }).then((x) => x.data);
-    let res2 = await axios(`https://rocketproject2021.herokuapp.com/admin/getCohortes/${JSON.parse(localStorage.getItem("user")).institution}`).then(x=>x.data)
     setUsers(res);
     setUsers2(res);
-    setGroups(res2)//Acá ya llegan los cohortes de la institución. No pude hacer que se muestren en el options dinamicamente.
   }
+
   useEffect(() => {
-    getStudentsAndGroups();
+    getStudents();
   }, []);
+
   if (users) ordenar(users, orderBy);
 
   const handleChange = (e) => {
@@ -98,8 +99,6 @@ import { createUnparsedSourceFile } from "typescript";
 
   const onChange= (e) => {
     setGroup(e.target.value)
-    if(e.target.value==="") setUsers(users2)
-    else setUsers(users2.filter(user=> user.curso === e.target.value))
     setPag({
       from: 0,
       to: 7,
@@ -116,13 +115,10 @@ import { createUnparsedSourceFile } from "typescript";
         <div className={s.orderGroup}>
           <h6>Group</h6>
           <select onChange={e=> onChange(e)}>
-            <option value="">Select Group</option>
-            <option value="18A">Cohorte 18A</option>
-            <option value="18B">Cohorte 18B</option>
-            <option value="19A">Cohorte 19A</option>
-            <option value="19B">Cohorte 19B</option>
-            <option value="20A">Cohorte 20A</option>
-            <option value="20B">Cohorte 20B</option>
+            <option value="general">GENERAL</option>
+            {groups.map((x)=>(
+                    <option value={x.toLowerCase()}>{x}</option>
+                ))}
  
            </select>
        </div>
@@ -172,6 +168,7 @@ import { createUnparsedSourceFile } from "typescript";
                  score={x.score}
                  reports={x.reports}
                  setDetailsOpen={setDetailsOpen}
+                 group={x.curso}
                />
              ))}
          <div className={s.pagContainer}>

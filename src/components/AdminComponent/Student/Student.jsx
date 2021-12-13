@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import s from "./Student.module.css";
 
 
-function Student({ img, _id, name, score, reports, setDetailsOpen }) {
+function Student({ img, _id, name, score, reports, setDetailsOpen, group }) {
   
   return (
     <div className={s.container}>
@@ -52,7 +52,7 @@ function Student({ img, _id, name, score, reports, setDetailsOpen }) {
         </div>
       </div>
       <div className={s.details}>
-        <svg onClick={()=>setDetailsOpen({_id:_id, reports:reports, name:name})}
+        <svg onClick={()=>setDetailsOpen({_id:_id, reports:reports, name:name, group:group})}
           width="116"
           height="26"
           viewBox="0 0 116 26"
