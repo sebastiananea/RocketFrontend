@@ -40,6 +40,7 @@ select:focus {
   text-align: center;
   opacity: 1;
   transition: opacity 0.1s ease-in-out;
+  cursor: pointer;
 }
 
 .menu1 > svg {

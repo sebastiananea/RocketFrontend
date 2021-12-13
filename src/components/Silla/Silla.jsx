@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import style from "./Silla.module.css";
 import axios from "axios";
 import { useSelector } from 'react-redux'
+import Swal from 'sweetalert2';
 
 function Silla({ img, name, _id }) {
   //variables que sirven para deshabilitar botones like/report cuando se presionan
@@ -29,8 +30,19 @@ function Silla({ img, name, _id }) {
     }
 
     if (e.target.value === "reports") {
-      let reportText = prompt(`¿Por qué quieres reportar a ${name}?`);
+      // let reportText = prompt(`¿Por qué quieres reportar a ${name}?`);
+      let reportText = await Swal.fire({
+        input: 'textarea',
+        inputLabel: `¿Por qué quieres reportar a ${name}?`,
+        inputPlaceholder: 'Escribe tú motivo...',
+        inputAttributes: {
+          'aria-label': 'Type your message here'
+        },
+        showCancelButton: true
+      })
+      if (reportText) Swal.fire(`Reportaste a ${name}. Motivo: '${reportText.value}'.`)
       
+    
       const fecha = new Date()
       const mes = fecha.getMonth()
       const año = fecha.getFullYear()
@@ -48,10 +60,6 @@ function Silla({ img, name, _id }) {
         }
         
       )).then(setlikeOrReport({ ...likeOrReport, report: reportText }));
-
-     
-      
-      
     }
   };
 
@@ -62,7 +70,10 @@ function Silla({ img, name, _id }) {
       </Link>
       <h4 className={style.silla__name}>{name}</h4>
 
-      <select className={style.silla__select} onChange={(e) => onChange(e)}>
+      { myUser.name === name ? 
+      (<h5 className={style.silla__name_user}>Tú</h5>)
+      :
+      (<select className={style.silla__select} onChange={(e) => onChange(e)}>
         <option disabled selected value="">
           Like / Report
         </option>
@@ -70,27 +81,23 @@ function Silla({ img, name, _id }) {
         {likeOrReport.like === false ? (
           <option value="like" name="">
             Like{" "}👍
-
           </option>
         ) : (
           <option disabled value="like" name="">
             Like{" "}👍
-
           </option>
         )}
-
         {likeOrReport.report === "" ? (
           <option value="reports">
             Report{" "}🚫
-
           </option>
         ) : (
           <option disabled value="reports">
             Report{" "}🚫
-
           </option>
         )}
-      </select>
+      </select>)
+      }
     </div>
   );
 }

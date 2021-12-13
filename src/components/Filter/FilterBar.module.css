@@ -15,6 +15,7 @@ textarea:focus, input:focus, select:focus{
     border-radius: 10px;
     font-family: 'Montserrat', sans-serif;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .menu{
@@ -33,6 +34,7 @@ textarea:focus, input:focus, select:focus{
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     background-image: linear-gradient( 90deg,  #fa9725  0.4%, #fa9725 120.2% );
+    cursor: pointer;
 }
 .menu>img{
     width: 10px;
@@ -43,6 +45,7 @@ textarea:focus, input:focus, select:focus{
 }
 .checkbox:checked ~ .menu{
     top: 3.9vh;
+    cursor: pointer;
 }
 .topPanel{
     width: 20%;

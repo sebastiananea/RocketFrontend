@@ -59,7 +59,7 @@ function User({ setUser }) {
             Cerrar Sesión
           </h4>
 
-          <label for='check1' className={s.menu1}>
+          <label for='check1' className={s.menu1} style={{cursor:"pointer"}}>
             <svg
               width='22'
               height='22'

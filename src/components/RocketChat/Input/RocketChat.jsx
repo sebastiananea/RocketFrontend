@@ -95,7 +95,7 @@ function RocketChat({name,img,table,id}) {
         <div className={s.inputchat_container}>
             <form onSubmit={e => handleSubmit(e)}>
                 <button className={s.inputchat_btn} name="emoji" onClick={(e) => emojiWorld(e)}>😃</button>
-                <textarea className={s.inputchat_input} type="text" value={messages.txt} name="input" onChange={(e) => handleChange(e)}></textarea>
+                <textarea spellcheck="false" className={s.inputchat_input} type="text" value={messages.txt} name="input" onChange={(e) => handleChange(e)}></textarea>
                 <button className={s.inputchat_btn2} type="submit" >🚀</button>
                 {emoji ?
                     <div className={s.inputchat_emojiscontainer}>
