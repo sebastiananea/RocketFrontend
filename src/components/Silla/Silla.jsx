@@ -70,8 +70,8 @@ function Silla({ img, name, _id }) {
       </Link>
       <h4 className={style.silla__name}>{name}</h4>
 
-      { myUser.name === name ? 
-      (<h5 className={style.silla__name_user}>Tú</h5>)
+      { myUser._id === _id ? 
+      (<h5 className={style.silla__name_user}>You</h5>)
       :
       (<select className={style.silla__select} onChange={(e) => onChange(e)}>
         <option disabled selected value="">
