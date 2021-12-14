@@ -30,7 +30,7 @@ function Silla({ img, name, _id }) {
     }
 
     if (e.target.value === "reports") {
-      // let reportText = prompt(`¿Por qué quieres reportar a ${name}?`);
+      
       let reportText = await Swal.fire({
         input: 'textarea',
         inputLabel: `¿Por qué quieres reportar a ${name}?`,
@@ -40,26 +40,28 @@ function Silla({ img, name, _id }) {
         },
         showCancelButton: true
       })
-      if (reportText) Swal.fire(`Reportaste a ${name}. Motivo: '${reportText.value}'.`)
       
-    
       const fecha = new Date()
       const mes = fecha.getMonth()
       const año = fecha.getFullYear()
 
-      
-      let group=myUser.curso;
-      let date=`${mes}-${año}`
-      axios.post(`http://localhost:3001/admin/report`,
-      {
-        group:group, date:date
-      }).then( axios.post(
-        `https://rocketproject2021.herokuapp.com/increaseReports/${_id}`,
-        {
-          reportText,
-        }
+      if (reportText.value !== undefined) {
         
-      )).then(setlikeOrReport({ ...likeOrReport, report: reportText }));
+        let group=myUser.curso;
+        let date=`${mes}-${año}`
+        axios.post(`http://localhost:3001/admin/report`,
+        {
+          group:group, date:date
+        }).then( axios.post(
+          `https://rocketproject2021.herokuapp.com/increaseReports/${_id}`,
+          {
+            reportText,
+          }
+          
+        )).then(setlikeOrReport({ ...likeOrReport, report: reportText }));
+
+        Swal.fire(`Reportaste a ${name}. Motivo: '${reportText.value}'.`)
+      }
     }
   };
 
