@@ -91,9 +91,6 @@ function RocketChat({ name, img, table, id }) {
     setFile(e.target.files[0]);
   };
 
-  useEffect(()=>{
-    console.log(table)
-  },[])
 
   return (
     <div>
