@@ -48,16 +48,19 @@ function TrueHome() {
         u.name.toLowerCase().includes(e.target.value.toLowerCase())
       )
     );
-    setPag(0)
+    setPag({
+      from: 0,
+      to: 9
+    })
   };
 
   async function handleClick(e) {
     history.push("/home");
   }
  
-  if (!myUser) return <TrueLandingPage />;
+ 
   
-  else if (!myUser.institution)
+ if (!myUser.institution)
     return <div>No course or institution were found for your profile...</div>;
   else if (myUser.institution)
     return (

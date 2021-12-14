@@ -1,9 +1,27 @@
-import React,{useState} from "react";
-import s from "./Student.module.css";
+import React from "react";
+import s from "./Instructors.module.css";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+
+function Instructors({ img, _id, name, score, reports, curso }) {
+    let history = useHistory()
+
+  async function offInstructor(e) {
+    var res = await axios("https://rocketproject2021.herokuapp.com/institution/setInstructor", {
+      method: "post",
+      data: {
+        id: _id,
+        moderator: false
+      }
+    }).then((x) => x.data);
+
+    history.push("/institucion/admin/estudiantes")
+  }
 
 
-function Student({ img, _id, name, score, reports, setDetailsOpen, group }) {
-  
+
+
+
   return (
     <div className={s.container}>
       <div className={s.imgContainer}>
@@ -48,11 +66,12 @@ function Student({ img, _id, name, score, reports, setDetailsOpen, group }) {
           <h4 style={{ color: "rgb(200, 0, 0)" }}>{reports.length}</h4>
         </div>
         <div className={s.asistencias}>
-          <h5>Asistencias: 60%</h5>
+          <h5>Curso: {curso}</h5>
         </div>
       </div>
       <div className={s.details}>
-        <svg onClick={()=>setDetailsOpen({_id:_id, reports:reports, name:name, group:group})}
+        <button onClick={() => offInstructor()}>Quitar</button>
+        {/* <svg
           width="116"
           height="26"
           viewBox="0 0 116 26"
@@ -74,11 +93,10 @@ function Student({ img, _id, name, score, reports, setDetailsOpen, group }) {
             d="M101.748 18V20H87.9554V18H101.748ZM104.703 14V16H85V14H104.703ZM101.748 10V12H87.9554V10H101.748ZM104.703 6V8H85V6H104.703Z"
             fill="#FFAB4C"
           />
-        </svg>
+        </svg> */}
       </div>
-      
     </div>
   );
 }
 
-export default Student;
+export default Instructors;

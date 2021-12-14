@@ -6,6 +6,7 @@ import BarStudentsPerGroup from './Area'
 import PieReportsLikes from './Pie'
 import axios from 'axios'
 import BarGroup from './Bar'
+import Loading from '../../Loading/Loading'
 
 function Charts() {
 
@@ -63,8 +64,8 @@ function Charts() {
         
     )
     else return(
-        <div>
-            Loading...
+        <div className={s.loading}>
+            <Loading />
         </div>
     )
 }

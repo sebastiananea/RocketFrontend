@@ -1,129 +1,107 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import axios from "axios";
-import s from "./Students.module.css";
+import s from "./Instructors.module.css";
 import Student from "./Student/Student";
-import Details from "./Student/Details/Details";
+import Instructors from "./Instructors/instructors"
 import { myDatabaseChat } from "../../config/utilsChatDatabase";
-import { ref, remove } from "firebase/database";
-import Swal from "sweetalert2";
+import { ref, remove, set } from "firebase/database";
+const { ordenar } = require("../utils");
 
-function Students() {
-  var groups = useSelector((state) => state.groups);
-  const { ordenar } = require("../utils");
-  let [users, setUsers] = useState([]);
-  let [users2, setUsers2] = useState([]);
-  let [group, setGroup] = useState("");
-  let [pag, setPag] = useState({
+function Instructor() {
+  var obj = {
+    id: JSON.parse(localStorage.getItem("user"))._id,
+    name: JSON.parse(localStorage.getItem("user")).name,
+    cursos: "",
+  };
+  var [institucion, setIntitucion] = useState(obj);
+  var [users, setUsers] = useState([]);
+  var [users2, setUsers2] = useState([]);
+  var [pag, setPag] = useState({
     from: 0,
     to: 7,
   });
-  let [orderBy, setOrderBy] = useState("a-z");
+  var [orderBy, setOrderBy] = useState("a-z");
 
-  async function shuffleTables() {
-    if (group !== "") {
-      await axios("https://rocketproject2021.herokuapp.com/asignTable", {
-        method: "post",
-        data: {
-          curso: group,
-          institution: JSON.parse(localStorage.getItem("user")).institution,
-        },
-      }).then(Swal.fire("Mesas mezcladas", "Satisfactoriamente!", "success"));
-    } else Swal.fire("Por favor, seleccione un grupo para mezclar");
-    await axios("https://rocketproject2021.herokuapp.com/addClass", {
+  async function getStudents(e) {
+    var res = await axios("https://rocketproject2021.herokuapp.com/institution/instructores", {
       method: "post",
       data: {
-        curso: group,
-        institution: JSON.parse(localStorage.getItem("user")).institution,
+        name: institucion.name,
       },
-    });
-    remove(ref(myDatabaseChat));
-  }
-
-  async function shuffleTablesRnm() {
-    if (group !== "") {
-      await axios("https://rocketproject2021.herokuapp.com/asignTableRandom", {
-        method: "post",
-        data: {
-          curso: group,
-          institution: JSON.parse(localStorage.getItem("user")).institution,
-        },
-      }).then(Swal.fire("Mesas mezcladas", "Satisfactoriamente!", "success"));
-    } else Swal.fire("Por favor, seleccione un grupo para mezclar");
-    await axios("https://rocketproject2021.herokuapp.com/addClass", {
-      method: "post",
-      data: {
-        curso: group,
-        institution: JSON.parse(localStorage.getItem("user")).institution,
-      },
-    });
-
-    //      //borra chats de mesas
-    remove(ref(myDatabaseChat));
-  }
-  async function getStudents() {
-    let res = await axios(
-      "https://rocketproject2021.herokuapp.com/getUsersByInstitution",
-      {
-        method: "post",
-        data: {
-          institution: JSON.parse(localStorage.getItem("user")).institution,
-        },
-      }
-    ).then((x) => x.data);
+    }).then((x) => x.data);
+    console.log("alumnos", res);
     setUsers(res);
     setUsers2(res);
   }
 
+  async function getCursos() {
+    var res = await axios("https://rocketproject2021.herokuapp.com/institution/cursos", {
+      method: "post",
+      data: institucion,
+    }).then((x) => x.data);
+
+    setIntitucion({
+      ...institucion,
+      cursos: res,
+    });
+  }
+
   useEffect(() => {
     getStudents();
+    getCursos();
+    console.log("EFFECT");
   }, []);
 
-  if (users) ordenar(users, orderBy);
 
+  function handleChangeFilter(e) {
+    const { value } = e.target;
+    if (value === "All") {
+      setUsers(users2)
+    }
+    else {
+      const alumnos = users2.filter( (u) => u.curso == value)
+      setUsers(alumnos)
+    }
+    // setUsers(users2.filter((u) => u.curso === value));
+    // console.log(value, users);
+  }
+
+  
   const handleChange = (e) => {
     if (e.target.value === "") {
       setUsers(users2);
-    } else
-      setUsers(
-        users2.filter((u) =>
-          u.name.toLowerCase().includes(e.target.value.toLowerCase())
-        )
-      );
-    setPag({
-      from: 0,
-      to: 7,
-    });
+      
+    }
+    setUsers(
+      users2.filter((u) =>
+        u.name.toLowerCase().includes(e.target.value.toLowerCase())
+        
+      )
+    );
+    console.log("Users", users)
   };
 
-  const onChange = (e) => {
-    setGroup(e.target.value);
-    setPag({
-      from: 0,
-      to: 7,
-    });
-  };
-  var [detailsOpen, setDetailsOpen] = useState(false);
+  if (users) ordenar(users, orderBy);
 
   return (
     <div className={s.container}>
-      <h2>Students Panel</h2>
-      <button onClick={shuffleTablesRnm}>Random Shuffle Tables</button>
-      <button onClick={shuffleTables}>Smart Shuffle Tables</button>
+      <h2>Instructores</h2>
+
       <div className={s.filtros}>
         <div className={s.orderGroup}>
-          <h6>Group</h6>
-          <select onChange={(e) => onChange(e)}>
-            <option value="general">GENERAL</option>
-            {groups.map((x) => (
-              <option value={x.toLowerCase()}>{x}</option>
-            ))}
+          <h6>Curso</h6>
+          <select onChange={(e) => handleChangeFilter(e)}>
+            <option value="All">{institucion.name}</option>
+            {institucion.cursos &&
+              institucion.cursos.map((c) => {
+                return <option value={c}>{c}</option>;
+              })}
           </select>
         </div>
 
         <form>
           <input
-            placeholder="Find students..."
+            placeholder="Buscar Instructores..."
             onChange={(e) => handleChange(e)}
             className={s.formInput}
             type="text"
@@ -145,7 +123,7 @@ function Students() {
           </button>
         </form>
         <div className={s.orderBy}>
-          <h6>Order By</h6>
+          <h6>Ordenar</h6>
           <select value={orderBy} onChange={(e) => setOrderBy(e.target.value)}>
             <option value="a-z">A-Z</option>
             <option value="z-a">Z-A</option>
@@ -159,14 +137,13 @@ function Students() {
           users
             .slice(pag.from, pag.to)
             .map((x) => (
-              <Student
+              <Instructors
                 img={x.img}
                 name={x.name}
                 _id={x._id}
                 score={x.score}
                 reports={x.reports}
-                setDetailsOpen={setDetailsOpen}
-                group={x.curso}
+                curso = {x.curso}
               />
             ))}
         <div className={s.pagContainer}>
@@ -196,6 +173,7 @@ function Students() {
           </div>
           {
             <button
+              disabled={pag.to < users.length ? false : true}
               onClick={() => setPag({ from: pag.from + 7, to: pag.to + 7 })}
             >
               <svg
@@ -216,11 +194,8 @@ function Students() {
           }
         </div>
       </div>
-      {detailsOpen != false && (
-        <Details user={detailsOpen} setDetailsOpen={setDetailsOpen} />
-      )}
     </div>
   );
 }
 
-export default Students;
+export default Instructor;

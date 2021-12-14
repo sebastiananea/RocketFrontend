@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
+import { useSelector } from 'react-redux'
 import s from "./Actions.module.css"
-function Actions({_id, name}) {
-    
+function Actions({_id, name, group}) {
+    var groups = useSelector((state)=>state.groups)
     var [selected, setSelected] = useState("change")
 
     return (
@@ -22,11 +23,12 @@ function Actions({_id, name}) {
                 {selected === "change" && (
                     <div className={s.confirmationSubcontainer}>
                           <div className={s.changeContainer}>
-                            <div>FROM <strong>FT-17B</strong> TO
+                            <div>FROM <strong>{group}</strong> TO
                             </div>
                             <select>
-                                <option value="ft18a">FT-18A</option>
-                                <option value="ft19a">FT-19A</option>
+                            {groups.map((x)=>(
+                                <option value={x.toLowerCase()}>{x}</option>
+                            ))}
                             </select>
                           </div>
                           <button className={s.changeButton}>

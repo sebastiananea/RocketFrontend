@@ -9,23 +9,35 @@ const NavBar = () => {
   let history = useHistory()
   let location = useLocation()
 
-  const myUser = useSelector((state)=>state.user)
-
+  const myUser = useSelector((state) => state.user)
 
   if (location.pathname !== '/')
     return (
-      <nav className={style.navbar__nav}>
-        <NavLink to='/trueHome'>
+      <nav
+        className={
+          location.pathname.includes('/institucion')
+            ? style.navbar_dark
+            : style.navbar__nav
+        }
+      >
+        <NavLink to='/'>
           <img
             alt='logo'
-            src={logo}
-            width='60%'
-            className={style.navbar__logo}
+            src={
+              location.pathname.includes('/institucion')
+                ? require('../../logoBlanco.png').default
+                : logo
+            }
+            width={location.pathname.includes('/institucion') ? '90px' : '60%'}
+            className={
+              location.pathname.includes('/institucion')
+                ? style.navbar__logo_dark
+                : style.navbar__logo
+            }
           />
         </NavLink>
         <div className={style.navbar__div_buttons}>
-
-          {myUser !== null &&  <User/>}
+          {myUser !== null && <User />}
 
           {!myUser && (
             <div>

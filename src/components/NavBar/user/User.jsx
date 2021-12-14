@@ -1,19 +1,24 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { useSelector } from 'react-redux'
-import * as actionsCreators from "../../../Actions/index";
-import { bindActionCreators } from 'redux';
+import * as actionsCreators from '../../../Actions/index'
+import { bindActionCreators } from 'redux'
 import s from './User.module.css'
 
-function User({setUser}) {
+function User({ setUser }) {
   let history = useHistory()
-  const myUser = useSelector((state)=>state.user)
-  console.log(myUser, "desde user")
+  let location = useLocation()
+  const myUser = useSelector((state) => state.user)
+  console.log(myUser, 'desde user')
   return (
     <div className={s.container}>
-      <div className={s.nombre}>
+      <div
+        className={
+          location.pathname.includes('/institucion') ? s.nombredark : s.nombre
+        }
+      >
         <h4>{myUser.name.split(' ')[0]}</h4>
         <input type='checkbox' className={s.checkbox} id='check1' />
         <label for='check1' className={s.menu}>
@@ -28,7 +33,9 @@ function User({setUser}) {
               fill-rule='evenodd'
               clip-rule='evenodd'
               d='M20 12V14H0V12H20ZM20 6V8H0V6H20ZM20 0V2H0V0H20Z'
-              fill='#4F4E4E'
+              fill={
+                location.pathname.includes('/institucion') ? '#FFF' : '#4F4E4E'
+              }
             />
           </svg>
         </label>
@@ -52,7 +59,7 @@ function User({setUser}) {
             Cerrar Sesión
           </h4>
 
-          <label for='check1' className={s.menu1}>
+          <label for='check1' className={s.menu1} style={{cursor:"pointer"}}>
             <svg
               width='22'
               height='22'
@@ -73,16 +80,14 @@ function User({setUser}) {
       <div className={s.profile}>
         <Link to='/profile'>
           <img src={myUser.img} alt='' width='50px' height='50px' />
-
         </Link>
       </div>
     </div>
   )
 }
 
-
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionsCreators, dispatch)
 }
 
-export default connect(null, mapDispatchToProps) (User)
+export default connect(null, mapDispatchToProps)(User)

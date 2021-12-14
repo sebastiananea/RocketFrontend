@@ -3,11 +3,16 @@ import axios from "axios";
 import s from "./Students.module.css";
 import Student from "./Student/Student";
 import { myDatabaseChat } from "../../config/utilsChatDatabase";
-import { ref, remove } from "firebase/database";
+import { ref, remove, set } from "firebase/database";
+const { ordenar } = require("../utils");
 
 function Students() {
-  const { ordenar } = require("../utils");
-
+  var obj = {
+    id: JSON.parse(localStorage.getItem("user"))._id,
+    name: JSON.parse(localStorage.getItem("user")).name,
+    cursos: "",
+  };
+  var [institucion, setIntitucion] = useState(obj);
   var [users, setUsers] = useState([]);
   var [users2, setUsers2] = useState([]);
   var [pag, setPag] = useState({
@@ -16,57 +21,70 @@ function Students() {
   });
   var [orderBy, setOrderBy] = useState("a-z");
 
-  const [institucion, setIntitucion] = useState(
-    JSON.parse(localStorage.getItem("user")).name
-  );
 
-  let cursos = []
- 
- 
 
-  async function getStudents() {
-    var res = await axios(
-      "https://rocketproject2021.herokuapp.com/getUsersByInstitution",
-      {
-        method: "post",
-        data: {
-          institution: JSON.parse(localStorage.getItem("user")).name,
-        },
-      }
-    ).then((x) => x.data);
-    console.log("FILTER", res);
+
+  
+  async function getStudents(e) {
+    var res = await axios("https://rocketproject2021.herokuapp.com/institution/alumnos", {
+      method: "post",
+      data: {
+        name: institucion.name,
+      },
+    }).then((x) => x.data);
+    console.log("alumnos", res);
     setUsers(res);
     setUsers2(res);
   }
-  
+
+  async function getCursos() {
+    var res = await axios("https://rocketproject2021.herokuapp.com/institution/cursos", {
+      method: "post",
+      data: institucion,
+    }).then((x) => x.data);
+
+    setIntitucion({
+      ...institucion,
+      cursos: res,
+    });
+  }
+
   useEffect(() => {
     getStudents();
+    getCursos();
+    console.log("EFFECT");
   }, []);
 
-  
-  
-  useEffect(() => {
-     users.map(u=>{
-      if(!cursos.includes(u.curso) && u.curso){
-        cursos.push(u.curso)
-      }
-    } )
-    cursos.sort()
-    console.log("sort  "+ cursos)
-  }, [users]);
 
-  if (users) ordenar(users, orderBy);
+  function handleChangeFilter(e) {
+    const { value } = e.target;
+    if (value === "All") {
+      setUsers(users2)
+    }
+    else {
+      const alumnos = users2.filter( (u) => u.curso == value)
+      setUsers(alumnos)
+    }
+    // setUsers(users2.filter((u) => u.curso === value));
+    // console.log(value, users);
+  }
 
+  
   const handleChange = (e) => {
     if (e.target.value === "") {
       setUsers(users2);
+      
     }
     setUsers(
       users2.filter((u) =>
         u.name.toLowerCase().includes(e.target.value.toLowerCase())
+        
       )
     );
+    console.log("Users", users)
   };
+
+  if (users) ordenar(users, orderBy);
 
   return (
     <div className={s.container}>
@@ -75,13 +93,11 @@ function Students() {
       <div className={s.filtros}>
         <div className={s.orderGroup}>
           <h6>Curso</h6>
-          <select onChange={(e) => getStudents(e)}>
-            <option value={institucion}>{institucion}</option>
-            {/* <option value="FT 20-B">FT 20-B</option> */}
-            {cursos && cursos.map(c=> {
-              return(
-                <option>{c}</option>
-              )
+          <select onChange={(e) => handleChangeFilter(e)}>
+            <option value="All">{institucion.name}</option>
+            {institucion.cursos &&
+              institucion.cursos.map((c) => {
+                return <option value={c}>{c}</option>;
               })}
           </select>
         </div>
@@ -130,6 +146,7 @@ function Students() {
                 _id={x._id}
                 score={x.score}
                 reports={x.reports}
+                curso = {x.curso}
               />
             ))}
         <div className={s.pagContainer}>
