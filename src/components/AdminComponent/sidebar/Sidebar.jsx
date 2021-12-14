@@ -13,7 +13,7 @@ function Sidebar({setGroups}){
     let groups = useSelector((state)=>state.groups)
     useEffect(()=>{
       async function getGroups(){
-        await axios("https://rocketproject2021.herokuapp.com/admin/getCohortes")
+        await axios("http://localhost:3001/admin/getCohortes")
         .then(x => {
           setGroups(x.data)
         })

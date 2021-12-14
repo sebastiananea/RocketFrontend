@@ -27,7 +27,7 @@ const Profile = () => {
 
   useEffect(() => {
     let profile = axios(
-      `https://rocketproject2021.herokuapp.com/searchProfileID/${id}`
+      `http://localhost:3001/searchProfileID/${id}`
     ).then((r) => setObj(r.data))
     setBoolean(false)
   }, [boolean])
@@ -38,14 +38,14 @@ const Profile = () => {
     if (obj.enhableContact === true) {
       // setChecket(false);
       obj.setObj({ ...obj, enhableContact: false })
-      await axios.post('https://rocketproject2021.herokuapp.com/user/changes', {
+      await axios.post('http://localhost:3001/user/changes', {
         new_enhableContact: false,
         id: obj._id,
       })
     } else if (obj.enhableContact === false) {
       // setChecket(true);
       obj.setObj({ ...obj, enhableContact: true })
-      await axios.post('https://rocketproject2021.herokuapp.com/user/changes', {
+      await axios.post('http://localhost:3001/user/changes', {
         new_enhableContact: true,
         id: obj._id,
       })
@@ -79,7 +79,7 @@ const Profile = () => {
     }
 
     await axios.post(
-      'https://rocketproject2021.herokuapp.com/user/changes',
+      'http://localhost:3001/user/changes',
       newChanges
     ).then(()=>setBoolean(true))
     let myUser = JSON.parse(localStorage.getItem('user'))

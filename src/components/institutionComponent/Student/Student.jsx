@@ -8,7 +8,7 @@ function Student({ img, _id, name, score, reports, curso }) {
   let history = useHistory()
   async function instructor(e) {
     
-    var res = await axios("https://rocketproject2021.herokuapp.com/institution/setInstructor", {
+    var res = await axios("http://localhost:3001/institution/setInstructor", {
       method: "post",
       data: {
         id: _id,

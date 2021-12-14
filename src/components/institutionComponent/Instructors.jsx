@@ -23,7 +23,7 @@ function Instructor() {
   var [orderBy, setOrderBy] = useState("a-z");
 
   async function getStudents(e) {
-    var res = await axios("https://rocketproject2021.herokuapp.com/institution/instructores", {
+    var res = await axios("http://localhost:3001/institution/instructores", {
       method: "post",
       data: {
         name: institucion.name,
@@ -35,7 +35,7 @@ function Instructor() {
   }
 
   async function getCursos() {
-    var res = await axios("https://rocketproject2021.herokuapp.com/institution/cursos", {
+    var res = await axios("http://localhost:3001/institution/cursos", {
       method: "post",
       data: institucion,
     }).then((x) => x.data);

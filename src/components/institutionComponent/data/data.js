@@ -1,23 +1,6 @@
 import React from 'react'
 export const Links = [
-  {
-    to: '/institucion/admin/curso',
-    text: 'Curso nuevo',
-    svg: (
-    <svg
-        width="20"
-        height="14"
-        viewBox="0 0 17 14"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M17 4H0V6H17V4ZM17 0H0V2H17V0ZM0 10H13V8H0V10ZM15 8V14L20 11L15 8Z"
-          fill="#5f5f5f"
-        />
-      </svg>
-    ),
-  },
+  
   {
     to: "/institucion/admin/cursos",
     text: "Mis Cursos",
@@ -77,6 +60,24 @@ export const Links = [
         fill="#5F5F5F"
       />
     </svg>
+    ),
+  },
+  {
+    to: '/institucion/admin/curso',
+    text: 'Curso nuevo',
+    svg: (
+    <svg
+        width="20"
+        height="14"
+        viewBox="0 0 17 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M17 4H0V6H17V4ZM17 0H0V2H17V0ZM0 10H13V8H0V10ZM15 8V14L20 11L15 8Z"
+          fill="#5f5f5f"
+        />
+      </svg>
     ),
   },
 ]

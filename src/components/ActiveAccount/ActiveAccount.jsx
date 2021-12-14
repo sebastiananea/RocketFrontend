@@ -7,13 +7,13 @@ function ActiveAccount() {
     const [validate, setvalidate] = useState(null)
     
     try{
-        axios(`https://rocketproject2021.herokuapp.com/searchProfileActivate/${token}`).then(res => setvalidate(res.data))
+        axios(`http://localhost:3001/searchProfileActivate/${token}`).then(res => setvalidate(res.data))
     }
     catch(error){
         console.log(error)
     }
 
-    // let check= await axios(`https://rocketproject2021.herokuapp.com/searchProfileID/${token}`).then((r)=>console.log(r))
+    // let check= await axios(`http://localhost:3001/searchProfileID/${token}`).then((r)=>console.log(r))
     // //if return... else return y redirect a log in
     if(validate) return(
         <div>

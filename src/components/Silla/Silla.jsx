@@ -13,7 +13,7 @@ function Silla({ img, name, _id }) {
   const onChange = async (e) => {
     e.preventDefault();
     if (e.target.value === "like") {
-      axios.put(`https://rocketproject2021.herokuapp.com/increaseLike/${_id}`);
+      axios.put(`http://localhost:3001/increaseLike/${_id}`);
      
       const fecha = new Date()
       const mes = fecha.getMonth()
@@ -54,7 +54,7 @@ function Silla({ img, name, _id }) {
       {
         group:group, date:date
       }).then( axios.post(
-        `https://rocketproject2021.herokuapp.com/increaseReports/${_id}`,
+        `http://localhost:3001/increaseReports/${_id}`,
         {
           reportText,
         }

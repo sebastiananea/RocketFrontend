@@ -9,7 +9,7 @@ const Home = () => {
   const [profiles, setProfiles] = useState([]);
   const [params, setparams] = useState(null);
   useEffect(async () => {
-    await axios("https://rocketproject2021.herokuapp.com/isLog", {
+    await axios("http://localhost:3001/isLog", {
       method: "post",
       data: { token: localStorage.getItem("token") },
     }).then((res) => localStorage.setItem("user", JSON.stringify(res.data)));
@@ -18,7 +18,7 @@ const Home = () => {
     setparams(userr);
 
     let profiles = await axios
-      .post("https://rocketproject2021.herokuapp.com/filterUserByTable", {
+      .post("http://localhost:3001/filterUserByTable", {
         table: userr.table,
         institution: userr.institution,
         curso: userr.curso,
@@ -29,7 +29,7 @@ const Home = () => {
   }, []);
 
   const onClick = async () => {
-    await axios("https://rocketproject2021.herokuapp.com/addPrecense", {
+    await axios("http://localhost:3001/addPrecense", {
       method: "post",
       data: {
         ID: JSON.parse(localStorage.getItem("user"))._id,

@@ -22,7 +22,7 @@ function Students() {
 
   async function shuffleTables() {
     if (group !== "") {
-      await axios("https://rocketproject2021.herokuapp.com/asignTable", {
+      await axios("http://localhost:3001/asignTable", {
         method: "post",
         data: {
           curso: group,
@@ -30,7 +30,7 @@ function Students() {
         },
       }).then(Swal.fire("Mesas mezcladas", "Satisfactoriamente!", "success"));
     } else Swal.fire("Por favor, seleccione un grupo para mezclar");
-    await axios("https://rocketproject2021.herokuapp.com/addClass", {
+    await axios("http://localhost:3001/addClass", {
       method: "post",
       data: {
         curso: group,
@@ -42,7 +42,7 @@ function Students() {
 
   async function shuffleTablesRnm() {
     if (group !== "") {
-      await axios("https://rocketproject2021.herokuapp.com/asignTableRandom", {
+      await axios("http://localhost:3001/asignTableRandom", {
         method: "post",
         data: {
           curso: group,
@@ -50,7 +50,7 @@ function Students() {
         },
       }).then(Swal.fire("Mesas mezcladas", "Satisfactoriamente!", "success"));
     } else Swal.fire("Por favor, seleccione un grupo para mezclar");
-    await axios("https://rocketproject2021.herokuapp.com/addClass", {
+    await axios("http://localhost:3001/addClass", {
       method: "post",
       data: {
         curso: group,
@@ -63,7 +63,7 @@ function Students() {
   }
   async function getStudents() {
     let res = await axios(
-      "https://rocketproject2021.herokuapp.com/getUsersByInstitution",
+      "http://localhost:3001/getUsersByInstitution",
       {
         method: "post",
         data: {
