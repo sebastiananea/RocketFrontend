@@ -37,7 +37,7 @@ function ChatContain({ params, table }) {
                     table={table}
                     name={m.name}
                     img={m.img}
-                    txt={m.txt}
+                    txt={m.txt} 
                     hour={m.hour}
                     day={day[m.day]}
                     id={m.userId}

@@ -15,7 +15,8 @@
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 10px;
+  margin-right: 7px;
+  outline: 2px solid #fff;
 }
 
 .messageText {
@@ -28,6 +29,9 @@
 
 .messageBottom {
   font-size: 12px;
+  background: #fff;
+  color: orange;
+  padding: 0 1px 0 1px;
 }
 
 .messageOwn {
@@ -41,7 +45,8 @@
 
 .messageOwn .messageText {
   background-color: #6567cc;
-  color: black;
+  color: #fff;
+  outline: 2px solid #fff;
 }
 
 .fileImage{
