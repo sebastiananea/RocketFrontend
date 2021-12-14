@@ -13,7 +13,7 @@ function Silla({ img, name, _id }) {
   const onChange = async (e) => {
     e.preventDefault();
     if (e.target.value === "like") {
-      axios.put(`https://rocketproject2021.herokuapp.com/increaseLike/${_id}`);
+      axios.put(`http://localhost:3001/increaseLike/${_id}`);
      
       const fecha = new Date()
       const mes = fecha.getMonth()
@@ -45,8 +45,9 @@ function Silla({ img, name, _id }) {
       const mes = fecha.getMonth()
       const año = fecha.getFullYear()
 
+
       if (reportText.value !== undefined) {
-        
+       
         let group=myUser.curso;
         let date=`${mes}-${año}`
         axios.post(`http://localhost:3001/admin/report`,

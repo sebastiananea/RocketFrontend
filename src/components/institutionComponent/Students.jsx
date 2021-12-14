@@ -20,6 +20,7 @@ function Students() {
   var [orderBy, setOrderBy] = useState("a-z");
 
   async function getStudents(e) {
+
     var res = await axios(
       "https://rocketproject2021.herokuapp.com/institution/alumnos",
       {
@@ -29,12 +30,12 @@ function Students() {
         },
       }
     ).then((x) => x.data);
-    console.log("alumnos", res);
     setUsers(res);
     setUsers2(res);
   }
 
   async function getCursos() {
+
     var res = await axios(
       "https://rocketproject2021.herokuapp.com/institution/cursos",
       {

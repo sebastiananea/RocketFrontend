@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 function Student({ img, _id, name, score, reports, curso }) {
   let history = useHistory();
   async function instructor(e) {
+
     await axios(
       "https://rocketproject2021.herokuapp.com/institution/setInstructor",
       {
@@ -14,6 +15,7 @@ function Student({ img, _id, name, score, reports, curso }) {
           id: _id,
           moderator: true,
         },
+
       }
     ).then((x) => x.data);
 

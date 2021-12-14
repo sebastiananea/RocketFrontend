@@ -24,6 +24,7 @@ const Profile = () => {
   let id = JSON.parse(localStorage.getItem("user"))._id;
 
   useEffect(() => {
+
     axios(`https://rocketproject2021.herokuapp.com/searchProfileID/${id}`).then(
       (r) => setObj(r.data)
     );
@@ -70,6 +71,7 @@ const Profile = () => {
       new_status: field.status,
       id: obj._id,
     };
+
 
     await axios
       .post("https://rocketproject2021.herokuapp.com/user/changes", newChanges)

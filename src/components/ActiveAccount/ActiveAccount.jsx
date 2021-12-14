@@ -4,6 +4,7 @@ import axios from "axios";
 import Success from "./Success";
 import Verify from "./Verify";
 
+
 function ActiveAccount() {
   const { token } = useParams();
   const [validate, setvalidate] = useState(null);
@@ -21,6 +22,7 @@ function ActiveAccount() {
   console.log(validate);
   if (validate) return <Success />;
   else return <Verify />;
+
 }
 
 export default ActiveAccount;

@@ -9,11 +9,13 @@ function QueryUser() {
   const { _id } = useParams();
   var [user, setUser] = useState({});
 
+
   useEffect(() => {
     axios(
       `https://rocketproject2021.herokuapp.com/searchProfileID/${_id}`
     ).then((res) => setUser(res.data));
   }, []);
+
 
   return (
     <div className={s.QueryUser}>

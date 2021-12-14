@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { saveData } from "../../Actions";
 import { useHistory } from "react-router-dom";
 import s from "./Register.module.css";
 import axios from "axios";
@@ -10,6 +12,9 @@ for (let i = 16; i < edadMax; i++) {
 }
 
 function Register() {
+
+  const info = useSelector((state) => state.data);
+
   let history = useHistory();
   var [data, setData] = useState({
     name: "",
@@ -20,6 +25,14 @@ function Register() {
     gender: "",
     age: "",
   });
+
+  useEffect(() => {
+    setData({
+      ...data,
+      institution: info[0],
+      curso: info[1],
+    });
+  }, []);
 
   const [errors, setErrors] = React.useState({});
   const [habilitado, setHabilitado] = React.useState(false);
@@ -73,10 +86,7 @@ function Register() {
 
       let DefinitiveName = nameArr.join(" ");
 
-      console.log(DefinitiveName);
-      console.log(data);
-
-      await axios("http://localhost:3001/signup/", {
+      await axios(`"https://rocketproject2021.herokuapp.com/signup`, {
         method: "post",
         data: { ...data, name: DefinitiveName },
       }).then(history.push("/active-account/false"));

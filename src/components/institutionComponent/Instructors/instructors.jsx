@@ -7,6 +7,7 @@ function Instructors({ img, _id, name, score, reports, curso }) {
   let history = useHistory();
 
   async function offInstructor(e) {
+
     await axios(
       "https://rocketproject2021.herokuapp.com/institution/setInstructor",
       {

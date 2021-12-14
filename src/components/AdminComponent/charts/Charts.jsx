@@ -18,7 +18,7 @@ function Charts() {
     useEffect(() => {
         history.push("?group="+selected)
         async function getData(){
-            await axios("https://rocketproject2021.herokuapp.com/admin/stats?group="+selected)
+            await axios("http://localhost:3001/admin/stats?group="+selected)
             .then(x=> setData(x.data))
         }
         getData()

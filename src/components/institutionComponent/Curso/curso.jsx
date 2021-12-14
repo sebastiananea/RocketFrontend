@@ -39,7 +39,7 @@ function Curso() {
   async function handleClick(e) {
     e.preventDefault();
     var json = await axios(
-      "https://rocketproject2021.herokuapp.com/institution/cursoNuevo",
+      "http://localhost:3001/institution/cursoNuevo",
       {
         method: "post",
         data: institucion,
@@ -48,7 +48,6 @@ function Curso() {
 
     json.data === true ? alert("Curso Creado") : alert("ya existe el curso ");
 
-    console.log((await json).data);
   }
 
   return (
