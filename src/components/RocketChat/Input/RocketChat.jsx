@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { myDatabaseChat } from "../../../config/utilsChatDatabase.js";
 import { ref, push, child, update } from "firebase/database";
 import firebase from "firebase/compat";
@@ -66,8 +66,10 @@ function RocketChat({ name, img, table, id }) {
       console.log(e);
       Swal.fire("Chat on on maintenance");
     }
+
     setmessages({ txt: "" });
     setFile("")
+
   };
  
 
@@ -84,6 +86,7 @@ function RocketChat({ name, img, table, id }) {
       setemoji(true);
     }
   }
+
 
     const insertEmoji = (e) => {
         e.preventDefault();
@@ -124,6 +127,7 @@ function RocketChat({ name, img, table, id }) {
             </form>
         </div>
     )
+
 }
 
 export default RocketChat;
