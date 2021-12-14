@@ -1,82 +1,83 @@
-import React, { useState, useEffect } from 'react'
-import { myDatabaseChat } from '../../../config/utilsChatDatabase.js'
-import { ref, push, child, update} from "firebase/database";
-import firebase from 'firebase/compat';
-import Swal from 'sweetalert2';
-import s from "./Input.module.css";
+import React, { useState, useEffect } from "react";
+import { myDatabaseChat } from "../../../config/utilsChatDatabase.js";
+import { ref, push, child, update } from "firebase/database";
+import firebase from "firebase/compat";
+import Swal from "sweetalert2";
 
+function RocketChat({ name, img, table, id }) {
+  const [emoji, setemoji] = useState(false);
+  const [messages, setmessages] = useState({ txt: null });
+  const [file, setFile] = useState();
+  const d = new Date();
 
-function RocketChat({name,img,table,id}) {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const [emoji, setemoji] = useState(false)
-    const [messages, setmessages] = useState({ txt: "" })
-    const [file, setFile] = useState()
-    const d = new Date
-   
-
-
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const files = firebase.storage().ref(table).child(file.name)
-        await files.put(file)
-
-        try {
-
-            var rand = function () {
-                return Math.random().toString(36).substr(2);
-            };
-
-            var token = function () {
-                return rand() + rand();
-            };
-
-
-            const new_msg = {
-                userId:id,
-                name: name,
-                txt: messages.txt,
-                day:`${d.getDay()}`,
-                file:{
-                    name:file.name,
-                    type:file.type
-                },
-                hour: `${d.getHours()}:${d.getMinutes()}`,
-                img: img,
-                id: token()
-            }
-
-            //esta variable solo hace el espacio nuevo en el chat para luego insertar
-            const newPostKey = push(child(ref(myDatabaseChat), `${table}}`)).key;
-
-            const updates = {};
-            updates[`${table}/`+newPostKey] = new_msg;
-            
-
-            update(ref(myDatabaseChat), updates);
-
-        } catch (e) {
-            Swal.fire(
-                'Chat on maintenance'
-             );
-        }
-        setmessages({ txt: "" })
-        setFile(null)
+    if (file) {
+      const files = firebase.storage().ref(table).child(file.name);
+      await files.put(file);
     }
 
-    const handleChange = (e) => {
-        setmessages({ txt: e.target.value })
+    try {
+      var rand = function () {
+        return Math.random().toString(36).substr(2);
+      };
+
+      var token = function () {
+        return rand() + rand();
+      };
+
+      const new_msg = file
+        ? {
+            userId: id,
+            name: name,
+            txt: messages.txt,
+            day: `${d.getDay()}`,
+            file: {
+              name: file.name,
+              type: file.type,
+            },
+            hour: `${d.getHours()}:${d.getMinutes()}`,
+            img: img,
+            id: token(),
+          }
+        : {
+            userId: id,
+            name: name,
+            txt: messages.txt,
+            day: `${d.getDay()}`,
+            hour: `${d.getHours()}:${d.getMinutes()}`,
+            img: img,
+            id: token(),
+          };
+
+      //esta variable solo hace el espacio nuevo en el chat para luego insertar
+      const newPostKey = push(child(ref(myDatabaseChat), `${table}}`)).key;
+
+      const updates = {};
+      updates[`${table}/` + newPostKey] = new_msg;
+
+      update(ref(myDatabaseChat), updates);
+    } catch (e) {
+      console.log(e);
+      Swal.fire("Chat on on maintenance");
+    }
+    setmessages({ txt: null });
+    setFile("")
+  };
+
+  const handleChange = (e) => {
+    setmessages({ txt: e.target.value });
+  };
+
+  const emojiWorld = (e) => {
+    e.preventDefault();
+    if (emoji) {
+      setemoji(false);
+    } else {
+      setemoji(true);
     }
 
-    const emojiWorld = (e) => {
-        e.preventDefault();
-        if(emoji){
-            setemoji(false)
-        }else{
-            setemoji(true)
-        }
-    }
 
     const insertEmoji = (e) => {
         e.preventDefault();
@@ -88,7 +89,6 @@ function RocketChat({name,img,table,id}) {
     const readFile = (e) =>{
         e.preventDefault();
         setFile(e.target.files[0])
-        console.log(file)
     }
 
     return (
@@ -119,4 +119,4 @@ function RocketChat({name,img,table,id}) {
     )
 }
 
-export default RocketChat
+export default RocketChat;

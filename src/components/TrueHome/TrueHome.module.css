@@ -101,7 +101,7 @@
 
 /* //////////////////////MEDIA QUERIES ////////////////////// */
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .container {
     width: 100%;
     height: 70vh;
@@ -110,19 +110,59 @@
 
   .usersContainer {
     display: flex;
-    grid-template-columns: repeat(auto-fill, 330px);
-    grid-gap: 30px;
-    gap: 30px;
-    padding: 10px 40px 40px 40px;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
     justify-content: center;
-    position: relative;
-    flex-direction: column;
     align-items: center;
   }
 
-  .containerPagination{
-    margin-bottom: 5vh;
+ .containerPagination{
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
+
+.pagContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.pagAct{
+  margin: 10px;
+  display: flex;
+  font-family:'Open Sans';
+  justify-content: center;
+  align-items: center;
+  width: 6vw;
+  color: rgb(78, 78, 78);
+}
+.currentPage{
+  background-image: linear-gradient( 68.3deg,  rgb(245,177,97) 0.4%, rgb(255, 123, 0) 65.2% );
+  color: rgb(59, 59, 59);
+  font-weight: 500;
+  border-radius: 2px;
+  padding: 5% 12%;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.pagContainer>button{
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  color: rgb(110, 110, 110);
+  gap: 3px;
+  margin-left: 50px;
+  margin-right: 20px;
+}
+.pagContainer>button:hover{
+  transform: scale(1.02);
+}
+
 
   .truehome__boton_violeta {
     margin: 5.2px;
@@ -150,7 +190,7 @@
   .landingPage__input {
     margin: 20px;
     padding-left: 1.2rem;
-    width: 25%;
+    width: 45%;
     height: 6.5vh;
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 0);
