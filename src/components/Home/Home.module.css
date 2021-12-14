@@ -72,7 +72,8 @@
     text-decoration: none;
 }
 
-@media screen and (max-width: 415px) {
+
+@media screen and (max-width: 1000px) {
     .home__container {
     display: flex;
     margin-left: 1%;
