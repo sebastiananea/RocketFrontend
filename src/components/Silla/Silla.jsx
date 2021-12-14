@@ -30,6 +30,12 @@ function Silla({ img, name, _id }) {
 
       setlikeOrReport({ ...likeOrReport, like: true });
     }
+      
+    // acá alguien intntó arreglar un bug o algo con eesto? lo piso a las 19:05, Atte Guille
+     //       if (reportText.value !== undefined) {
+    //         let group=myUser.curso;
+    //         let date=`${mes}-${año}`
+    //         axios.post(`http://localhost:3001/admin/report`,
 
     if (e.target.value === "reports") {
       // let reportText = prompt(`¿Por qué quieres reportar a ${name}?`);
@@ -65,6 +71,8 @@ function Silla({ img, name, _id }) {
       )).then(setlikeOrReport({ ...likeOrReport, report: reportText }));
     }
   };
+
+
 
   return (
     <div className={style.silla__container}>

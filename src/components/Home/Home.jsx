@@ -1,41 +1,43 @@
-import React, { useEffect, useState } from 'react'
-import style from './Home.module.css'
-import Silla from '../Silla/Silla.jsx'
-import Loading from '../Loading/Loading.jsx'
-import axios from 'axios'
-import ChatContain from '../RocketChat/Chat/ChatContain'
+import React, { useEffect, useState } from "react";
+import style from "./Home.module.css";
+import Silla from "../Silla/Silla.jsx";
+import Loading from "../Loading/Loading.jsx";
+import axios from "axios";
+import ChatContain from "../RocketChat/Chat/ChatContain";
 
 const Home = () => {
-  const [profiles, setProfiles] = useState([])
-  const [params, setparams] = useState(null)
+  const [profiles, setProfiles] = useState([]);
+  const [params, setparams] = useState(null);
   useEffect(async () => {
-    await axios('https://rocketproject2021.herokuapp.com/isLog', {
-      method: 'post',
-      data: { token: localStorage.getItem('token') },
-    }).then((res) => localStorage.setItem('user', JSON.stringify(res.data)))
+    await axios("http://localhost:3001/isLog", {
+      method: "post",
+      data: { token: localStorage.getItem("token") },
+    }).then((res) => localStorage.setItem("user", JSON.stringify(res.data)));
 
-    let userr = JSON.parse(localStorage.getItem('user'))
-    setparams(userr)
+    let userr = JSON.parse(localStorage.getItem("user"));
+    setparams(userr);
 
     let profiles = await axios
-      .post('https://rocketproject2021.herokuapp.com/filterUserByTable', {
+      .post("http://localhost:3001/filterUserByTable", {
         table: userr.table,
         institution: userr.institution,
-        curso:userr.curso        
+        curso: userr.curso,
       })
-      .then((r) => r.data)
-    setProfiles(profiles)
-    console.log(profiles)
-  }, [])
+      .then((r) => r.data);
+    setProfiles(profiles);
+    console.log(profiles);
+  }, []);
+
 
   const onClick = async ()=>{
     await axios("https://rocketproject2021.herokuapp.com/addPrecense", {
+
       method: "post",
       data: {
-        ID :JSON.parse(localStorage.getItem("user"))._id,
+        ID: JSON.parse(localStorage.getItem("user"))._id,
       },
     });
-  }
+  };
 
   return (
     <div className={style.home__container}>
@@ -54,7 +56,14 @@ const Home = () => {
         </div>
         <div>
           <button className={style.home__btnlink}>
-            <a className={style.home__btnlink_link} href={JSON.parse(localStorage.getItem("user")).meetLink} onClick={onClick} target="_blank">Join Meet</a>
+            <a
+              className={style.home__btnlink_link}
+              href={JSON.parse(localStorage.getItem("user")).meetLink}
+              onClick={onClick}
+              target="_blank"
+            >
+              Join Meet
+            </a>
           </button>
         </div>
       </div>
@@ -64,13 +73,12 @@ const Home = () => {
         {params && params?.curso ? (
           <div>
            <ChatContain table={`${params.institution}/Grupos/${params.curso.toLowerCase()}/table${params.table}`} params={params} />
+
           </div>
         ) : null}
       </div>
-
-
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

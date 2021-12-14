@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { saveData } from "../../Actions";
 import { useHistory } from "react-router-dom";
 import s from "./Register.module.css";
 import axios from "axios";
 
 let edadMax = 100;
 let edades = [];
-for (let i = 16; i < edadMax; i++) { edades.push(i) };
+for (let i = 16; i < edadMax; i++) {
+  edades.push(i);
+}
 
 function Register() {
+
+  const info = useSelector((state) => state.data);
 
   let history = useHistory();
   var [data, setData] = useState({
@@ -17,8 +23,16 @@ function Register() {
     repeatPass: "",
     country: "",
     gender: "",
-    age: ""
+    age: "",
   });
+
+  useEffect(() => {
+    setData({
+      ...data,
+      institution: info[0],
+      curso: info[1],
+    });
+  }, []);
 
   const [errors, setErrors] = React.useState({});
   const [habilitado, setHabilitado] = React.useState(false);
@@ -59,27 +73,22 @@ function Register() {
       [e.target.name]: value,
     });
   }
-  async function handleSubmit (e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (data.password === data.repeatPass) {
-
-      let name = data.name.split(" "); 
+      let name = data.name.split(" ");
       let nameArr = [];
 
       for (let n of name) {
         let word = n.charAt(0).toUpperCase() + n.slice(1).toLowerCase();
-        nameArr.push(word)
+        nameArr.push(word);
       }
 
-      let DefinitiveName = nameArr.join(' ');
-      
-      console.log(DefinitiveName)
-      console.log(data)
+      let DefinitiveName = nameArr.join(" ");
 
-      await axios("https://rocketproject2021.herokuapp.com/signup/:institution/:curso", {
-
+      await axios(`"https://rocketproject2021.herokuapp.com/signup`, {
         method: "post",
-        data: {...data, name: DefinitiveName}
+        data: { ...data, name: DefinitiveName },
       }).then(history.push("/active-account/false"));
     }
   }
@@ -100,7 +109,9 @@ function Register() {
               onChange={(e) => handleChange(e)}
             />
             {errors.name && (
-              <div className={s.register__err}><strong>{errors.name}</strong></div>
+              <div className={s.register__err}>
+                <strong>{errors.name}</strong>
+              </div>
             )}
             <input
               className={s.email}
@@ -112,7 +123,9 @@ function Register() {
               onChange={(e) => handleChange(e)}
             />
             {errors.email && (
-              <div className={s.register__err}><strong>{errors.email}</strong></div>
+              <div className={s.register__err}>
+                <strong>{errors.email}</strong>
+              </div>
             )}
             <input
               className={s.password}
@@ -124,7 +137,9 @@ function Register() {
               onChange={(e) => handleChange(e)}
             />
             {errors.password && (
-              <div className={s.register__err}><strong>{errors.password}</strong></div>
+              <div className={s.register__err}>
+                <strong>{errors.password}</strong>
+              </div>
             )}
             <input
               className={s.repeatPass}
@@ -136,7 +151,9 @@ function Register() {
               onChange={(e) => handleChange(e)}
             />
             {errors.repeatPass && (
-              <div className={s.register__err}><strong>{errors.repeatPass}</strong></div>
+              <div className={s.register__err}>
+                <strong>{errors.repeatPass}</strong>
+              </div>
             )}
             <input
               className={s.country}
@@ -148,24 +165,41 @@ function Register() {
               onChange={(e) => handleChange(e)}
             />
             <div className={s.register_div_sexage}>
-
               <label className={s.register_sex}>Male</label>
-              <input type="radio" name="gender" onChange={e => handleChange(e)} value="male"/>
+              <input
+                type="radio"
+                name="gender"
+                onChange={(e) => handleChange(e)}
+                value="male"
+              />
 
               <label className={s.register_sex}>Female</label>
-              <input type="radio" name="gender" onChange={e => handleChange(e)} value="female"/>
+              <input
+                type="radio"
+                name="gender"
+                onChange={(e) => handleChange(e)}
+                value="female"
+              />
 
               <label className={s.register_sex}>Other</label>
-              <input type="radio" name="gender" onChange={e => handleChange(e)} value="other"/>
-              
+              <input
+                type="radio"
+                name="gender"
+                onChange={(e) => handleChange(e)}
+                value="other"
+              />
+
               <label className={s.register_sex}>Age</label>
-              <select className={s.register_select} name="age" onChange={e => handleChange(e)}>
-              <option disabled>Select</option>
-                {
-                  edades && edades.map(edad => (
+              <select
+                className={s.register_select}
+                name="age"
+                onChange={(e) => handleChange(e)}
+              >
+                <option disabled>Select</option>
+                {edades &&
+                  edades.map((edad) => (
                     <option value={data.edad}>{edad}</option>
-                  ))
-                }
+                  ))}
               </select>
             </div>
             <button

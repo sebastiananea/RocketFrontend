@@ -5,10 +5,14 @@ import s from "./Students.module.css";
 import Student from "./Student/Student";
 import Details from "./Student/Details/Details";
 import { myDatabaseChat } from "../../config/utilsChatDatabase";
-import { ref, remove } from "firebase/database";
+import { ref, child, remove } from "firebase/database";
 import Swal from "sweetalert2";
+import firebase from "firebase/compat";
 
 function Students() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  let chatRef = ref(myDatabaseChat);
+
   var groups = useSelector((state) => state.groups);
   const { ordenar } = require("../utils");
   let [users, setUsers] = useState([]);
@@ -22,48 +26,57 @@ function Students() {
 
   async function shuffleTables() {
     if (group !== "") {
+
       await axios("https://rocketproject2021.herokuapp.com/asignTable", {
+
         method: "post",
         data: {
           curso: group,
           institution: JSON.parse(localStorage.getItem("user")).institution,
         },
       }).then(Swal.fire("Mesas mezcladas", "Satisfactoriamente!", "success"));
+
+
+      chatRef = child(chatRef, `${user.institution}/Grupos/${group}`);
+      remove(chatRef);
+
     } else Swal.fire("Por favor, seleccione un grupo para mezclar");
-    await axios("https://rocketproject2021.herokuapp.com/addClass", {
+    await axios("http://localhost:3001/addClass", {
       method: "post",
       data: {
         curso: group,
         institution: JSON.parse(localStorage.getItem("user")).institution,
       },
     });
-    remove(ref(myDatabaseChat));
+
   }
 
   async function shuffleTablesRnm() {
     if (group !== "") {
-      await axios("https://rocketproject2021.herokuapp.com/asignTableRandom", {
+      await axios("http://localhost:3001/asignTableRandom", {
         method: "post",
         data: {
           curso: group,
           institution: JSON.parse(localStorage.getItem("user")).institution,
         },
+
       }).then(Swal.fire("Mesas mezcladas", "Satisfactoriamente!", "success"));
+    
+      chatRef = child(chatRef, `${user.institution}/Grupos/${group}`);
+      remove(chatRef);
+    
     } else Swal.fire("Por favor, seleccione un grupo para mezclar");
-    await axios("https://rocketproject2021.herokuapp.com/addClass", {
+    await axios("http://localhost:3001/addClass", {
       method: "post",
       data: {
         curso: group,
         institution: JSON.parse(localStorage.getItem("user")).institution,
       },
     });
-
-    //      //borra chats de mesas
-    remove(ref(myDatabaseChat));
   }
   async function getStudents() {
     let res = await axios(
-      "https://rocketproject2021.herokuapp.com/getUsersByInstitution",
+      "http://localhost:3001/getUsersByInstitution",
       {
         method: "post",
         data: {
@@ -104,12 +117,11 @@ function Students() {
     });
   };
   var [detailsOpen, setDetailsOpen] = useState(false);
+console.log(users[0])
 
   return (
     <div className={s.container}>
       <h2>Students Panel</h2>
-      <button onClick={shuffleTablesRnm}>Random Shuffle Tables</button>
-      <button onClick={shuffleTables}>Smart Shuffle Tables</button>
       <div className={s.filtros}>
         <div className={s.orderGroup}>
           <h6>Group</h6>
@@ -167,6 +179,7 @@ function Students() {
                 reports={x.reports}
                 setDetailsOpen={setDetailsOpen}
                 group={x.curso}
+                asistencia={x.classes!==0 ? (x.presences/x.classes).toFixed(3)*100 : 100}
               />
             ))}
         <div className={s.pagContainer}>

@@ -1,6 +1,8 @@
 .tarjeta_container {
-    width: 190px;
-    margin: 20px;
+    width: 25%;
+    height: 40%;
+    margin: 0px;
+    
 }
 
 .tarjeta_name {
@@ -11,9 +13,9 @@
 }
 
 .tarjeta_img {
+    width: 45%;
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
+   
 }
 
 .tarjeta_github, .tarjeta_linkedin {
@@ -22,3 +24,7 @@
     font-size: 10px;
     text-decoration: none;
 } 
+
+
+/* //////////////////////MEDIA QUERIES ////////////////////// */
+

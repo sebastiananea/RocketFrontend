@@ -3,14 +3,13 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import s from "./TrueHome.module.css";
 import MiniSilla from "../MiniSilla/MiniSilla";
-import Pagination from "../Pagination/Pagination";
-import TrueLandingPage from "../TrueLandingPage/TrueLandingPage";
+import ChatContain from "../RocketChat/Chat/ChatContain";
 
-import { get } from "http";
 import FilterBar from "../Filter/FilterBar";
 
 function TrueHome() {
   const history = useHistory();
+  const [params, setparams] = useState(null);
   /* const [pag, setPag] = useState(0); */
   var [pag, setPag] = useState({
     from: 0,
@@ -24,9 +23,11 @@ function TrueHome() {
 
   async function getCompañeros() {
     let myUser = JSON.parse(localStorage.getItem("user"));
+    setparams(myUser);
     if (myUser && myUser.institution) {
+
     let data = await axios
-        .post("https://rocketproject2021.herokuapp.com/getUsersByInstitution", myUser.institution)
+        .post("http://localhost:3001/getUsersByInstitution", {institution: myUser.institution})
         .then((x) => x.data.filter((x) => x._id !== myUser._id));
       setUsers(data);
       setUsers2(data);
@@ -50,22 +51,19 @@ function TrueHome() {
     );
     setPag({
       from: 0,
-      to: 9
-    })
+      to: 9,
+    });
   };
 
   async function handleClick(e) {
     history.push("/home");
   }
- 
- 
-  
- if (!myUser.institution)
+
+  if (!myUser.institution)
     return <div>No course or institution were found for your profile...</div>;
   else if (myUser.institution)
     return (
       <div className={s.container}>
-
         <h2>Your course: {myUser.institution}</h2>
 
         <FilterBar setOrder={setOrder} />
@@ -83,6 +81,7 @@ function TrueHome() {
         >
           Go to my work bench
         </button>
+
          {params && params?.curso ? (
           <div>
            <ChatContain table={`${params.institution}/General/${params.curso.toLowerCase()}`} params={params} />
@@ -101,12 +100,12 @@ function TrueHome() {
                 />
               ))}
         </div>
-          <div className={s.containerPagination}>
-            {/* {users && <Pagination pag={pag} setPag={setPag} users={users} />} */}
-            <div className={s.pagContainer}>
+        <div className={s.containerPagination}>
+          {/* {users && <Pagination pag={pag} setPag={setPag} users={users} />} */}
+          <div className={s.pagContainer}>
             {
               <button
-                style={pag.to/9 === 1 ? {"visibility":"hidden"}: null}
+                style={pag.to / 9 === 1 ? { visibility: "hidden" } : null}
                 disabled={pag.from > 0 ? false : true}
                 onClick={() => setPag({ from: pag.from - 9, to: pag.to - 9 })}
               >
@@ -128,11 +127,12 @@ function TrueHome() {
               </button>
             }
             <div className={s.pagAct}>
-              <h4 className={s.currentPage}>{pag.to / 9}</h4> de {Math.ceil(users.length / 9)}
+              <h4 className={s.currentPage}>{pag.to / 9}</h4> de{" "}
+              {Math.ceil(users.length / 9)}
             </div>
             {
               <button
-                style={pag.to>= users.length ? {"visibility":"hidden"} : null}
+                style={pag.to >= users.length ? { visibility: "hidden" } : null}
                 disabled={pag.to < users.length ? false : true}
                 onClick={() => setPag({ from: pag.from + 9, to: pag.to + 9 })}
               >

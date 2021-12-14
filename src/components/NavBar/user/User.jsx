@@ -43,14 +43,16 @@ function User({ setUser }) {
           {myUser.moderator === true && (
             <h4 onClick={() => history.push('/admin/students')}>Admin Panel</h4>
           )}
-          <h4 onClick={() => history.push('/profile')}>Mi Perfil</h4>
+         {!myUser.groups && (
+            <h4 onClick={() => history.push('/profile')}>Mi Perfil</h4>
+         )}
           <h4
             onClick={() => {
               localStorage.removeItem('token')
               localStorage.removeItem('user')
               setUser(null)
               axios.post(
-                'https://rocketproject2021.herokuapp.com/user/changes',
+                'http://localhost:3001/user/changes',
                 { new_status: 'Offline' }
               )
               history.push('/')

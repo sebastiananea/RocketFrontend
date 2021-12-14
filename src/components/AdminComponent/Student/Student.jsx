@@ -1,9 +1,9 @@
-import React,{useState} from "react";
+import React from "react";
 import s from "./Student.module.css";
 
 
-function Student({ img, _id, name, score, reports, setDetailsOpen, group }) {
-  
+function Student({ img, _id, name, score, reports, setDetailsOpen, group, asistencia }) {
+
   return (
     <div className={s.container}>
       <div className={s.imgContainer}>
@@ -48,11 +48,19 @@ function Student({ img, _id, name, score, reports, setDetailsOpen, group }) {
           <h4 style={{ color: "rgb(200, 0, 0)" }}>{reports.length}</h4>
         </div>
         <div className={s.asistencias}>
-          <h5>Asistencias: 60%</h5>
+          <h5>Asistencias: {asistencia}%</h5>
         </div>
       </div>
       <div className={s.details}>
-        <svg onClick={()=>setDetailsOpen({_id:_id, reports:reports, name:name, group:group})}
+        <svg
+          onClick={() =>
+            setDetailsOpen({
+              _id: _id,
+              reports: reports,
+              name: name,
+              group: group,
+            })
+          }
           width="116"
           height="26"
           viewBox="0 0 116 26"
@@ -76,7 +84,6 @@ function Student({ img, _id, name, score, reports, setDetailsOpen, group }) {
           />
         </svg>
       </div>
-      
     </div>
   );
 }
