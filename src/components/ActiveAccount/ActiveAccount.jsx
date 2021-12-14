@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Success from "./Success";
 import Verify from "./Verify";
@@ -18,6 +18,7 @@ function ActiveAccount() {
 
   // let check= await axios(`https://rocketproject2021.herokuapp.com/searchProfileID/${token}`).then((r)=>console.log(r))
   // //if return... else return y redirect a log in
+  console.log(validate);
   if (validate) return <Success />;
   else return <Verify />;
 }

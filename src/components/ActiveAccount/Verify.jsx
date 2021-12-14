@@ -1,5 +1,4 @@
 import React from "react";
-import Loading from "../Loading/Loading";
 import s from "./Verify.module.css";
 function Verify() {
   return (
