@@ -4,23 +4,23 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 function Instructors({ img, _id, name, score, reports, curso }) {
-    let history = useHistory()
+  let history = useHistory();
 
   async function offInstructor(e) {
-    var res = await axios("http://localhost:3001/institution/setInstructor", {
-      method: "post",
-      data: {
-        id: _id,
-        moderator: false
+
+    await axios(
+      "https://rocketproject2021.herokuapp.com/institution/setInstructor",
+      {
+        method: "post",
+        data: {
+          id: _id,
+          moderator: false,
+        },
       }
-    }).then((x) => x.data);
+    ).then((x) => x.data);
 
-    history.push("/institucion/admin/estudiantes")
+    history.push("/institucion/admin/estudiantes");
   }
-
-
-
-
 
   return (
     <div className={s.container}>

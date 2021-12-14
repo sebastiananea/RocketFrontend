@@ -74,6 +74,7 @@ select:focus {
   animation: myAnim1 0.5s;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   background-color: #fff;
+  color: black;
 }
 .topPanel > h4 {
   width: 100%;

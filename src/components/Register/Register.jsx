@@ -12,7 +12,9 @@ for (let i = 16; i < edadMax; i++) {
 }
 
 function Register() {
+
   const info = useSelector((state) => state.data);
+
   let history = useHistory();
   var [data, setData] = useState({
     name: "",
@@ -84,7 +86,7 @@ function Register() {
 
       let DefinitiveName = nameArr.join(" ");
 
-      await axios(`http://localhost:3001/signup`, {
+      await axios(`"https://rocketproject2021.herokuapp.com/signup`, {
         method: "post",
         data: { ...data, name: DefinitiveName },
       }).then(history.push("/active-account/false"));

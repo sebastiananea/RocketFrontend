@@ -3,26 +3,24 @@ import s from "./Student.module.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-
 function Student({ img, _id, name, score, reports, curso }) {
-  let history = useHistory()
+  let history = useHistory();
   async function instructor(e) {
-    
-    var res = await axios("http://localhost:3001/institution/setInstructor", {
-      method: "post",
-      data: {
-        id: _id,
-        moderator: true
+
+    await axios(
+      "https://rocketproject2021.herokuapp.com/institution/setInstructor",
+      {
+        method: "post",
+        data: {
+          id: _id,
+          moderator: true,
+        },
+
       }
-    }).then((x) => x.data);
+    ).then((x) => x.data);
 
-    history.push("/institucion/admin/instructores")
-    
+    history.push("/institucion/admin/instructores");
   }
-
-
-
-
 
   return (
     <div className={s.container}>

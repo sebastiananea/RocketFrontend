@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import s from "./CardError.module.css";
 import { useHistory } from "react-router-dom";
-import Loading from "../../Loading/Loading";
 
 function CardError() {
   let history = useHistory();

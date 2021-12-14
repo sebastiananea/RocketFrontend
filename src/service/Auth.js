@@ -1,4 +1,3 @@
-import axios from "axios";
 import firebase from "../config/firebase-config";
 
 const socialMediaAuth = (provider) => {
