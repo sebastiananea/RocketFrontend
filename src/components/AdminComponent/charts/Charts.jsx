@@ -12,17 +12,21 @@ function Charts() {
 
     let history = useHistory()
     var groups = useSelector((state)=>state.groups)
+    var institution = useSelector((state)=>state.user.institution)
+
     var [data, setData] = useState("")
     var [selected, setSelected] = useState("general")
     useEffect(() => {
         history.push("?group="+selected)
         async function getData(){
-            await axios("https://rocketproject2021.herokuapp.com/admin/stats?group="+selected)
+            //VOLVER A RUTA DEPLOYADA!
+            await axios("https://rocketproject2021.herokuapp.com/admin/stats?group="+selected+"&institution="+institution)
             .then(x=> setData(x.data))
         }
         getData()
     }, [selected])
     console.log(data, "esta es mi data")
+    console.log(institution, "soy el redux!")
    if(data) return (
         <div className={s.container}>
             <h2>ESTADISTICAS</h2>

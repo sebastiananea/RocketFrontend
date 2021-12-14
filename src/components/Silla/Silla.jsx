@@ -10,6 +10,7 @@ function Silla({ img, name, _id }) {
   const [likeOrReport, setlikeOrReport] = useState({ like: false, report: "" });
   const myUser = useSelector((state)=>state.user)
 
+
   const onChange = async (e) => {
     e.preventDefault();
     if (e.target.value === "like") {
@@ -20,10 +21,11 @@ function Silla({ img, name, _id }) {
       const año = fecha.getFullYear()
 
       let group=myUser.curso;
+      let institution=myUser.institution;
       let date=`${mes}-${año}`
-      axios.post(`http://localhost:3001/admin/like`,
+      axios.post(`https://rocketproject2021.herokuapp.com/admin/like`,
       {
-        group:group, date:date
+        group:group, date:date, institution:institution
       });
 
       setlikeOrReport({ ...likeOrReport, like: true });
@@ -49,10 +51,11 @@ function Silla({ img, name, _id }) {
 
       
       let group=myUser.curso;
+      let institution=myUser.institution;
       let date=`${mes}-${año}`
-      axios.post(`http://localhost:3001/admin/report`,
+      axios.post(`https://rocketproject2021.herokuapp.com/admin/report`,
       {
-        group:group, date:date
+        group:group, date:date, institution:institution
       }).then( axios.post(
         `https://rocketproject2021.herokuapp.com/increaseReports/${_id}`,
         {

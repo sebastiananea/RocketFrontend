@@ -46,14 +46,17 @@ function  Message({ currentId, img, txt, hour, day, id, file, table }) {
     return (
       <div className={s.message}>
         <div className={s.messageTop}>
-          <img className={s.messageImg} src={img} alt="user icon" />
-
           <p className={s.messageText}>
-            {file
-              ? `${file.name}
-            ${txt}`
-              : txt}
+            { file && file.type.split("/")[0] === "image"
+              ? <div>
+                <img onClick={handlerClick} className={s.fileImage} src={url} alt={file.name} />
+                <p>{txt}</p>
+              </div>
+              : file? <button onClick={handlerClick}> {file.name} <IoMdDownload /> </button>
+              :`${txt}`}
           </p>
+
+          <img className={s.messageImg} src={img} alt="user icon" />
         </div>
         <p className={s.messageBottom}>{`${day}  ${hour}`}</p>
       </div>

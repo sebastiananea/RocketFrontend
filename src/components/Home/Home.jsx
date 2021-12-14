@@ -28,7 +28,7 @@ const Home = () => {
     console.log(profiles)
   }, [])
 
-  const onClick = ()=>{
+  const onClick = async ()=>{
     await axios("https://rocketproject2021.herokuapp.com/addPrecense", {
       method: "post",
       data: {
@@ -61,9 +61,9 @@ const Home = () => {
       <div className={style.home__chat}>
 
         <h4>CHAT</h4>
-        {params && params?.name ? (
+        {params && params?.curso ? (
           <div>
-            <ChatContain table={`table${params.table}`} params={params} />
+           <ChatContain table={`${params.institution}/Grupos/${params.curso.toLowerCase()}/table${params.table}`} params={params} />
           </div>
         ) : null}
       </div>

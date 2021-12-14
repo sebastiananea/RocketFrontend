@@ -6,17 +6,23 @@ import Swal from "sweetalert2";
 
 function RocketChat({ name, img, table, id }) {
   const [emoji, setemoji] = useState(false);
-  const [messages, setmessages] = useState({ txt: null });
+  const [messages, setmessages] = useState({ txt: "" });
   const [file, setFile] = useState();
   const d = new Date();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!file && messages.txt.trim()===""){
+      return
+    }
+
     if (file) {
       const files = firebase.storage().ref(table).child(file.name);
       await files.put(file);
     }
+
+
 
     try {
       var rand = function () {
@@ -31,7 +37,7 @@ function RocketChat({ name, img, table, id }) {
         ? {
             userId: id,
             name: name,
-            txt: messages.txt,
+            txt: messages.txt.trim(),
             day: `${d.getDay()}`,
             file: {
               name: file.name,
@@ -44,7 +50,7 @@ function RocketChat({ name, img, table, id }) {
         : {
             userId: id,
             name: name,
-            txt: messages.txt,
+            txt: messages.txt.trim(),
             day: `${d.getDay()}`,
             hour: `${d.getHours()}:${d.getMinutes()}`,
             img: img,
@@ -62,7 +68,7 @@ function RocketChat({ name, img, table, id }) {
       console.log(e);
       Swal.fire("Chat on on maintenance");
     }
-    setmessages({ txt: null });
+    setmessages({ txt: "" });
     setFile("")
   };
 
