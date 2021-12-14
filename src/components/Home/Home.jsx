@@ -69,7 +69,7 @@ const Home = () => {
         <h4>CHAT</h4>
         {params && params?.name ? (
           <div>
-            <ChatContain table={`table${params.table}`} params={params} />
+            <ChatContain table={`${params.institution}/Grupos/${params.curso}table${params.table}`} params={params} />
           </div>
         ) : null}
       </div>

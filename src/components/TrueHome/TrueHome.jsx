@@ -5,12 +5,14 @@ import s from "./TrueHome.module.css";
 import MiniSilla from "../MiniSilla/MiniSilla";
 import Pagination from "../Pagination/Pagination";
 import TrueLandingPage from "../TrueLandingPage/TrueLandingPage";
+import ChatContain from "../RocketChat/Chat/ChatContain";
 
 import { get } from "http";
 import FilterBar from "../Filter/FilterBar";
 
 function TrueHome() {
   const history = useHistory();
+  const [params, setparams] = useState(null)
   /* const [pag, setPag] = useState(0); */
   var [pag, setPag] = useState({
     from: 0,
@@ -23,7 +25,9 @@ function TrueHome() {
   const { ordenar } = require("../utils");
 
   async function getCompañeros() {
+    
     let myUser = JSON.parse(localStorage.getItem("user"));
+    setparams(myUser)
     if (myUser && myUser.institution) {
     let data = await axios
         .post("https://rocketproject2021.herokuapp.com/getUsersByInstitution", myUser.institution)
@@ -35,6 +39,7 @@ function TrueHome() {
 
   useEffect(() => {
     getCompañeros();
+
   }, [order === "default"]);
 
   if (order !== "default") ordenar(users, order);
@@ -83,6 +88,11 @@ function TrueHome() {
         >
           Go to my work bench
         </button>
+        {params && params?.name ? (
+          <div>
+            <ChatContain table={`${params.institution}/General/${params.curso}`} params={params} />
+          </div>
+        ) : null}
         <div className={s.usersContainer}>
           {users &&
             users
