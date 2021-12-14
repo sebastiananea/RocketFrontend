@@ -32,22 +32,21 @@ const Profile = () => {
 
   // const [checket, setChecket] = useState(obj?.enhableContact);
 
-  async function showContact() {
-    if (obj.enhableContact === true) {
-      // setChecket(false);
-      obj.setObj({ ...obj, enhableContact: false });
-      await axios.post("https://rocketproject2021.herokuapp.com/user/changes", {
-        new_enhableContact: false,
-        id: obj._id,
-      });
-    } else if (obj.enhableContact === false) {
-      // setChecket(true);
-      obj.setObj({ ...obj, enhableContact: true });
-      await axios.post("https://rocketproject2021.herokuapp.com/user/changes", {
-        new_enhableContact: true,
-        id: obj._id,
-      });
-    }
+  async function showContactFalse() {
+    setObj({ ...obj, enhableContact: false })
+    await axios.post('https://rocketproject2021.herokuapp.com/user/changes', {
+      new_enhableContact: false,
+      id: obj._id,
+    })
+    console.log("true", obj.enhableContact)
+  }
+  async function showContactTrue() {
+    await setObj({ ...obj, enhableContact: true })
+    await axios.post('https://rocketproject2021.herokuapp.com/user/changes', {
+      new_enhableContact: true,
+      id: obj._id,
+    })
+    console.log("false", obj.enhableContact)
   }
 
   function handleChange(e) {
@@ -201,26 +200,24 @@ const Profile = () => {
             </div>
             <hr />
             <div>
-              <span className={ss.profile_changes_label}>
-                <strong>Share Contacts</strong>{" "}
-              </span>
-              {obj.enhableContact ? (
-                <input
-                  className={ss.form_check_input}
-                  type="checkbox"
-                  id="flexSwitchCheckDefault"
-                  onChange={() => showContact()}
-                  checked="true"
-                />
-              ) : (
-                <input
-                  className={ss.form_check_input}
-                  type="checkbox"
-                  id="flexSwitchCheckDefault"
-                  onChange={() => showContact()}
-                  checked="false"
-                />
-              )}
+              <span className={ss.profile_changes_label}><strong>Share Contacts</strong> </span>
+                {obj.enhableContact === false ? (
+                  <input
+                    className={ss.form_check_input}
+                    type="checkbox"
+                    id="flexSwitchCheckDefault"
+                    onChange={()=> showContactTrue()}
+                    checked="false"
+                  />
+                ) : (
+                  <input
+                    className={ss.form_check_input}
+                    type="checkbox"
+                    id="flexSwitchCheckDefault"
+                    onChange={()=> showContactFalse()}
+                    checked="true"
+                  />
+                )}
             </div>
             <hr />
             <div>
@@ -246,35 +243,23 @@ const Profile = () => {
           </form>
         </div>
       </div>
+      
+      <div>
+        <div className={ss.profile_stats}>
+        <h4 style={{borderLeft:"3px solid #fff", paddingLeft:"5px"}}>MY STATS</h4>
+          <div>
+            <small>🚀 Rockets: </small>
+            {obj.score ? ` ${obj.score} ` : ' 0 '}
+          </div>
+           <div>
+            <small>❌ Abscences: </small>
+            {obj.absence  ? ` ${obj.absence} ` : ' 0 '}
+          </div>
+         <div>
+            <small>🚫 Reports: </small>
+            {obj.reports  ? obj.reports.length : ' 0 '}
+          </div>
 
-      <div className={ss.profile_stats}>
-        <h4>MY STATS</h4>
-        <div>
-          <small>🚀 Rockets</small>
-          <input
-            type="range"
-            className={ss.profile_stats_progress}
-            value={obj.score ? obj.score : 0}
-          />
-          {obj.score ? obj.score : 0}
-        </div>
-        <div>
-          <small>❌ Abscences</small>
-          <input
-            type="range"
-            className={ss.profile_stats_progress}
-            value={obj.absence ? obj.absence : 0}
-          />
-          {obj.absence ? obj.absence : 0}
-        </div>
-        <div>
-          <small>🚫 Reports</small>
-          <input
-            type="range"
-            className={ss.profile_stats_progress}
-            value={obj.reports ? obj.reports : 0}
-          />
-          {obj.reports ? obj.reports : 0}
         </div>
       </div>
     </>
