@@ -1,3 +1,7 @@
+a{
+  text-decoration: none !important;
+}
+
 .mainContainer {
   position: relative;
 }
@@ -137,6 +141,9 @@
   font-weight: 600;
   font-size: 1.1rem;
 }
+.funcionamiento > .text > button >a{
+  color: #fff;
+}
 .funcionamiento > .text > button:hover {
   transform: scale(1.02);
 }
@@ -170,6 +177,9 @@
   transform: scale(1.02);
 }
 .boton1 {
+  position: absolute;
+  right: 18%;
+  bottom: 10%;
   font-size: 20px;
   width: max-content;
   color: #2e2e2e;
@@ -205,7 +215,6 @@
 
 .preciosPanel > .text {
   width: 30%;
-  position: relative;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -527,6 +536,7 @@
     font-weight: 600;
     font-size: 1.1rem;
   }
+  
   .funcionamiento > .text > button:hover {
     transform: scale(1.02);
   }
@@ -636,10 +646,10 @@
     justify-content: center;
     align-content: center;
   }
-  .priceContainer > h4 {
+  .priceContainer > .title {
     font-size: 0.8rem;
     color: rgb(255, 255, 255);
-    height: 100%;
+    height: 20%;
     width: 100%;
     margin-top: 20px;
     border-top-left-radius: 25px;
@@ -649,13 +659,13 @@
     align-items: center;
     background-color: #7333c5;
   }
-  .priceContainer > p {
+  .priceContainer > .descripcion {
     text-align: left;
-    width: 60%;
-    height: 30%;
+    width: 100%;
+    height: 50%;
     font-size: 0.5rem;
   }
-  .priceContainer > h5 {
+  .priceContainer > .precio {
     width: 100%;
     height: 25%;
     font-size: 0.6rem;

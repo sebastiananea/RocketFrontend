@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import NavbarNoLog from './navbar/NavbarNoLog';
 import Tarjeta from "./Tarjeta/Tarjeta.jsx"
 import s from "./LandingNoLog.module.css"
-
 import fotoGuille from "./picsNuestras/guille.jfif"; import fotoSeba from "./picsNuestras/seba.jfif"
 import fotoLiam from "./picsNuestras/liam.jfif"; import fotoFran from "./picsNuestras/franco.jfif"
 import fotoNacho from "./picsNuestras/igna.jfif"; import fotoNiko from "./picsNuestras/niko.jfif"
@@ -109,7 +108,7 @@ function LandingNoLog() {
                 <br />
                 Cog: +23 5825 687989
               </p>
-              <button>Contactanos</button>
+              <button><a href="mailto:rocket.app.mailing@gmail.com" target="_blank" rel="noreferrer">Contactanos</a></button>
             </div>
             <div className={s.img}>
               <img
@@ -118,7 +117,7 @@ function LandingNoLog() {
                 width="100%"
               />
               <label for="verPrecios" className={s.boton}>
-                <h4>ver tarifas⮕</h4>
+                <h4>ver tarifas→</h4>
               </label>
             </div>
 
@@ -126,49 +125,49 @@ function LandingNoLog() {
               <div className={s.text}>
                 <h2>TARIFAS</h2>
                 <label for="verPrecios" className={s.boton1}>
-                  <h4>volver</h4>
+                  <h4>←volver</h4>
                 </label>
                 <img
                   src="https://balddesign.com.ar/wp-content/uploads/2020/11/paypal.png"
                   alt=""
-                  width="95%"
+                  width="32%"
                 />
               </div>
               <div className={s.priceContainer}>
-                <h4>Plan Bronce</h4>
-                <p>
+                <h4 className={s.title}>Plan Mensual</h4>
+                <p className={s.descripcion}>
                   <br />
-                  -Admins: <strong>2</strong>
+                  Meses: <strong>1</strong>
                   <br />
-                  -Estudiantes: <strong>100</strong>max
+                  Estudiantes: <strong>unlimited</strong>
                   <br />
-                  -Soporte Técnico: <strong>Nunca</strong>
+                  Soporte Técnico: <strong>24/7</strong>
                 </p>
-                <h5>$400usd per month</h5>
+                <h5 className={s.precio}>$120usd</h5>
               </div>
               <div className={s.priceContainer}>
-                <h4>Plan Silver</h4>
-                <p>
+                <h4 className={s.title}>Plan 6 Meses</h4>
+                <p className={s.descripcion}>
                   <br />
-                  -Admins: <strong>5</strong>
+                  Meses: <strong>6</strong>
                   <br />
-                  -Estudiantes: <strong>300</strong>max
+                  Estudiantes: <strong>unlimited</strong>
                   <br />
-                  -Soporte Técnico: <strong>De vez en cuando</strong>
+                  Soporte Técnico: <strong>24/7</strong>
                 </p>
-                <h5>$700usd per month</h5>
+                <h5 className={s.precio}>$550usd</h5>
               </div>
               <div className={s.priceContainer}>
-                <h4>Plan Gold</h4>
-                <p>
+                <h4 className={s.title}>Plan Anual</h4>
+                <p className={s.descripcion}>
                   <br />
-                  -Admins: <strong>unlimited</strong>
+                  Meses: <strong>12</strong>
                   <br />
-                  -Estudiantes: <strong>10000</strong>max
+                  Estudiantes: <strong>unlimited</strong>
                   <br />
-                  -Soporte Técnico: <strong>Si</strong>
+                  Soporte Técnico: <strong>24/7</strong>
                 </p>
-                <h5>$4400usd per month</h5>
+                <h5 className={s.precio}>$1100usd</h5>
               </div>
             </div>
           </div>
