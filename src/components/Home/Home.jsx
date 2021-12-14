@@ -69,7 +69,7 @@ const Home = () => {
       </div>
       <div className={style.home__chat}>
 
-        <h4>CHAT</h4>
+          <h4 style={{background:"#ffa600dd", borderRadius:"20px"}}>CHAT</h4>
         {params && params?.curso ? (
           <div>
            <ChatContain table={`${params.institution}/Grupos/${params.curso.toLowerCase()}/table${params.table}`} params={params} />
