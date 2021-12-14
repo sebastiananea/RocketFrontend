@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { myDatabaseChat } from "../../../config/utilsChatDatabase.js";
 import { ref, push, child, update } from "firebase/database";
 import firebase from "firebase/compat";
+import s from "./Input.module.css";
 import Swal from "sweetalert2";
 
 function RocketChat({ name, img, table, id }) {
@@ -68,10 +69,12 @@ function RocketChat({ name, img, table, id }) {
     setmessages({ txt: "" });
     setFile("")
   };
+ 
 
   const handleChange = (e) => {
     setmessages({ txt: e.target.value });
   };
+  
 
   const emojiWorld = (e) => {
     e.preventDefault();
@@ -80,7 +83,7 @@ function RocketChat({ name, img, table, id }) {
     } else {
       setemoji(true);
     }
-
+  }
 
     const insertEmoji = (e) => {
         e.preventDefault();
@@ -93,6 +96,7 @@ function RocketChat({ name, img, table, id }) {
         e.preventDefault();
         setFile(e.target.files[0])
     }
+    
 
     return (
         <div className={s.inputchat_container}>
