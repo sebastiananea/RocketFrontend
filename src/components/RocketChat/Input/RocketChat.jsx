@@ -99,7 +99,7 @@ function RocketChat({name,img,table,id}) {
                 <button className={s.inputchat_btn2} type="submit" >🚀</button>
                 {emoji ?
                     <div className={s.inputchat_emojiscontainer}>
-                        <h6>Emojis</h6>
+                        <h6><span className={s.inputchat_palabraemojis}>Emojis</span></h6>
                         <button className={s.inputchat_btnemoji} name="😀" onClick={(e) => insertEmoji(e)}>😀</button>
                         <button className={s.inputchat_btnemoji} name="😅" onClick={(e) => insertEmoji(e)}>😅</button>
                         <button className={s.inputchat_btnemoji} name="🙃" onClick={(e) => insertEmoji(e)}>🙃</button>
