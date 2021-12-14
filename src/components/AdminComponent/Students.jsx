@@ -116,12 +116,11 @@ function Students() {
     });
   };
   var [detailsOpen, setDetailsOpen] = useState(false);
+console.log(users[0])
 
   return (
     <div className={s.container}>
       <h2>Students Panel</h2>
-      <button onClick={shuffleTablesRnm}>Random Shuffle Tables</button>
-      <button onClick={shuffleTables}>Smart Shuffle Tables</button>
       <div className={s.filtros}>
         <div className={s.orderGroup}>
           <h6>Group</h6>
@@ -179,6 +178,7 @@ function Students() {
                 reports={x.reports}
                 setDetailsOpen={setDetailsOpen}
                 group={x.curso}
+                asistencia={x.classes!==0 ? (x.presences/x.classes).toFixed(3)*100 : 100}
               />
             ))}
         <div className={s.pagContainer}>

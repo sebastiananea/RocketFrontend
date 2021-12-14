@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import s from "./Student.module.css";
 
 
-function Student({ img, _id, name, score, reports, setDetailsOpen, group }) {
+function Student({ img, _id, name, score, reports, setDetailsOpen, group, asistencia }) {
   
   return (
     <div className={s.container}>
@@ -48,7 +48,7 @@ function Student({ img, _id, name, score, reports, setDetailsOpen, group }) {
           <h4 style={{ color: "rgb(200, 0, 0)" }}>{reports.length}</h4>
         </div>
         <div className={s.asistencias}>
-          <h5>Asistencias: 60%</h5>
+          <h5>Asistencias: {asistencia}%</h5>
         </div>
       </div>
       <div className={s.details}>
