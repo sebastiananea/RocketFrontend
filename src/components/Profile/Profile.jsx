@@ -230,6 +230,7 @@ const Profile = () => {
             <div>
               <textarea
                 placeholder="..."
+                spellcheck="false"
                 className={ss.profile_textarea}
                 name="about"
                 value={field.about}
@@ -248,7 +249,7 @@ const Profile = () => {
       
       <div>
         <div className={ss.profile_stats}>
-        <h4 style={{borderLeft:"3px solid #fff", paddingLeft:"5px"}}>MY STATS</h4>
+        <h4 style={{borderLeft:"2px solid #fff", paddingLeft:"5px"}}>MY STATS</h4>
           <div>
             <small>🚀 Rockets: </small>
             {obj.score ? ` ${obj.score} ` : ' 0 '}

@@ -11,7 +11,8 @@
     outline: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding: 2px;
-    width: 230px;
+    width: 210px;
+    margin: auto;
     resize: none;
     height: 50px;
     background: #ffffffcc;
@@ -47,6 +48,10 @@
 .inputchat_emojiscontainer {
     position: absolute;
     bottom: 37px;
+}
+
+.inputOculto {
+    display: none;
 }
 
 @media screen and (max-width: 415px) {
