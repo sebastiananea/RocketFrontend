@@ -23,7 +23,7 @@ function Charts() {
         }
         getData()
         async function getData1(){
-            await axios("http://localhost:3001/asistencias/"+JSON.parse(localStorage.getItem("user")).institution)
+            await axios("https://rocketproject2021.herokuapp.com/asistencias/"+JSON.parse(localStorage.getItem("user")).institution)
             .then(x=> setData1(x.data))
         }
         getData1()
