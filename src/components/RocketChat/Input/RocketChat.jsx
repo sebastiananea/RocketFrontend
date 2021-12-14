@@ -14,8 +14,11 @@ function RocketChat({ name, img, table, id }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+
+    
     if(!file && messages.txt.trim()==="")return;
     
+
     if (file) {
       const files = firebase.storage().ref(table).child(file.name);
       await files.put(file);
@@ -66,7 +69,6 @@ function RocketChat({ name, img, table, id }) {
       console.log(e);
       Swal.fire("Chat on on maintenance");
     }
-
     setmessages({ txt: "" });
     setFile("")
 

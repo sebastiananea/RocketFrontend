@@ -28,8 +28,10 @@ const Home = () => {
     console.log(profiles);
   }, []);
 
-  const onClick = async () => {
-    await axios("http://localhost:3001/addPrecense", {
+
+  const onClick = async ()=>{
+    await axios("https://rocketproject2021.herokuapp.com/addPrecense", {
+
       method: "post",
       data: {
         ID: JSON.parse(localStorage.getItem("user"))._id,
@@ -66,10 +68,12 @@ const Home = () => {
         </div>
       </div>
       <div className={style.home__chat}>
-        <h4 style={{background:"#ffa600dd", borderRadius:"20px"}}>CHAT</h4>
-        {params && params?.name ? (
+
+          <h4 style={{background:"#ffa600dd", borderRadius:"20px"}}>CHAT</h4>
+        {params && params?.curso ? (
           <div>
-            <ChatContain table={`${params.institution}/Grupos/${params.curso.toLowerCase()}/table${params.table}`} params={params} />
+           <ChatContain table={`${params.institution}/Grupos/${params.curso.toLowerCase()}/table${params.table}`} params={params} />
+
           </div>
         ) : null}
       </div>

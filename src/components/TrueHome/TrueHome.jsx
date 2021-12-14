@@ -81,12 +81,10 @@ function TrueHome() {
         >
           Go to my work bench
         </button>
-        {params && params?.name ? (
+
+         {params && params?.curso ? (
           <div>
-            <ChatContain
-              table={`${params.institution}/General/${params.curso}`}
-              params={params}
-            />
+           <ChatContain table={`${params.institution}/General/${params.curso.toLowerCase()}`} params={params} />
           </div>
         ) : null}
         <div className={s.usersContainer}>
