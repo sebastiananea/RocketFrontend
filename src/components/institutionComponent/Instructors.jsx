@@ -62,8 +62,6 @@ function Instructor() {
       const alumnos = users2.filter( (u) => u.curso == value)
       setUsers(alumnos)
     }
-    // setUsers(users2.filter((u) => u.curso === value));
-    // console.log(value, users);
   }
 
   
@@ -85,13 +83,13 @@ function Instructor() {
 
   return (
     <div className={s.container}>
-      <h2>Instructores</h2>
+      <h2>{users2.length } Instructores</h2>
 
       <div className={s.filtros}>
         <div className={s.orderGroup}>
           <h6>Curso</h6>
           <select onChange={(e) => handleChangeFilter(e)}>
-            <option value="All">{institucion.name}</option>
+            <option value="All">Todos</option>
             {institucion.cursos &&
               institucion.cursos.map((c) => {
                 return <option value={c}>{c}</option>;
@@ -127,8 +125,6 @@ function Instructor() {
           <select value={orderBy} onChange={(e) => setOrderBy(e.target.value)}>
             <option value="a-z">A-Z</option>
             <option value="z-a">Z-A</option>
-            <option value="higher-rockets">+Rockets</option>
-            <option value="higher-reports">+Reports</option>
           </select>
         </div>
       </div>

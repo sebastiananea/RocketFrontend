@@ -28,7 +28,7 @@ const Home = () => {
     console.log(profiles)
   }, [])
 
-  const onClick = ()=>{
+   async function onClick() {
     await axios("https://rocketproject2021.herokuapp.com/addPrecense", {
       method: "post",
       data: {

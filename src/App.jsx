@@ -21,7 +21,8 @@ import {
   ActiveAccount,
   Instructor,
   Payment,
-  Tables
+  Tables,
+  Cursos
 } from './components/index'
 
 function App() {
@@ -46,6 +47,8 @@ function App() {
             <Route exact path='/admin/students' component={Students} />
             <Route exact path='/admin/stats' component={Charts} />
             <Route exact path='/admin/tables' component={Tables} />
+            
+            
             </div>
           </Route>  
 
@@ -56,6 +59,7 @@ function App() {
             <Route exact path='/institucion/admin/curso' component={Curso}  />
             <Route exact path='/institucion/admin/instructores' component={Instructor}  />
             <Route exact path='/institucion/admin/payment'  component={Payment}/>
+            <Route exact path='/institucion/admin/Cursos' component={Cursos} />
           </div>
         </Route>
        </div> 

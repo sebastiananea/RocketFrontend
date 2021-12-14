@@ -21,6 +21,7 @@ export { default as Student} from "./institutionComponent/Students"
  export { default as SidebarInstitution } from "./institutionComponent/sidebarInstitution/SidebarInstitution"
  export { default as Curso } from "./institutionComponent/Curso/curso"
  export { default as Instructor } from "./institutionComponent/Instructors" 
+ export {default as Cursos} from "./institutionComponent/Cursos"
 export { default as Payment } from './Payment/Payment.jsx'
 
 

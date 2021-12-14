@@ -2,6 +2,7 @@ import React from "react";
 import s from "./Student.module.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 
 function Student({ img, _id, name, score, reports, curso }) {
@@ -15,7 +16,11 @@ function Student({ img, _id, name, score, reports, curso }) {
         moderator: true
       }
     }).then((x) => x.data);
-
+    Swal.fire(
+      'Nuevo instructor',
+      'Cambios aplicados!',
+      'success'
+    )
     history.push("/institucion/admin/instructores")
     
   }
