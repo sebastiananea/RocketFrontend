@@ -42,7 +42,7 @@
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
     .home__container {
     display: flex;
     margin-top: 2%;

@@ -67,7 +67,7 @@
 /* ////////////MEDIA QUERY//////////// */
 
 
-@media screen and (max-width: 700px){
+@media screen and (max-width: 1000px){
   .Curso {
   width: 100%;
   background-color: #f7f7f7;

@@ -1,6 +1,6 @@
 .tarjeta_container {
-    width: 190px;
-    margin: 20px;
+    width: 230px;
+    margin: 30px;
 }
 
 .tarjeta_name {
@@ -12,8 +12,8 @@
 
 .tarjeta_img {
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
 }
 
 .tarjeta_github, .tarjeta_linkedin {
@@ -22,3 +22,35 @@
     font-size: 10px;
     text-decoration: none;
 } 
+
+
+/* //////////////////////MEDIA QUERIES ////////////////////// */
+
+@media screen and (max-width: 1000px) {
+    .tarjeta_container {
+    width: 50%;
+    margin: 0px;
+    
+}
+
+.tarjeta_name {
+    font-size: 13px;
+    color: #fff;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
+.tarjeta_img {
+    border-radius: 50%;
+    width: 50%;
+    height: 50%;
+}
+
+.tarjeta_github, .tarjeta_linkedin {
+    margin: 2px;
+    color: #fff;
+    font-size: 10px;
+    text-decoration: none;
+} 
+
+}
