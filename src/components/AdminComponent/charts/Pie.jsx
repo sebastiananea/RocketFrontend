@@ -2,11 +2,11 @@ import React from "react";
 import { PieChart, Pie, Cell } from "recharts";
 
 
-const COLORS = ["#ED5A43", "#008AFE"];
-function PieReportsLikes({ data }) {
-  return (
-    <PieChart width={220} height={250}>
-      <Pie
+ const COLORS = ['#ED5A43', '#008AFE'];
+function PieReportsLikes({data}) {
+     return (
+        <PieChart width={252} height={250} >
+        <Pie
         data={data}
         innerRadius={60}
         outerRadius={80}
