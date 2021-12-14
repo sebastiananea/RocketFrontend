@@ -1,36 +1,35 @@
-import React, { useState, useEffect } from 'react'
-import { NavLink, useHistory, useLocation } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import style from './NavBar.module.css'
-import logo from '../../logo.png'
-import User from './user/User'
+import React from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import style from "./NavBar.module.css";
+import logo from "../../logo.png";
+import User from "./user/User";
 
 const NavBar = () => {
-  let history = useHistory()
-  let location = useLocation()
+  let location = useLocation();
 
-  const myUser = useSelector((state) => state.user)
+  const myUser = useSelector((state) => state.user);
 
-  if (location.pathname !== '/')
+  if (location.pathname !== "/")
     return (
       <nav
         className={
-          location.pathname.includes('/institucion')
+          location.pathname.includes("/institucion")
             ? style.navbar_dark
             : style.navbar__nav
         }
       >
-        <NavLink to='/'>
+        <NavLink to="/">
           <img
-            alt='logo'
+            alt="logo"
             src={
-              location.pathname.includes('/institucion')
-                ? require('../../logoBlanco.png').default
+              location.pathname.includes("/institucion")
+                ? require("../../logoBlanco.png").default
                 : logo
             }
-            width={location.pathname.includes('/institucion') ? '90px' : '60%'}
+            width={location.pathname.includes("/institucion") ? "90px" : "60%"}
             className={
-              location.pathname.includes('/institucion')
+              location.pathname.includes("/institucion")
                 ? style.navbar__logo_dark
                 : style.navbar__logo
             }
@@ -41,19 +40,19 @@ const NavBar = () => {
 
           {!myUser && (
             <div>
-              <NavLink to='/signin'>
+              <NavLink to="/signin">
                 <button className={style.navbar__link}>LOG IN</button>
               </NavLink>
-              <NavLink to='/signup'>
+              <NavLink to="/signup">
                 <button className={style.navbar__boton_violeta}>SIGN UP</button>
               </NavLink>
-              <NavLink to='/'></NavLink>
+              <NavLink to="/"></NavLink>
             </div>
           )}
         </div>
       </nav>
-    )
-  else return <div></div>
-}
+    );
+  else return <div></div>;
+};
 
-export default NavBar
+export default NavBar;

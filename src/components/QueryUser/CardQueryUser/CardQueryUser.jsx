@@ -57,10 +57,7 @@ function CardQueryUser({ user }) {
             </div>
             <div className={s.score}>
               <h3>ROCKETS: </h3> <h4>{user.score}</h4>
-              <img
-                src={foto}
-                alt="cohete"
-              />
+              <img src={foto} alt="cohete" />
             </div>
           </div>
         </div>
