@@ -2,7 +2,7 @@ import React from "react";
 import s from "./Student.module.css";
 
 
-function Student({ img, _id, name, score, reports, setDetailsOpen, group }) {
+function Student({ img, _id, name, score, reports, setDetailsOpen, group, asistencia }) {
 
   return (
     <div className={s.container}>
