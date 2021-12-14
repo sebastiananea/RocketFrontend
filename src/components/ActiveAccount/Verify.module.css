@@ -1,5 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;800&display=swap%27");
 
+.btn {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn > button {
+  color: #fff;
+  padding: 13px;
+  border: 1px solid #fff;
+  background-color: #7333c5;
+}
+
 .loading__spinner {
   margin-top: 2%;
   border: 7px solid transparent;
