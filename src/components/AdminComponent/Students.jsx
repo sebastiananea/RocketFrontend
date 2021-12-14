@@ -12,6 +12,7 @@ import firebase from "firebase/compat";
 function Students() {
   const user = JSON.parse(localStorage.getItem("user"));
   let chatRef = ref(myDatabaseChat);
+
   var groups = useSelector((state) => state.groups);
   const { ordenar } = require("../utils");
   let [users, setUsers] = useState([]);
@@ -25,7 +26,7 @@ function Students() {
 
   async function shuffleTables() {
     if (group !== "") {
-      console.log(group)
+
       await axios("https://rocketproject2021.herokuapp.com/asignTable", {
         method: "post",
         data: {
@@ -34,10 +35,19 @@ function Students() {
         },
       }).then(Swal.fire("Mesas mezcladas", "Satisfactoriamente!", "success"));
 
+
       chatRef = child(chatRef, `${user.institution}/Grupos/${group}`);
       remove(chatRef);
 
     } else Swal.fire("Por favor, seleccione un grupo para mezclar");
+    await axios("https://rocketproject2021.herokuapp.com/addClass", {
+      method: "post",
+      data: {
+        curso: group,
+        institution: JSON.parse(localStorage.getItem("user")).institution,
+      },
+    });
+
   }
 
   async function shuffleTablesRnm() {
@@ -48,13 +58,20 @@ function Students() {
           curso: group,
           institution: JSON.parse(localStorage.getItem("user")).institution,
         },
-      }).then(Swal.fire("Mesas mezcladas", "Satisfactoriamente!", "success"))
 
+      }).then(Swal.fire("Mesas mezcladas", "Satisfactoriamente!", "success"));
+    
       chatRef = child(chatRef, `${user.institution}/Grupos/${group}`);
       remove(chatRef);
-
-    } else Swal.fire("Por favor, seleccione un grupo para mezclar");
     
+    } else Swal.fire("Por favor, seleccione un grupo para mezclar");
+    await axios("https://rocketproject2021.herokuapp.com/addClass", {
+      method: "post",
+      data: {
+        curso: group,
+        institution: JSON.parse(localStorage.getItem("user")).institution,
+      },
+    });
   }
   async function getStudents() {
     let res = await axios(

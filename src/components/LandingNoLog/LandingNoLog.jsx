@@ -3,18 +3,18 @@ import NavbarNoLog from './navbar/NavbarNoLog';
 import Tarjeta from "./Tarjeta/Tarjeta.jsx"
 import s from "./LandingNoLog.module.css"
 
-import fotoGuille from "./picsNuestras/guille.png"; import fotoSeba from "./picsNuestras/seba.png"
-import fotoLiam from "./picsNuestras/liam.png"; import fotoFran from "./picsNuestras/franco.png"
-import fotoNacho from "./picsNuestras/igna.png"; import fotoNiko from "./picsNuestras/nico.png"
-import fotoMike from "./picsNuestras/micael.png"; import fotoLauta from "./picsNuestras/lauta.png"
+import fotoGuille from "./picsNuestras/guille.jfif"; import fotoSeba from "./picsNuestras/seba.jfif"
+import fotoLiam from "./picsNuestras/liam.jfif"; import fotoFran from "./picsNuestras/franco.jfif"
+import fotoNacho from "./picsNuestras/igna.jfif"; import fotoNiko from "./picsNuestras/niko.jfif"
+import fotoMike from "./picsNuestras/micael.jfif"; import fotoLauta from "./picsNuestras/lauta.jfif"
 import fotoSatelite from "./picsNuestras/satelite.png";
 
     let integrantes = [ 
         {name: "Sebastian Anea", img:fotoSeba, github: "https://github.com/sebastiananea", linkedin: "https://www.linkedin.com/in/sebastiananea/"},
         {name: "Ignacio Aranda", img:fotoNacho, github: "https://github.com/elnacho02", linkedin: "https://www.linkedin.com/in/ignacio-aranda-webdeveloper/"},
         {name: "Cristian Castagnetto", img:fotoNiko, github: "https://github.com/cNikoc", linkedin: "https://www.linkedin.com/in/cristian-nicolas-castagnetto-full-stack-dev/"},
-        {name: "Micael Gómez", img:fotoMike, github: "https://github.com/micaelgomez", linkedin: "https://www.linkedin.com/in/micael-alessandro-gomez-fullstack/"},
         {name: "Liam Marega", img:fotoLiam, github: "https://github.com/LiamMarega", linkedin: "https://www.linkedin.com/in/liam-marega/"},
+        {name: "Micael Gómez", img:fotoMike, github: "https://github.com/micaelgomez", linkedin: "https://www.linkedin.com/in/micael-alessandro-gomez-fullstack/"},
         {name: "Guillermo Martos", img:fotoGuille, github: "https://github.com/GuillermoMartos", linkedin: "https://www.linkedin.com/in/guillermo-luis-martos-7a01b6156/"},
         {name: "Franco Varone", img:fotoFran, github: "https://github.com/VaroneFranco", linkedin: "https://www.linkedin.com/in/franco-varone/"},
         {name: "Lautaro Zárate", img:fotoLauta, github: "https://github.com/LauzarateARG", linkedin: "https://www.linkedin.com/in/lautaro-ariel-zarate-castro-a87a98216/"}  

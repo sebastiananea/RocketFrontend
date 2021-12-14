@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useHistory, Link } from 'react-router-dom'
 import Google from '../../Images/google-logo-9808.png'
 import './institution.css'
@@ -7,10 +8,11 @@ import Swal from 'sweetalert2';
 import {
   googleProvider,
 } from '../../config/authMethods'
-
+import { setUser } from "../../Actions"
 import socialMediaAuth from '../../service/Auth'
 
 function InstitutionLogIn() {
+  const dispatch = useDispatch()
   let history = useHistory()
   var [log, setLog] = useState({
     email: '',
@@ -47,7 +49,9 @@ function InstitutionLogIn() {
       method: 'post',
       data: { token: localStorage.getItem('token') },
     })
-      .then((res) => localStorage.setItem('user', JSON.stringify(res.data)))
+      .then((res) => {
+        localStorage.setItem('user', JSON.stringify(res.data))
+        dispatch(setUser(JSON.parse(localStorage.getItem("user"))))})
       .then(() => {
         if (JSON.parse(localStorage.getItem('user')) ) return history.push('/institucion/admin/curso')
         else return history.push('/')
