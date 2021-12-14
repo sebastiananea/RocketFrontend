@@ -23,6 +23,7 @@
     color: rgb(66, 66, 66);
 }
 .stats{
+    width: 25%;
     display: flex;
     gap: 20px;
     align-items: center;
@@ -42,4 +43,8 @@
 .details>svg:hover{
     cursor: pointer;
     transform: scale(1.02);
+}
+
+.asistencias{
+   
 }

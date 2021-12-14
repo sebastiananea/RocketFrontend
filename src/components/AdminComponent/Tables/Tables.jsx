@@ -6,9 +6,9 @@ import s from "./Tables.module.css"
 
 
 function Tables() {
-    var [group, setGroup] = useState("")
-    var groups = useSelector((state)=>state.groups)
     
+    var groups = useSelector((state)=>state.groups)
+    var [group, setGroup] = useState(groups[0])
     async function assignTableRandom(){
         await axios("https://rocketproject2021.herokuapp.com/asignTableRandom",{
             method:"post",

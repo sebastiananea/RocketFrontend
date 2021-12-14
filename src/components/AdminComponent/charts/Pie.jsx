@@ -1,6 +1,7 @@
 import React from "react";
 import { PieChart, Pie, Cell } from "recharts";
 
+
 const COLORS = ["#ED5A43", "#008AFE"];
 function PieReportsLikes({ data }) {
   return (
