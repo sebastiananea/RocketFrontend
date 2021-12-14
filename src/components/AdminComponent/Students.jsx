@@ -12,7 +12,6 @@ import firebase from "firebase/compat";
 function Students() {
   const user = JSON.parse(localStorage.getItem("user"));
   let chatRef = ref(myDatabaseChat);
-  
   var groups = useSelector((state) => state.groups);
   const { ordenar } = require("../utils");
   let [users, setUsers] = useState([]);
