@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import s from "./Students.module.css";
 import Student from "./Student/Student";
+import { useSelector } from 'react-redux';
 const { ordenar } = require("../utils");
 
 function Students() {
+  let institution = useSelector((state) => state.user.suscription)
+
   var obj = {
     id: JSON.parse(localStorage.getItem("user"))._id,
     name: JSON.parse(localStorage.getItem("user")).name,
@@ -20,6 +23,7 @@ function Students() {
   var [orderBy, setOrderBy] = useState("a-z");
 
   async function getStudents(e) {
+
     var res = await axios(
       "https://rocketproject2021.herokuapp.com/institution/alumnos",
       {
@@ -29,12 +33,12 @@ function Students() {
         },
       }
     ).then((x) => x.data);
-    console.log("alumnos", res);
     setUsers(res);
     setUsers2(res);
   }
 
   async function getCursos() {
+
     var res = await axios(
       "https://rocketproject2021.herokuapp.com/institution/cursos",
       {
@@ -78,6 +82,7 @@ function Students() {
 
   if (users) ordenar(users, orderBy);
 
+
   const user = JSON.parse(localStorage.getItem("user"));
   const vencimiento =
     Date.parse(
@@ -88,7 +93,7 @@ function Students() {
       )
     ) < Date.parse(new Date());
 
-  if (!vencimiento) {
+  if (!vencimiento && institution) {
     return (
       <div className={s.container}>
         <h2>Alumnos</h2>
@@ -104,7 +109,6 @@ function Students() {
                 })}
             </select>
           </div>
-
           <form>
             <input
               placeholder="Buscar Estudiantes..."
@@ -130,10 +134,7 @@ function Students() {
           </form>
           <div className={s.orderBy}>
             <h6>Ordenar</h6>
-            <select
-              value={orderBy}
-              onChange={(e) => setOrderBy(e.target.value)}
-            >
+            <select value={orderBy} onChange={(e) => setOrderBy(e.target.value)}>
               <option value="a-z">A-Z</option>
               <option value="z-a">Z-A</option>
               <option value="higher-rockets">+Rockets</option>
@@ -205,6 +206,11 @@ function Students() {
         </div>
       </div>
     );
+  }
+  else {
+    return (
+      <div></div>
+    )
   }
 }
 

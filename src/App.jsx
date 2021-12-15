@@ -22,7 +22,9 @@ import {
   Instructor,
   Payment,
   Tables,
-} from "./components/index";
+  Cursos
+} from './components/index'
+
 
 function App() {
   return (
@@ -43,31 +45,23 @@ function App() {
         <Route path="/admin">
           <div className="adminContainer">
             <SideBar />
-            <Route exact path="/admin/students" component={Students} />
-            <Route exact path="/admin/stats" component={Charts} />
-            <Route exact path="/admin/tables" component={Tables} />
-          </div>
-        </Route>
+            <Route exact path='/admin/students' component={Students} />
+            <Route exact path='/admin/stats' component={Charts} />
+            <Route exact path='/admin/tables' component={Tables} />
+            
+            
+            </div>
+          </Route>  
 
-        <Route path="/institucion/admin/">
-          <div className="adminContainer">
-            <SidebarInstitution />
-            <Route
-              exact
-              path="/institucion/admin/estudiantes"
-              component={Student}
-            />
-            <Route exact path="/institucion/admin/curso" component={Curso} />
-            <Route
-              exact
-              path="/institucion/admin/instructores"
-              component={Instructor}
-            />
-            <Route
-              exact
-              path="/institucion/admin/payment"
-              component={Payment}
-            />
+          <Route path='/institucion/admin/'> 
+            <div className="adminContainer">
+            <SidebarInstitution/>
+            <Route exact path='/institucion/admin/estudiantes' component={Student}  />
+            <Route exact path='/institucion/admin/curso' component={Curso}  />
+            <Route exact path='/institucion/admin/instructores' component={Instructor}  />
+            <Route exact path='/institucion/admin/payment'  component={Payment}/>
+            <Route exact path='/institucion/admin/Cursos' component={Cursos} />
+
           </div>
         </Route>
       </div>

@@ -2,22 +2,27 @@ import React from "react";
 import s from "./Student.module.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 function Student({ img, _id, name, score, reports, curso }) {
   let history = useHistory();
   async function instructor(e) {
-    await axios(
-      "https://rocketproject2021.herokuapp.com/institution/setInstructor",
-      {
-        method: "post",
-        data: {
-          id: _id,
-          moderator: true,
-        },
-      }
-    ).then((x) => x.data);
 
-    history.push("/institucion/admin/instructores");
+    
+    var res = await axios("https://rocketproject2021.herokuapp.com/institution/setInstructor", {
+      method: "post",
+      data: {
+        id: _id,
+        moderator: true
+      }
+    }).then((x) => x.data);
+    Swal.fire(
+      'Nuevo instructor',
+      'Cambios aplicados!',
+      'success'
+    )
+    history.push("/institucion/admin/instructores")
+    
   }
 
   return (

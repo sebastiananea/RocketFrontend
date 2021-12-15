@@ -12,13 +12,19 @@ function Charts() {
 
     let history = useHistory()
     var groups = useSelector((state)=>state.groups)
+    var institution = useSelector((state)=>state.user.institution)
+    let prueba= useSelector((state)=>state.user.moderator)
+    let prueba_institution=useSelector((state)=>state.user.suscription)
+
     var [data, setData] = useState("")
     var [data1, setData1] = useState("")
     var [selected, setSelected] = useState("general")
     useEffect(() => {
         history.push("?group="+selected)
         async function getData(){
-            await axios("https://rocketproject2021.herokuapp.com/admin/stats?group="+selected)
+
+            await axios("https://rocketproject2021.herokuapp.com/admin/stats?group="+selected+"&institution="+institution)
+
             .then(x=> setData(x.data))
         }
         getData()
@@ -28,8 +34,10 @@ function Charts() {
         }
         getData1()
     }, [selected])
-   
-    console.log(data1, typeof data1)
+
+    if (!prueba && !prueba_institution){
+        return <div></div>
+      }
    if(data) return (
         <div className={s.container}>
             <h2>ESTADISTICAS</h2>

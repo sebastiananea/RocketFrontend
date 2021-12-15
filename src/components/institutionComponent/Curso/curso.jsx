@@ -3,11 +3,17 @@ import axios from "axios";
 import React, { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import s from "./curso.module.css";
-import { SetNewCourse } from "../../../Actions/index";
+import { useSelector } from 'react-redux';
 import foto from "../../Images/institucion.jpeg";
+
 
 function Curso() {
   let history = useHistory();
+  import axios from "axios";
+  import Swal from "sweetalert2";
+  import CryptoJS from 'crypto-js'
+ let institution = useSelector((state) => state.user.suscription)
+
   var obj = {
     id: JSON.parse(localStorage.getItem("user"))._id,
     name: JSON.parse(localStorage.getItem("user")).name,
@@ -19,12 +25,12 @@ function Curso() {
   function handleChange(e) {
     const { name, value } = e.target;
 
-    //Guarda en el estado
     setIntitucion({
       ...institucion,
-      [name]: value, // Sintaxis ES6 para actualizar la key correspondiente
+      [name]: value,
     });
   }
+
 
   const user = JSON.parse(localStorage.getItem("user"));
   const vencimiento =
@@ -47,7 +53,6 @@ function Curso() {
   //   : alert("hubo un error en la carga");
 
   // }
-
   async function handleClick(e) {
     e.preventDefault();
     var json = await axios(
@@ -58,11 +63,21 @@ function Curso() {
       }
     );
 
-    json.data === true ? alert("Curso Creado") : alert("ya existe el curso ");
-  }
+    json.data === true
+      ? Swal.fire(
+        "El curso fue creado con exito",
+        "El link fue copiado en el portapales!",
+        "Succes!"
+      )
+      : Swal.fire(
+        "Ya existe un curso con este nombre",
+        "El link fue copiado en el portapales!",
+        "Succes!"
+      );
 
-  if (!vencimiento) {
-    return (
+  
+
+    if (!vencimiento && institution) { return (
       <div className={s.Curso}>
         <div className={s.primerContainer}>
           <div className={s.titulo}>
@@ -85,12 +100,17 @@ function Curso() {
                 name="curso"
                 onChange={(e) => handleChange(e)}
               />
-
+              {/* <CopyToClipboard
+              text={`https://rocketprojectarg.netlify.app/login/${institucion.name.replace(
+                /\s+/g,
+                "%20"
+              )}/${institucion.curso}`}
+            > */}
               <CopyToClipboard
-                text={`https://rocketprojectarg.netlify.app/signup/${institucion.name.replace(
+                text={`https://rocketprojectarg.netlify.app/signin?institution=${CryptoJS.Rabbit.encrypt(institucion.name.replace(
                   /\s+/g,
                   "%20"
-                )}/${institucion.curso}`}
+                ), "contraseña")}&curso=${CryptoJS.Rabbit.encrypt(institucion.curso, "contraseña")}`}
               >
                 <button type="submit" onClick={(e) => handleClick(e)}>
                   Copiar Link

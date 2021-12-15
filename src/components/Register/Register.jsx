@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { saveData } from "../../Actions";
 import { useHistory } from "react-router-dom";
 import s from "./Register.module.css";
 import axios from "axios";
@@ -10,6 +12,9 @@ for (let i = 16; i < edadMax; i++) {
 }
 
 function Register() {
+
+  const info = useSelector((state) => state.data);
+
   let history = useHistory();
   var [data, setData] = useState({
     name: "",
@@ -20,6 +25,14 @@ function Register() {
     gender: "",
     age: "",
   });
+
+  useEffect(() => {
+    setData({
+      ...data,
+      institution: info[0],
+      curso: info[1],
+    });
+  }, []);
 
   const [errors, setErrors] = React.useState({});
   const [habilitado, setHabilitado] = React.useState(false);
@@ -45,10 +58,18 @@ function Register() {
       setHabilitado(false);
     }
     if (data.password !== data.repeatPass) {
-      console.log(data.repeatPass);
       errors.repeatPass = "Passwords do not match!";
       setHabilitado(false);
-    } else setHabilitado(true);
+    } 
+    if (!data.gender) {
+      errors.gender = "!";
+      setHabilitado(false);
+    }
+    if (!data.age) {
+      errors.age = "!";
+      setHabilitado(false);
+    }
+    else setHabilitado(true);
 
     return errors;
   };
@@ -73,10 +94,7 @@ function Register() {
 
       let DefinitiveName = nameArr.join(" ");
 
-      console.log(DefinitiveName);
-      console.log(data);
-
-      await axios("http://localhost:3001/signup/", {
+      await axios(`https://rocketproject2021.herokuapp.com/signup`, {
         method: "post",
         data: { ...data, name: DefinitiveName },
       }).then(history.push("/active-account/false"));
@@ -155,7 +173,7 @@ function Register() {
               onChange={(e) => handleChange(e)}
             />
             <div className={s.register_div_sexage}>
-              <label className={s.register_sex}>Male</label>
+              <label className={s.register_sex}><span style={{color:"red", margin:"0 4px 0 4px"}}>{errors.gender}</span>Male</label>
               <input
                 type="radio"
                 name="gender"
@@ -178,8 +196,8 @@ function Register() {
                 onChange={(e) => handleChange(e)}
                 value="other"
               />
-
-              <label className={s.register_sex}>Age</label>
+              
+              <label className={s.register_sex}><span style={{color:"red", margin:"0 4px 0 4px"}}>{errors.age}</span>Age</label>
               <select
                 className={s.register_select}
                 name="age"

@@ -1,6 +1,6 @@
 // import "./RocketMessages.css"
 import React, { useState, useEffect, useRef } from "react";
-import { myDatabaseChat } from "../../../config/utilsChatDatabase.js";
+import { myDatabaseChat } from "../../../../config/utilsChatDatabase.js";
 import { ref, onValue, child } from "firebase/database";
 
 import s from "./ChatContain.module.css";
@@ -37,19 +37,24 @@ function ChatContain({ params, table }) {
 
     let horaBien = [];
 
-
     if (hora.length === 4 && hora[1] === ":") horaBien = [0,hora[0],hora[1],hora[2],hora[3]];
     else if (hora.length === 4) horaBien = [hora[0],hora[1],hora[2],0,hora[3]];
     else if (hora.length === 3) horaBien = [0,hora[0],hora[1],0,hora[2]];
-    else horaBien = hora
+    else horaBien = hora;
 
     horaBien = horaBien.join("");
     return horaBien;
   };
 
   return (
-    <div className={s.chatBox}>
-      <div className={s.chatBoxWrapper}>
+    <div>
+      <input type="checkbox" className={s.checkbox} id="chat" />
+      <label for="chat" className={s.chatBtn}>
+        <img src="http://cdn.onlinewebfonts.com/svg/img_211250.png" alt="" width="10px"/>
+        <strong style={{marginLeft:"6px"}}>Chat</strong>
+      </label>
+      <div className={s.chatBox}> 
+        <div className={s.chatBoxWrapper}>
         <div className={s.chatBoxTop}>
           {messagesChat.length
             ? messagesChat.map((m) => {
@@ -80,6 +85,14 @@ function ChatContain({ params, table }) {
             id={params._id}
           />
         </div>
+      </div>
+      
+      
+      
+      
+      
+      
+      
       </div>
     </div>
   );

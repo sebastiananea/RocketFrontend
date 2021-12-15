@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import s from "./TrueHome.module.css";
 import MiniSilla from "../MiniSilla/MiniSilla";
-import ChatContain from "../RocketChat/Chat/ChatContain";
+import ChatContain from "./RocketChatGeneral/Chat/ChatContain";
 
 import FilterBar from "../Filter/FilterBar";
 
@@ -25,15 +25,12 @@ function TrueHome() {
     let myUser = JSON.parse(localStorage.getItem("user"));
     setparams(myUser);
     if (myUser && myUser.institution) {
-      let data = await axios
-        .post(
-          "https://rocketproject2021.herokuapp.com/getUsersByInstitution",
-          myUser.institution
-        )
-        .then((x) => x.data.filter((x) => x._id !== myUser._id));
-      setUsers(data);
-      setUsers2(data);
+        let data = await axios.get("https://rocketproject2021.herokuapp.com/getUsersByInstitution/"+myUser.institution)
+        .then((x) => x.data.filter((x) => x._id !== myUser._id))
+        setUsers(data);
+        setUsers2(data);
     }
+  
   }
 
   useEffect(() => {
@@ -83,12 +80,10 @@ function TrueHome() {
         >
           Go to my work bench
         </button>
-        {params && params?.name ? (
+
+         {params && params?.curso ? (
           <div>
-            <ChatContain
-              table={`${params.institution}/General/${params.curso}`}
-              params={params}
-            />
+           <ChatContain table={`${params.institution}/General/${params.curso.toLowerCase()}`} params={params} />
           </div>
         ) : null}
         <div className={s.usersContainer}>

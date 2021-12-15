@@ -70,6 +70,7 @@
   background: transparent;
   border-left: 1px solid #888;
   border-bottom: 1px solid #888;
+  border-right: 1px solid #888;
   padding: 10px;
 }
 
@@ -95,11 +96,12 @@
   background: #7c40ca;
 }
 
-.profile_stats_progress {
-  width: 70%;
-  margin: 4px;
-  margin-left: 15px;
-  cursor: pointer;
+.profile_stats {
+  padding: 0 120px 0 120px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 17px;
 }
 
 /* //////////////////////MEDIA QUERIES ////////////////////// */
@@ -179,12 +181,13 @@
     background: transparent;
     border-left: 1px solid #888;
     border-bottom: 1px solid #888;
+    border-right: 1px solid #888;
     padding: 10px;
   }
 
   .profile__button_submit {
     height: 6vh;
-    width: 20%;
+    width: 60%;
     border: none;
     border-radius: 22px;
     box-shadow: 0 0 2px 0 #222;
@@ -205,6 +208,8 @@
   }
 
   .profile_stats_progress {
+    display: flex;
+    flex-wrap: wrap;
     width: 70%;
     margin: 4px;
     margin-left: 15px;
@@ -236,7 +241,8 @@
 
   .profile_stats {
     margin-top: 100%;
-
+    display: flex;
+    flex-wrap: wrap;
     width: 70%;
     height: 22vh;
     padding: 0.7rem;
