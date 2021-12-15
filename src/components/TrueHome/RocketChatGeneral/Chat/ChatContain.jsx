@@ -37,11 +37,10 @@ function ChatContain({ params, table }) {
 
     let horaBien = [];
 
-
     if (hora.length === 4 && hora[1] === ":") horaBien = [0,hora[0],hora[1],hora[2],hora[3]];
     else if (hora.length === 4) horaBien = [hora[0],hora[1],hora[2],0,hora[3]];
     else if (hora.length === 3) horaBien = [0,hora[0],hora[1],0,hora[2]];
-    else horaBien = hora
+    else horaBien = hora;
 
     horaBien = horaBien.join("");
     return horaBien;
@@ -54,7 +53,7 @@ function ChatContain({ params, table }) {
         <img src="http://cdn.onlinewebfonts.com/svg/img_211250.png" alt="" width="10px"/>
         <strong style={{marginLeft:"6px"}}>Chat</strong>
       </label>
-      <div className={s.chatBox}>
+      <div className={s.chatBox}> 
         <div className={s.chatBoxWrapper}>
         <div className={s.chatBoxTop}>
           {messagesChat.length
@@ -87,6 +86,13 @@ function ChatContain({ params, table }) {
           />
         </div>
       </div>
+      
+      
+      
+      
+      
+      
+      
       </div>
     </div>
   );
