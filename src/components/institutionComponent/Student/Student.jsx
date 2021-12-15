@@ -8,7 +8,7 @@ function Student({ img, _id, name, score, reports, curso }) {
   async function instructor(e) {
 
     await axios(
-      "https://rocketproject2021.herokuapp.com/institution/setInstructor",
+      "http://localhost:3001/institution/setInstructor",
       {
         method: "post",
         data: {

@@ -21,13 +21,13 @@ function Charts() {
         history.push("?group="+selected)
         async function getData(){
 
-            await axios("https://rocketproject2021.herokuapp.com/admin/stats?group="+selected+"&institution="+institution)
+            await axios("http://localhost:3001/admin/stats?group="+selected+"&institution="+institution)
 
             .then(x=> setData(x.data))
         }
         getData()
         async function getData1(){
-            await axios("https://rocketproject2021.herokuapp.com/asistencias/"+JSON.parse(localStorage.getItem("user")).institution)
+            await axios("http://localhost:3001/asistencias/"+JSON.parse(localStorage.getItem("user")).institution)
             .then(x=> setData1(x.data))
         }
         getData1()

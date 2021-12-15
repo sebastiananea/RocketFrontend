@@ -12,7 +12,7 @@ function QueryUser() {
 
   useEffect(() => {
     axios(
-      `https://rocketproject2021.herokuapp.com/searchProfileID/${_id}`
+      `http://localhost:3001/searchProfileID/${_id}`
     ).then((res) => setUser(res.data));
   }, []);
 

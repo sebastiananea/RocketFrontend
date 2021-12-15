@@ -30,7 +30,7 @@ const Home = () => {
 
 
   const onClick = async ()=>{
-    await axios("https://rocketproject2021.herokuapp.com/addPrecense", {
+    await axios("http://localhost:3001/addPrecense", {
 
       method: "post",
       data: {
