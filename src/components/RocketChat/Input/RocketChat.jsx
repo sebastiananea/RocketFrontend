@@ -4,6 +4,9 @@ import { ref, push, child, update } from "firebase/database";
 import firebase from "firebase/compat";
 import s from "./Input.module.css";
 import Swal from "sweetalert2";
+// import { AiOutlineSend } from "react-icons/ai";
+import { FiSend } from "react-icons/fi";
+
 
 function RocketChat({ name, img, table, id }) {
   const [emoji, setemoji] = useState(false);
@@ -74,7 +77,6 @@ function RocketChat({ name, img, table, id }) {
     setFile("")
 
   };
- 
 
   const handleChange = (e) => {
     setmessages({ txt: e.target.value });
@@ -110,7 +112,7 @@ function RocketChat({ name, img, table, id }) {
             <form onSubmit={e => handleSubmit(e)}>
                 <button className={s.inputchat_btn} name="emoji" onClick={(e) => emojiWorld(e)}>😃</button>
                 <textarea spellcheck="false" className={s.inputchat_input} type="text" value={messages.txt} name="input" onChange={(e) => handleChange(e)}>{archivo.arch}</textarea>
-                <button className={s.inputchat_btn2} type="submit" >🚀</button>
+                <button className={s.inputchat_btn2} type="submit"><FiSend/></button>
                 {emoji ?
                     <div className={s.inputchat_emojiscontainer}>
                         <h6><span className={s.inputchat_palabraemojis}>Emojis</span></h6>
