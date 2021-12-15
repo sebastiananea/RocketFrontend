@@ -22,7 +22,7 @@ function Instructor() {
   async function getStudents(e) {
 
     var res = await axios(
-      "http://localhost:3001/institution/instructores",
+      "https://rocketproject2021.herokuapp.com/institution/instructores",
       {
         method: "post",
         data: {
@@ -37,7 +37,7 @@ function Instructor() {
   async function getCursos() {
 
     var res = await axios(
-      "http://localhost:3001/institution/cursos",
+      "https://rocketproject2021.herokuapp.com/institution/cursos",
       {
         method: "post",
         data: institucion,

@@ -53,7 +53,7 @@ function LandingPage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await axios("http://localhost:3001/signin", {
+    await axios("https://rocketproject2021.herokuapp.com/signin", {
       method: "post",
       data: log,
     }).then((r) => {
@@ -73,7 +73,7 @@ function LandingPage() {
     });
 
 
-    await axios("http://localhost:3001/isLog", {
+    await axios("https://rocketproject2021.herokuapp.com/isLog", {
       method: "post",
       data: { token: localStorage.getItem("token") },
     }).then((res) => {
@@ -81,7 +81,7 @@ function LandingPage() {
       dispatch(setUser(JSON.parse(localStorage.getItem("user"))));
     });
 
-    await axios("http://localhost:3001/user/changes", {
+    await axios("https://rocketproject2021.herokuapp.com/user/changes", {
 
       method: "post",
       data: {
@@ -97,7 +97,7 @@ function LandingPage() {
 
   const handleOnClick = async (provider) => {
     const user = await socialMediaAuth(provider);
-    await axios("http://localhost:3001/logMedia", {
+    await axios("https://rocketproject2021.herokuapp.com/logMedia", {
       method: "post",
       data: {
         name: user._delegate?.displayName,
@@ -106,7 +106,7 @@ function LandingPage() {
         status: "Online",
       },
     }).then((x) => localStorage.setItem("token", x.data.token));
-    await axios("http://localhost:3001/isLog", {
+    await axios("https://rocketproject2021.herokuapp.com/isLog", {
       method: "post",
       data: { token: localStorage.getItem("token") },
     })
@@ -117,7 +117,7 @@ function LandingPage() {
       .then(
         async () =>
           await axios.post(
-            "http://localhost:3001/user/changes",
+            "https://rocketproject2021.herokuapp.com/user/changes",
             {
               new_status: "Online",
               id: JSON.parse(localStorage.getItem("user"))._id,

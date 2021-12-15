@@ -23,7 +23,7 @@ const Payment = ({ data }) => {
       return rand() + rand();
     };
     sessionStorage.setItem("compra", JSON.stringify(product));
-    await axios("http://localhost:3001/payment/ask-pay", {
+    await axios("https://rocketproject2021.herokuapp.com/payment/ask-pay", {
       method: "post",
       data: {
         institution: user.institution,

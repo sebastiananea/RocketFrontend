@@ -10,7 +10,7 @@ function Tables() {
     var groups = useSelector((state)=>state.groups)
     var [group, setGroup] = useState(groups[0])
     async function assignTableRandom(){
-        await axios("http://localhost:3001/asignTableRandom",{
+        await axios("https://rocketproject2021.herokuapp.com/asignTableRandom",{
             method:"post",
             data:{
                 institution:JSON.parse(localStorage.getItem("user")).institution,
@@ -18,7 +18,7 @@ function Tables() {
             }
         })
         Swal.fire("Se mezclaron aleatoriamente las mesas del grupo "+group.toUpperCase()+" con exito!")
-        await axios("http://localhost:3001/addClass", {
+        await axios("https://rocketproject2021.herokuapp.com/addClass", {
             method: "post",
             data: {
               curso: group,
@@ -27,7 +27,7 @@ function Tables() {
           });
     }
     async function assignTableSmart(){
-        await axios("http://localhost:3001/asignTable",{
+        await axios("https://rocketproject2021.herokuapp.com/asignTable",{
             method:"post",
             data:{
                 institution:JSON.parse(localStorage.getItem("user")).institution,
@@ -35,7 +35,7 @@ function Tables() {
             }
         })
         Swal.fire("Se mezclaron inteligentemente las mesas del grupo "+group.toUpperCase()+" con exito!")
-        await axios("http://localhost:3001/addClass", {
+        await axios("https://rocketproject2021.herokuapp.com/addClass", {
             method: "post",
             data: {
               curso: group,

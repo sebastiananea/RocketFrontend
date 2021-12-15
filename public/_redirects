@@ -1,2 +1,2 @@
-/api/* http://localhost:3001 200
+/api/* https://rocketproject2021.herokuapp.com 200
 /*    /index.html   200

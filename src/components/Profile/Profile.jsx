@@ -25,7 +25,7 @@ const Profile = () => {
 
   useEffect(() => {
 
-    axios(`http://localhost:3001/searchProfileID/${id}`).then(
+    axios(`https://rocketproject2021.herokuapp.com/searchProfileID/${id}`).then(
       (r) => setObj(r.data)
     );
     setBoolean(false);
@@ -35,7 +35,7 @@ const Profile = () => {
 
   async function showContactFalse() {
     setObj({ ...obj, enhableContact: false })
-    await axios.post('http://localhost:3001/user/changes', {
+    await axios.post('https://rocketproject2021.herokuapp.com/user/changes', {
       new_enhableContact: false,
       id: obj._id,
     })
@@ -43,7 +43,7 @@ const Profile = () => {
   }
   async function showContactTrue() {
     await setObj({ ...obj, enhableContact: true })
-    await axios.post('http://localhost:3001/user/changes', {
+    await axios.post('https://rocketproject2021.herokuapp.com/user/changes', {
       new_enhableContact: true,
       id: obj._id,
     })
@@ -74,7 +74,7 @@ const Profile = () => {
 
 
     await axios
-      .post("http://localhost:3001/user/changes", newChanges)
+      .post("https://rocketproject2021.herokuapp.com/user/changes", newChanges)
       .then(() => setBoolean(true));
     let myUser = JSON.parse(localStorage.getItem("user"));
     myUser.img = field.img;
