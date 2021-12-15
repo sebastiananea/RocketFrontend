@@ -2,10 +2,10 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import s from "./Payment.module.css";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 const Payment = ({ data }) => {
-  let institution = useSelector((state) => state.user.suscription)
+  let institution = useSelector((state) => state.user.suscription);
   let success = new URLSearchParams(useLocation().search).get("success");
   const productos = [
     { title: "Plan Mensual", quantity: 1, unit_price: 2000 },
@@ -15,7 +15,7 @@ const Payment = ({ data }) => {
 
   async function refresh() {
     await axios
-      .post("http://localhost:3001/isLog", {
+      .post("http://localhost:3001/institution/isLog", {
         token: localStorage.getItem("token"),
       })
       .then((x) => localStorage.setItem("user", JSON.stringify(x.data)));
@@ -46,7 +46,6 @@ const Payment = ({ data }) => {
       fecha = new Date(new Date().setYear(new Date().getFullYear() + 1));
     }
     await axios("http://localhost:3001/payment/ask-pay", {
-
       method: "post",
       data: {
         institution: user.institution,
@@ -68,8 +67,8 @@ const Payment = ({ data }) => {
   }
   useEffect(() => {
     verifyPayment();
-    if(success==="true")refresh();
-  }, [success === "true"]);
+    if (success === "true") refresh();
+  }, []);
   if (success === "true") {
     let compra = JSON.parse(sessionStorage.getItem("compra"));
 
@@ -94,36 +93,36 @@ const Payment = ({ data }) => {
           <p>Estará activo hasta el {fecha.toLocaleDateString()}</p>
         </div>
       </div>
-      );
-    } else
-      return (
-        <div className={s.main_container}>
-          <h2 style={{ marginTop: "3%" }}>Elegi tu plan</h2>
-          {!productos ? null : (
-            <div className={s.cards_container}>
-              {productos.map((el, index) => (
-                <div className={s.card}>
-                  <div className={s.header}>
-                    <h3>{el.title}</h3>
-                  </div>
-                  <div className={s.price}>
-                    <h3>{"$" + el.unit_price + "ARS"}</h3>
-                  </div>
-                  <div className={s.description}>
-                    <p>
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Harum molestias sapiente nulla m
-                    </p>
-                  </div>
-                  <div className={s.btn}>
-                    <button onClick={(e) => askSlot(e, el)}>Obtener</button>
-                  </div>
+    );
+  } else
+    return (
+      <div className={s.main_container}>
+        <h2 style={{ marginTop: "3%" }}>Elegi tu plan</h2>
+        {!productos ? null : (
+          <div className={s.cards_container}>
+            {productos.map((el, index) => (
+              <div className={s.card}>
+                <div className={s.header}>
+                  <h3>{el.title}</h3>
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
-      );
+                <div className={s.price}>
+                  <h3>{"$" + el.unit_price + "ARS"}</h3>
+                </div>
+                <div className={s.description}>
+                  <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                    Harum molestias sapiente nulla m
+                  </p>
+                </div>
+                <div className={s.btn}>
+                  <button onClick={(e) => askSlot(e, el)}>Obtener</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
 };
 
 export default Payment;
