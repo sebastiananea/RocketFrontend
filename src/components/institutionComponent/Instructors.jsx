@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 const { ordenar } = require("../utils");
 
 function Instructor() {
-  let institution = useSelector((state) => state.user.suscription)
+  // let institution = useSelector((state) => state.user.suscription)
   var obj = {
     id: JSON.parse(localStorage.getItem("user"))._id,
     name: JSON.parse(localStorage.getItem("user")).name,
@@ -82,16 +82,16 @@ function Instructor() {
 
   if (users) ordenar(users, orderBy);
 
-  if (institution) {
+  // if (institution) {
     return (
       <div className={s.container}>
-        <h2>{users2.length} Instructores</h2>
+        <h2>{users2.length} Instructors</h2>
 
         <div className={s.filtros}>
           <div className={s.orderGroup}>
-            <h6>Curso</h6>
+            <h6>Courses</h6>
             <select onChange={(e) => handleChangeFilter(e)}>
-              <option value="All">Todos</option>
+              <option value="All">All Instructors</option>
               {institucion.cursos &&
                 institucion.cursos.map((c) => {
                   return <option value={c}>{c}</option>;
@@ -101,7 +101,7 @@ function Instructor() {
 
           <form>
             <input
-              placeholder="Buscar Instructores..."
+              placeholder="Find Instructor..."
               onChange={(e) => handleChange(e)}
               className={s.formInput}
               type="text"
@@ -123,7 +123,7 @@ function Instructor() {
             </button>
           </form>
           <div className={s.orderBy}>
-            <h6>Ordenar</h6>
+            <h6>Order</h6>
             <select value={orderBy} onChange={(e) => setOrderBy(e.target.value)}>
               <option value="a-z">A-Z</option>
               <option value="z-a">Z-A</option>
@@ -194,12 +194,12 @@ function Instructor() {
         </div>
       </div>
     );
-  }
-  else {
-    return (
-      <div></div>
-    )
-  }
+  // }
+  // else {
+  //   return (
+  //     <div></div>
+  //   )
+  // }
 }
 
 export default Instructor;

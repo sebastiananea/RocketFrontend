@@ -57,8 +57,8 @@ function App() {
             <div className="adminContainer">
             <SidebarInstitution/>
             <Route exact path='/institucion/admin/estudiantes' component={Student}  />
-            <Route exact path='/institucion/admin/curso' component={Curso}  />
             <Route exact path='/institucion/admin/instructores' component={Instructor}  />
+            <Route exact path='/institucion/admin/curso' component={Curso}  />
             <Route exact path='/institucion/admin/payment'  component={Payment}/>
             <Route exact path='/institucion/admin/Cursos' component={Cursos} />
 

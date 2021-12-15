@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 
 function SidebarInstitution() {
   var [open, setOpen] = useState(false)
-  let institution = useSelector((state) => state.user.suscription)
-  if (institution) {
+  // let institution = useSelector((state) => state.user.suscription)
+  // if (institution) {
     return (
       <div className={open ? s.sidebarOpen : s.sidebar}>
         <svg
@@ -25,12 +25,12 @@ function SidebarInstitution() {
         </div>
       </div>
     )
-  }
-  else {
-    return (
-      <div></div>
-    )
-  }
+  // }
+  // else {
+  //   return (
+  //     <div></div>
+  //   )
+  // }
 }
 
 export default SidebarInstitution
