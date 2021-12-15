@@ -4,6 +4,7 @@ import s from "./curso.module.css";
 import { SetNewCourse } from "../../../Actions/index";
 import foto from "../../Images/institucion.jpeg";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function Curso() {
   var obj = {
@@ -17,24 +18,11 @@ function Curso() {
   function handleChange(e) {
     const { name, value } = e.target;
 
-    //Guarda en el estado
     setIntitucion({
       ...institucion,
-      [name]: value, // Sintaxis ES6 para actualizar la key correspondiente
+      [name]: value,
     });
   }
-
-  // async function handleClick(e) {
-  //   e.preventDefalut()
-  //   const flag = await SetNewCourse(institucion)
-  //   console.log(flag)
-  //   setIntitucion(obj)
-
-  //   flag === true
-  //   ? alert("Recipe successfully created")
-  //   : alert("hubo un error en la carga");
-
-  // }
 
   async function handleClick(e) {
     e.preventDefault();
@@ -46,7 +34,18 @@ function Curso() {
       }
     );
 
-    json.data === true ? alert("Curso Creado") : alert("ya existe el curso ");
+
+    json.data === true
+      ? Swal.fire(
+          "El curso fue creado con exito",
+          "El link fue copiado en el portapales!",
+          "Succes!"
+        )
+      : Swal.fire(
+          "Ya existe un curso con este nombre",
+          "El link fue copiado en el portapales!",
+          "Succes!"
+        );
 
   }
 
@@ -74,11 +73,17 @@ function Curso() {
               onChange={(e) => handleChange(e)}
             />
 
-            <CopyToClipboard
-              text={`https://rocketprojectarg.netlify.app/signup/${institucion.name.replace(
+            {/* <CopyToClipboard
+              text={`https://rocketprojectarg.netlify.app/login/${institucion.name.replace(
                 /\s+/g,
                 "%20"
               )}/${institucion.curso}`}
+            > */}
+            <CopyToClipboard
+              text={`https://rocketprojectarg.netlify.app/signin?institution=${institucion.name.replace(
+                /\s+/g,
+                "%20"
+              )}&curso=${institucion.curso}`}
             >
               <button type="submit" onClick={(e) => handleClick(e)}>
                 Copiar Link

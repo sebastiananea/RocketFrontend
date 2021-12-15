@@ -1,6 +1,43 @@
 import React from 'react'
 export const Links = [
-  
+
+  // {
+  //   to: '/institucion/admin/curso',
+  //   text: 'Curso nuevo',
+  //   svg: (
+  //   <svg
+  //       width="20"
+  //       height="14"
+  //       viewBox="0 0 17 14"
+  //       fill="none"
+  //       xmlns="http://www.w3.org/2000/svg"
+  //     >
+  //       <path
+  //         d="M17 4H0V6H17V4ZM17 0H0V2H17V0ZM0 10H13V8H0V10ZM15 8V14L20 11L15 8Z"
+  //         fill="#5f5f5f"
+  //       />
+  //     </svg>
+  //   ),
+  // },
+  // {
+  //   to: "/institucion/admin/cursos",
+  //   text: "Mis Cursos",
+  //   svg: (
+  //     <svg
+  //     width="20"
+  //     height="20"
+  //     viewBox="0 0 20 20"
+  //     fill="none"
+  //     xmlns="http://www.w3.org/2000/svg"
+  //   >
+  //     <path
+  //       d="M17.7778 0H2.22222C1 0 0 1 0 2.22222V17.7778C0 19 1 20 2.22222 20H17.7778C19 20 20 19 20 17.7778V2.22222C20 1 19 0 17.7778 0ZM6.66667 15.5556H4.44444V7.77778H6.66667V15.5556ZM11.1111 15.5556H8.88889V4.44444H11.1111V15.5556ZM15.5556 15.5556H13.3333V11.1111H15.5556V15.5556Z"
+  //       fill="#5f5f5f"
+  //     />
+  //   </svg>
+  //   ),
+  // },
+
   {
     to: "/institucion/admin/cursos",
     text: "Mis Cursos",
@@ -19,6 +56,7 @@ export const Links = [
     </svg>
     ),
   },
+
   {
     to: "/institucion/admin/estudiantes",
     text: "Estudiantes",
@@ -61,8 +99,9 @@ export const Links = [
       />
     </svg>
     ),
+    
   },
-  {
+    {
     to: '/institucion/admin/curso',
     text: 'Curso nuevo',
     svg: (
@@ -80,4 +119,24 @@ export const Links = [
       </svg>
     ),
   },
+  {
+
+    to: "/institucion/admin/cursos",
+    text: "Mis Cursos",
+    svg: (
+      <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M17.7778 0H2.22222C1 0 0 1 0 2.22222V17.7778C0 19 1 20 2.22222 20H17.7778C19 20 20 19 20 17.7778V2.22222C20 1 19 0 17.7778 0ZM6.66667 15.5556H4.44444V7.77778H6.66667V15.5556ZM11.1111 15.5556H8.88889V4.44444H11.1111V15.5556ZM15.5556 15.5556H13.3333V11.1111H15.5556V15.5556Z"
+        fill="#5f5f5f"
+      />
+    </svg>
+    ),
+  }
+
 ]

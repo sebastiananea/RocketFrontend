@@ -1,41 +1,39 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import s from "./Instructors.module.css";
-import Instructors from "./Instructors/instructors";
+import s from "./Cursos.module.css";
+import Cursos from "./Cursos/Cursos";
 const { ordenar } = require("../utils");
 
-function Instructor() {
+function Cursoss() {
   var obj = {
     id: JSON.parse(localStorage.getItem("user"))._id,
     name: JSON.parse(localStorage.getItem("user")).name,
     cursos: "",
   };
   var [institucion, setIntitucion] = useState(obj);
+  var [cursosMap, setCursosMap] = useState([]);
+  var [cursosMap2, setCursosMap2] = useState([]);
   var [users, setUsers] = useState([]);
-  var [users2, setUsers2] = useState([]);
+  
+
   var [pag, setPag] = useState({
     from: 0,
     to: 7,
   });
-  var [orderBy, setOrderBy] = useState("a-z");
 
+  //Trae Estudiantes
   async function getStudents(e) {
-
-    var res = await axios(
-      "https://rocketproject2021.herokuapp.com/institution/instructores",
-      {
-        method: "post",
-        data: {
-          name: institucion.name,
-        },
-      }
-    ).then((x) => x.data);
+    var res = await axios("https://rocketproject2021.herokuapp.com/institution/alumnos", {
+      method: "post",
+      data: {
+        name: institucion.name,
+      },
+    }).then((x) => x.data);
     setUsers(res);
-    setUsers2(res);
   }
 
+  //Trae cursos
   async function getCursos() {
-
     var res = await axios(
       "https://rocketproject2021.herokuapp.com/institution/cursos",
       {
@@ -43,7 +41,8 @@ function Instructor() {
         data: institucion,
       }
     ).then((x) => x.data);
-
+    setCursosMap(res);
+    setCursosMap2(res);
 
     setIntitucion({
       ...institucion,
@@ -52,38 +51,40 @@ function Instructor() {
   }
 
   useEffect(() => {
-    getStudents();
+    getStudents()
     getCursos();
     console.log("EFFECT");
   }, []);
 
+  //Filtra por curso
   function handleChangeFilter(e) {
     const { value } = e.target;
     if (value === "All") {
-      setUsers(users2);
+      setCursosMap(cursosMap2);
     } else {
-      const alumnos = users2.filter((u) => u.curso === value);
-      setUsers(alumnos);
+      const cursoss = cursosMap2.filter((u) => u == value);
+      setCursosMap(cursoss);
     }
+    // setUsers(users2.filter((u) => u.curso === value));
+    // console.log(value, users);
   }
 
+  //Busca por nombre
   const handleChange = (e) => {
     if (e.target.value === "") {
-      setUsers(users2);
+      setCursosMap(cursosMap2);
     }
-    setUsers(
-      users2.filter((u) =>
-        u.name.toLowerCase().includes(e.target.value.toLowerCase())
+    setCursosMap(
+      cursosMap2.filter((u) =>
+        u.toLowerCase().includes(e.target.value.toLowerCase())
       )
     );
     console.log("Users", users);
   };
 
-  if (users) ordenar(users, orderBy);
-
   return (
     <div className={s.container}>
-      <h2>{users2.length } Instructores</h2>
+      <h2>{institucion.cursos.length} Cursos</h2>
 
       <div className={s.filtros}>
         <div className={s.orderGroup}>
@@ -99,7 +100,7 @@ function Instructor() {
 
         <form>
           <input
-            placeholder="Buscar Instructores..."
+            placeholder="Buscar Curso..."
             onChange={(e) => handleChange(e)}
             className={s.formInput}
             type="text"
@@ -120,28 +121,17 @@ function Instructor() {
             </svg>
           </button>
         </form>
-        <div className={s.orderBy}>
-          <h6>Ordenar</h6>
-          <select value={orderBy} onChange={(e) => setOrderBy(e.target.value)}>
-            <option value="a-z">A-Z</option>
-            <option value="z-a">Z-A</option>
-          </select>
-        </div>
       </div>
       <div className={s.studentsContainer}>
-        {users &&
-          users
+        {cursosMap &&
+          cursosMap
             .slice(pag.from, pag.to)
-            .map((x) => (
-              <Instructors
-                img={x.img}
-                name={x.name}
-                _id={x._id}
-                score={x.score}
-                reports={x.reports}
-                curso={x.curso}
-              />
-            ))}
+            .map(
+              (x) => (
+                (<Cursos curso={x} id={institucion.id} name= {institucion.name} institution = {institucion.name}/>)
+              )
+            )}
+
         <div className={s.pagContainer}>
           {
             <button
@@ -194,4 +184,4 @@ function Instructor() {
   );
 }
 
-export default Instructor;
+export default Cursoss;

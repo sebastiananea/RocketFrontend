@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import s from "./Students.module.css";
 import Student from "./Student/Student";
+
 const { ordenar } = require("../utils");
 
 function Students() {
@@ -84,13 +85,13 @@ function Students() {
 
   return (
     <div className={s.container}>
-      <h2>Alumnos</h2>
+      <h2>{users2.length } Alumnos</h2>
 
       <div className={s.filtros}>
         <div className={s.orderGroup}>
           <h6>Curso</h6>
           <select onChange={(e) => handleChangeFilter(e)}>
-            <option value="All">{institucion.name}</option>
+            <option value="All">Todos</option>
             {institucion.cursos &&
               institucion.cursos.map((c) => {
                 return <option value={c}>{c}</option>;
