@@ -3,10 +3,14 @@ import React, {useState} from 'react'
 import { useSelector } from 'react-redux'
 import Swal from 'sweetalert2';
 import s from "./Tables.module.css"
+import firebase from "firebase/compat";
+import { myDatabaseChat } from "../../../config/utilsChatDatabase";
+import { ref, child, remove } from "firebase/database";
 
 
 function Tables() {
-    
+    const user = JSON.parse(localStorage.getItem("user"));
+    let chatRef = ref(myDatabaseChat);
     var groups = useSelector((state)=>state.groups)
     var [group, setGroup] = useState(groups[0])
     async function assignTableRandom(){
@@ -25,6 +29,9 @@ function Tables() {
               institution: JSON.parse(localStorage.getItem("user")).institution,
             },
           });
+
+        chatRef = child(chatRef, `${user.institution}/Grupos/${group}`);
+        remove(chatRef);
     }
     async function assignTableSmart(){
         await axios("https://rocketproject2021.herokuapp.com/asignTable",{
@@ -42,6 +49,9 @@ function Tables() {
               institution: JSON.parse(localStorage.getItem("user")).institution,
             },
           });
+
+          chatRef = child(chatRef, `${user.institution}/Grupos/${group}`);
+          remove(chatRef);
     }
     return (
         <div className={s.container}>
