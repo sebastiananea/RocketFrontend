@@ -9,15 +9,17 @@ import { setUser, saveData} from "../../Actions";
 import { googleProvider } from "../../config/authMethods";
 import Swal from "sweetalert2";
 import socialMediaAuth from "../../service/Auth";
+import CryptoJS from 'crypto-js'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 function LandingPage() {
-  const query = useQuery();
-  const institution = query.get("institution");
-  const curso = query.get("curso");
-  console.log(institution, curso)
+  let query = useQuery();
+  let institution = query.get("institution");
+  let curso = query.get("curso");
+  curso = CryptoJS.Rabbit.decrypt(curso, "contraseña").toString(CryptoJS.enc.Utf8)
+  institution = CryptoJS.Rabbit.decrypt(institution, "contraseña").toString(CryptoJS.enc.Utf8)
 
   const dispatch = useDispatch();
 

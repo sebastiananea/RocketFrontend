@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import foto from "../../Images/institucion.jpeg";
 import axios from "axios";
 import Swal from "sweetalert2";
+import CryptoJS from 'crypto-js'
+
 
 function Curso() {
   let institution = useSelector((state) => state.user.suscription)
@@ -82,10 +84,10 @@ function Curso() {
               )}/${institucion.curso}`}
             > */}
               <CopyToClipboard
-                text={`https://rocketprojectarg.netlify.app/signin?institution=${institucion.name.replace(
+                text={`https://rocketprojectarg.netlify.app/signin?institution=${CryptoJS.Rabbit.encrypt(institucion.name.replace(
                   /\s+/g,
                   "%20"
-                )}&curso=${institucion.curso}`}
+                ), "contraseña")}&curso=${CryptoJS.Rabbit.encrypt(institucion.curso, "contraseña")}`}
               >
                 <button type="submit" onClick={(e) => handleClick(e)}>
                   Copiar Link
