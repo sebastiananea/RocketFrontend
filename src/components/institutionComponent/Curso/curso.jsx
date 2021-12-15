@@ -9,7 +9,7 @@ import CryptoJS from 'crypto-js'
 
 
 function Curso() {
-  let institution = useSelector((state) => state.user.suscription)
+  // let institution = useSelector((state) => state.user.suscription)
   var obj = {
     id: JSON.parse(localStorage.getItem("user"))._id,
     name: JSON.parse(localStorage.getItem("user")).name,
@@ -40,27 +40,27 @@ function Curso() {
 
     json.data === true
       ? Swal.fire(
-        "El curso fue creado con exito",
-        "El link fue copiado en el portapales!",
+        "The course was created successfully",
+        "The link was copied to the clipboard!",
         "Succes!"
       )
       : Swal.fire(
-        "Ya existe un curso con este nombre",
-        "El link fue copiado en el portapales!",
+        "A course with this name already exists",
+        "The link was copied to the clipboard!",
         "Succes!"
       );
 
   }
 
-  if (institution) {
+  // if (institution) {
     return (
       <div className={s.Curso}>
         <div className={s.primerContainer}>
           <div className={s.titulo}>
-            <h1> ¡Hola {institucion.name}! </h1>
+            <h1> ¡Welcome {institucion.name}! </h1>
             <h3>
-              Dale nombre a tu curso y comparte el Link con tus estudiantes e
-              instructores.
+            Give your course a name and share the Link with your students and
+              instructors.
             </h3>
           </div>
           <img src={foto} alt="institucion" />
@@ -71,18 +71,12 @@ function Curso() {
             <form className={s.border}>
               <input
                 type="text"
-                placeholder="Nombre del curso"
+                placeholder="Course name"
                 required
                 name="curso"
                 onChange={(e) => handleChange(e)}
               />
 
-              {/* <CopyToClipboard
-              text={`https://rocketprojectarg.netlify.app/login/${institucion.name.replace(
-                /\s+/g,
-                "%20"
-              )}/${institucion.curso}`}
-            > */}
               <CopyToClipboard
                 text={`https://rocketprojectarg.netlify.app/signin?institution=${CryptoJS.Rabbit.encrypt(institucion.name.replace(
                   /\s+/g,
@@ -90,7 +84,7 @@ function Curso() {
                 ), "contraseña")}&curso=${CryptoJS.Rabbit.encrypt(institucion.curso, "contraseña")}`}
               >
                 <button type="submit" onClick={(e) => handleClick(e)}>
-                  Copiar Link
+                Copy link
                 </button>
               </CopyToClipboard>
             </form>
@@ -98,12 +92,12 @@ function Curso() {
         </div>
       </div>
     );
-  }
-  else {
-    return (
-      <div></div>
-    )
-  }
+  // }
+  // else {
+  //   return (
+  //     <div></div>
+  //   )
+  // }
 }
 
 export default Curso;

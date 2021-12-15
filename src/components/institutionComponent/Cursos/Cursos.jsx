@@ -19,8 +19,8 @@ function Cursos({ id, name, institution,curso, score, reports,  }) {
       }
     })
     Swal.fire(
-      'El curso fue eliminado',
-      'Cambios aplicados!',
+      'Course deleted',
+      'Changes applied!',
       'success'
     )
     history.push("/institucion/admin/curso")
@@ -55,11 +55,11 @@ useEffect(() => {
       </div>
       <div className={s.name}>
         
-        <h4>Curso: {curso}   </h4>
+        <h4>Course: {curso}   </h4>
         
       </div>
       <div className={s.name}>
-        <h4>Alumnos: {users.length}   </h4>
+        <h4>Students: {users.length}   </h4>
         
       </div>
       <div className={s.stats}>
@@ -102,7 +102,7 @@ useEffect(() => {
         </div>
       </div>
       <div className={s.details}>
-        <button onClick={() => offCurso()}>Eliminar curso</button>
+        <button onClick={() => offCurso()}>Delete course</button>
       
       </div>
     </div>

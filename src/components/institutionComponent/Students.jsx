@@ -67,8 +67,7 @@ function Students() {
       const alumnos = users2.filter((u) => u.curso === value);
       setUsers(alumnos);
     }
-    // setUsers(users2.filter((u) => u.curso === value));
-    // console.log(value, users);
+   
   }
 
   const handleChange = (e) => {
@@ -85,16 +84,16 @@ function Students() {
 
   if (users) ordenar(users, orderBy);
 
-  if (institution) {
+  // if (institution) {
     return (
       <div className={s.container}>
-        <h2>{users2.length} Alumnos</h2>
+        <h2>{users2.length} Students</h2>
 
         <div className={s.filtros}>
           <div className={s.orderGroup}>
-            <h6>Curso</h6>
+            <h6>Courses</h6>
             <select onChange={(e) => handleChangeFilter(e)}>
-              <option value="All">Todos</option>
+              <option value="All">All students</option>
               {institucion.cursos &&
                 institucion.cursos.map((c) => {
                   return <option value={c}>{c}</option>;
@@ -104,7 +103,7 @@ function Students() {
 
           <form>
             <input
-              placeholder="Buscar Estudiantes..."
+              placeholder="Find Student..."
               onChange={(e) => handleChange(e)}
               className={s.formInput}
               type="text"
@@ -126,7 +125,7 @@ function Students() {
             </button>
           </form>
           <div className={s.orderBy}>
-            <h6>Ordenar</h6>
+            <h6>Order</h6>
             <select value={orderBy} onChange={(e) => setOrderBy(e.target.value)}>
               <option value="a-z">A-Z</option>
               <option value="z-a">Z-A</option>
@@ -199,12 +198,12 @@ function Students() {
         </div>
       </div>
     );
-  }
-  else {
-    return (
-      <div></div>
-    )
-  }
+  // }
+  // else {
+  //   return (
+  //     <div></div>
+  //   )
+  // }
 }
 
 export default Students;

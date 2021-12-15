@@ -3,8 +3,7 @@ import { useHistory } from "react-router-dom";
 import s from "./Register.module.css";
 import axios from "axios";
 
-
-function RegisterInstitution() { 
+function RegisterInstitution() {
   let history = useHistory();
   var [data, setData] = useState({
     name: "",
@@ -19,27 +18,27 @@ function RegisterInstitution() {
 
   useEffect(() => {
     setErrors(inputValidate(data));
-  },[data]);
+  }, [data]);
 
   const inputValidate = (input) => {
     const errors = {};
     const regex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
     if (!data.name) {
-      errors.name = "El nombre de la institucion es obligatorio!";
+      errors.name = "institution name is required!";
       setHabilitado(false);
     }
     if (regex.test(data.email) === false) {
-      errors.email = "E-mail es obligatorio!";
+      errors.email = "E-mail is required!";
       setHabilitado(false);
     }
     if (!data.password) {
-      errors.password = "Password es obligatorio!";
+      errors.password = "Password is required!";
       setHabilitado(false);
     }
     if (data.password !== data.repeatPass) {
       console.log(data.repeatPass);
-      errors.repeatPass = "Passwords no es igual!";
+      errors.repeatPass = "Passwords do not match!";
       setHabilitado(false);
     } else setHabilitado(true);
 
@@ -59,8 +58,7 @@ function RegisterInstitution() {
       axios("https://rocketproject2021.herokuapp.com/institution/signup", {
         method: "post",
         data: data,
-      }).
-      then(history.push("/"));
+      }).then(history.push("/"));
     }
   }
 
@@ -69,18 +67,20 @@ function RegisterInstitution() {
       <div className={s.container}>
         <div className={s.formContainer}>
           <form onSubmit={handleSubmit}>
-            <h2>Crear Institucion</h2>
+            <h2>Sign Up Institucion</h2>
             <input
               className={s.fullname}
               type="text"
-              placeholder="Nombre Institucion"
+              placeholder="Institution name "
               required
               name="name"
               value={data.name}
               onChange={(e) => handleChange(e)}
             />
             {errors.name && (
-              <div className={s.register__err}><strong>{errors.name}</strong></div>
+              <div className={s.register__err}>
+                <strong>{errors.name}</strong>
+              </div>
             )}
             <input
               className={s.email}
@@ -92,7 +92,9 @@ function RegisterInstitution() {
               onChange={(e) => handleChange(e)}
             />
             {errors.email && (
-              <div className={s.register__err}><strong>{errors.email}</strong></div>
+              <div className={s.register__err}>
+                <strong>{errors.email}</strong>
+              </div>
             )}
             <input
               className={s.password}
@@ -104,24 +106,28 @@ function RegisterInstitution() {
               onChange={(e) => handleChange(e)}
             />
             {errors.password && (
-              <div className={s.register__err}><strong>{errors.password}</strong></div>
+              <div className={s.register__err}>
+                <strong>{errors.password}</strong>
+              </div>
             )}
             <input
               className={s.repeatPass}
               type="password"
-              placeholder="Repetir Password"
+              placeholder="Repeat Password"
               required
               name="repeatPass"
               value={data.repeatPass}
               onChange={(e) => handleChange(e)}
             />
             {errors.repeatPass && (
-              <div className={s.register__err}><strong>{errors.repeatPass}</strong></div>
+              <div className={s.register__err}>
+                <strong>{errors.repeatPass}</strong>
+              </div>
             )}
             <input
               className={s.country}
               type="text"
-              placeholder="Pais"
+              placeholder="Country"
               required
               name="country"
               value={data.country}
@@ -133,7 +139,7 @@ function RegisterInstitution() {
               onClick={(e) => handleSubmit(e)}
               className={s.creator_btn}
             >
-              Crear
+              Sign Up
             </button>
           </form>
         </div>
