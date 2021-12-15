@@ -1,10 +1,12 @@
 .inputchat_container {
     background: #ffa600dd;
     height: 80px;
+    width: 70%;
     border-radius: 20px;
     padding: 4px;
     box-sizing: border-box;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    
 }
 
 .inputchat_input {
@@ -50,7 +52,7 @@
 
 .inputchat_emojiscontainer {
     position: absolute;
-    bottom: 37px;
+    bottom: 5.5rem;
 }
 
 .inputOculto {

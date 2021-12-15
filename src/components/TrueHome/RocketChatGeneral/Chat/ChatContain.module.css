@@ -11,11 +11,17 @@
   justify-content: center;
   margin-top: 27px;
 }
+
 .chatBox {
   flex: 5.5;
-  border: 1px solid red;
+  border: 2px solid orange;
+  border-radius: 30px;
   position: absolute;
   left: -1000px;
+  bottom: -2rem;
+  background: #666565cc;
+  z-index: 112;
+  transition: 0.5s;
 }
 
 .chatBoxWrapper {
@@ -28,8 +34,30 @@
   cursor: pointer;
 }
 
+.checkbox {
+  cursor: pointer;
+  opacity: 0;
+}
+
 .checkbox:checked ~ .chatBox{
-  left: 10px;
+  left: -40px;
   opacity: 1;
+}
+
+.chatBtn {
+  cursor: pointer;
+  position: relative;
+  left: -53%;
+  transition: 0.5s;
+  text-decoration: underline;
+}
+
+.checkbox:checked ~ .chatBtn{
+  left: -15%;
+}
+
+.checkbox:checked ~ .chatBtn>img{
+  left: -15%;
+  transform: rotate(180deg)
 }
 
