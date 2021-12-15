@@ -3,8 +3,7 @@ import { useHistory } from "react-router-dom";
 import s from "./Register.module.css";
 import axios from "axios";
 
-
-function RegisterInstitution() { 
+function RegisterInstitution() {
   let history = useHistory();
   var [data, setData] = useState({
     name: "",
@@ -19,7 +18,7 @@ function RegisterInstitution() {
 
   useEffect(() => {
     setErrors(inputValidate(data));
-  },[data]);
+  }, [data]);
 
   const inputValidate = (input) => {
     const errors = {};
@@ -56,11 +55,10 @@ function RegisterInstitution() {
   function handleSubmit(e) {
     e.preventDefault();
     if (data.password === data.repeatPass) {
-      axios("https://rocketproject2021.herokuapp.com/institution/signup", {
+      axios("http://localhost:3001/institution/signup", {
         method: "post",
         data: data,
-      }).
-      then(history.push("/"));
+      }).then(history.push("/"));
     }
   }
 
@@ -80,7 +78,9 @@ function RegisterInstitution() {
               onChange={(e) => handleChange(e)}
             />
             {errors.name && (
-              <div className={s.register__err}><strong>{errors.name}</strong></div>
+              <div className={s.register__err}>
+                <strong>{errors.name}</strong>
+              </div>
             )}
             <input
               className={s.email}
@@ -92,7 +92,9 @@ function RegisterInstitution() {
               onChange={(e) => handleChange(e)}
             />
             {errors.email && (
-              <div className={s.register__err}><strong>{errors.email}</strong></div>
+              <div className={s.register__err}>
+                <strong>{errors.email}</strong>
+              </div>
             )}
             <input
               className={s.password}
@@ -104,7 +106,9 @@ function RegisterInstitution() {
               onChange={(e) => handleChange(e)}
             />
             {errors.password && (
-              <div className={s.register__err}><strong>{errors.password}</strong></div>
+              <div className={s.register__err}>
+                <strong>{errors.password}</strong>
+              </div>
             )}
             <input
               className={s.repeatPass}
@@ -116,7 +120,9 @@ function RegisterInstitution() {
               onChange={(e) => handleChange(e)}
             />
             {errors.repeatPass && (
-              <div className={s.register__err}><strong>{errors.repeatPass}</strong></div>
+              <div className={s.register__err}>
+                <strong>{errors.repeatPass}</strong>
+              </div>
             )}
             <input
               className={s.country}

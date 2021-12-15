@@ -56,7 +56,6 @@ function Students() {
   useEffect(() => {
     getStudents();
     getCursos();
-    console.log("EFFECT");
   }, []);
 
   function handleChangeFilter(e) {
@@ -67,8 +66,6 @@ function Students() {
       const alumnos = users2.filter((u) => u.curso === value);
       setUsers(alumnos);
     }
-    // setUsers(users2.filter((u) => u.curso === value));
-    // console.log(value, users);
   }
 
   const handleChange = (e) => {
@@ -85,23 +82,33 @@ function Students() {
 
   if (users) ordenar(users, orderBy);
 
-  if (institution) {
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const vencimiento =
+    Date.parse(
+      new Date(
+        user.suscription.split("/")[2],
+        user.suscription.split("/")[1],
+        user.suscription.split("/")[0]
+      )
+    ) < Date.parse(new Date());
+
+  if (!vencimiento && institution) {
     return (
       <div className={s.container}>
-        <h2>{users2.length} Alumnos</h2>
+        <h2>Alumnos</h2>
 
         <div className={s.filtros}>
           <div className={s.orderGroup}>
             <h6>Curso</h6>
             <select onChange={(e) => handleChangeFilter(e)}>
-              <option value="All">Todos</option>
+              <option value="All">{institucion.name}</option>
               {institucion.cursos &&
                 institucion.cursos.map((c) => {
                   return <option value={c}>{c}</option>;
                 })}
             </select>
           </div>
-
           <form>
             <input
               placeholder="Buscar Estudiantes..."

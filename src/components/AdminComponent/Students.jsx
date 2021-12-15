@@ -21,7 +21,51 @@ function Students() {
   });
   let [orderBy, setOrderBy] = useState("a-z");
 
-  
+
+  async function shuffleTables() {
+    if (group !== "") {
+      await axios("https://rocketproject2021.herokuapp.com/asignTable", {
+        method: "post",
+        data: {
+          curso: group,
+          institution: JSON.parse(localStorage.getItem("user")).institution,
+        },
+      }).then(Swal.fire("Mesas mezcladas", "Satisfactoriamente!", "success"));
+
+      chatRef = child(chatRef, `${user.institution}/Grupos/${group}`);
+      remove(chatRef);
+    } else Swal.fire("Por favor, seleccione un grupo para mezclar");
+    await axios("https://rocketproject2021.herokuapp.com/addClass", {
+      method: "post",
+      data: {
+        curso: group,
+        institution: JSON.parse(localStorage.getItem("user")).institution,
+      },
+    });
+  }
+
+  async function shuffleTablesRnm() {
+    if (group !== "") {
+      await axios("https://rocketproject2021.herokuapp.com/asignTableRandom", {
+        method: "post",
+        data: {
+          curso: group,
+          institution: JSON.parse(localStorage.getItem("user")).institution,
+        },
+      }).then(Swal.fire("Mesas mezcladas", "Satisfactoriamente!", "success"));
+
+      chatRef = child(chatRef, `${user.institution}/Grupos/${group}`);
+      remove(chatRef);
+    } else Swal.fire("Por favor, seleccione un grupo para mezclar");
+    await axios("https://rocketproject2021.herokuapp.com/addClass", {
+      method: "post",
+      data: {
+        curso: group,
+        institution: JSON.parse(localStorage.getItem("user")).institution,
+      },
+    });
+  }
+
   async function getStudents() {
     let res = await axios(
       `https://rocketproject2021.herokuapp.com/getUsersByInstitution/${JSON.parse(localStorage.getItem("user")).institution}`
@@ -59,7 +103,7 @@ function Students() {
     });
   };
   var [detailsOpen, setDetailsOpen] = useState(false);
-
+  
   if (institution || prueba){
     return (
       <div className={s.container}>
