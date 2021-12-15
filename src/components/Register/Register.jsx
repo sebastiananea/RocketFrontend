@@ -58,10 +58,18 @@ function Register() {
       setHabilitado(false);
     }
     if (data.password !== data.repeatPass) {
-      console.log(data.repeatPass);
       errors.repeatPass = "Passwords do not match!";
       setHabilitado(false);
-    } else setHabilitado(true);
+    } 
+    if (!data.gender) {
+      errors.gender = "!";
+      setHabilitado(false);
+    }
+    if (!data.age) {
+      errors.age = "!";
+      setHabilitado(false);
+    }
+    else setHabilitado(true);
 
     return errors;
   };
@@ -165,7 +173,7 @@ function Register() {
               onChange={(e) => handleChange(e)}
             />
             <div className={s.register_div_sexage}>
-              <label className={s.register_sex}>Male</label>
+              <label className={s.register_sex}><span style={{color:"red", margin:"0 4px 0 4px"}}>{errors.gender}</span>Male</label>
               <input
                 type="radio"
                 name="gender"
@@ -188,8 +196,8 @@ function Register() {
                 onChange={(e) => handleChange(e)}
                 value="other"
               />
-
-              <label className={s.register_sex}>Age</label>
+              
+              <label className={s.register_sex}><span style={{color:"red", margin:"0 4px 0 4px"}}>{errors.age}</span>Age</label>
               <select
                 className={s.register_select}
                 name="age"

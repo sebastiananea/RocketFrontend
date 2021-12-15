@@ -25,6 +25,22 @@ function ChatContain({ params, table }) {
     console.log(`${c.getHours()}:${c.getMinutes()}`);
   }, []);
 
+  let hora = "14:3"
+  
+
+  const formatoHora = hour => {
+
+    hora = hour.toString().split("");
+
+    let horaBien = [];
+
+    if (hora.length === 4) horaBien = [hora[0],hora[1],hora[2],0,hora[3]]
+    else horaBien = hora
+
+    horaBien = horaBien.join("");
+    return horaBien
+  }
+
   return (
     <div className={s.chatBox}>
       <div className={s.chatBoxWrapper}>
@@ -38,7 +54,7 @@ function ChatContain({ params, table }) {
                     name={m.name}
                     img={m.img}
                     txt={m.txt} 
-                    hour={m.hour}
+                    hour={formatoHora(m.hour)}
                     day={day[m.day]}
                     id={m.userId}
                     file={m?.file}
