@@ -1,15 +1,20 @@
+import { useHistory } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import axios from "axios";
 import React, { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import s from "./curso.module.css";
-import { useSelector } from 'react-redux';
-import foto from "../../Images/institucion.jpeg";
-import axios from "axios";
 import Swal from "sweetalert2";
 import CryptoJS from 'crypto-js'
+import s from "./curso.module.css";
+
+import foto from "../../Images/institucion.jpeg";
 
 
 function Curso() {
-  // let institution = useSelector((state) => state.user.suscription)
+  let history = useHistory();
+  let institution = useSelector((state) => state.user.suscription)
+
+
   var obj = {
     id: JSON.parse(localStorage.getItem("user"))._id,
     name: JSON.parse(localStorage.getItem("user")).name,
@@ -27,6 +32,18 @@ function Curso() {
     });
   }
 
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const vencimiento =
+    Date.parse(
+      new Date(
+        user.suscription.split("/")[2],
+        user.suscription.split("/")[1],
+        user.suscription.split("/")[0]
+      )
+    ) < Date.parse(new Date());
+
+
   async function handleClick(e) {
     e.preventDefault();
     var json = await axios(
@@ -36,7 +53,6 @@ function Curso() {
         data: institucion,
       }
     );
-
 
     json.data === true
       ? Swal.fire(
@@ -49,11 +65,11 @@ function Curso() {
         "The link was copied to the clipboard!",
         "Succes!"
       );
+      }
 
-  }
 
-  // if (institution) {
-    return (
+    if (!vencimiento && institution) { 
+      return (
       <div className={s.Curso}>
         <div className={s.primerContainer}>
           <div className={s.titulo}>
@@ -92,12 +108,31 @@ function Curso() {
         </div>
       </div>
     );
-  // }
-  // else {
-  //   return (
-  //     <div></div>
-  //   )
-  // }
-}
+
+  } else {
+    return (
+      <div className={s.main_container}>
+        <div className={s.card}>
+          <div className={s.header}>
+            <h2>Oops!</h2>
+          </div>
+          <div className={s.description}>
+            <p>Your suscription is expired since {user.suscription}</p>
+          </div>
+          <div className={s.description}>
+            <p>Click on the button below to activate your suscription again.</p>
+          </div>
+          <div className={s.btn}>
+            <button onClick={() => history.push("/institucion/admin/payment")}>
+              Pay
+            </button>
+          </div>
+        </div>
+      </div>
+      );
+    }
+  }
+
+
 
 export default Curso;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import s from "./Students.module.css";
 import Student from "./Student/Student";
@@ -7,7 +8,7 @@ const { ordenar } = require("../utils");
 
 function Students() {
   let institution = useSelector((state) => state.user.suscription)
-
+  let history = useHistory()
   var obj = {
     id: JSON.parse(localStorage.getItem("user"))._id,
     name: JSON.parse(localStorage.getItem("user")).name,
@@ -56,7 +57,6 @@ function Students() {
   useEffect(() => {
     getStudents();
     getCursos();
-    console.log("EFFECT");
   }, []);
 
   function handleChangeFilter(e) {
@@ -67,7 +67,6 @@ function Students() {
       const alumnos = users2.filter((u) => u.curso === value);
       setUsers(alumnos);
     }
-   
   }
 
   const handleChange = (e) => {
@@ -84,23 +83,35 @@ function Students() {
 
   if (users) ordenar(users, orderBy);
 
-  // if (institution) {
+
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const vencimiento =
+    Date.parse(
+      new Date(
+        user.suscription.split("/")[2],
+        user.suscription.split("/")[1],
+        user.suscription.split("/")[0]
+      )
+    ) < Date.parse(new Date());
+
+  if (!vencimiento && institution) {
     return (
       <div className={s.container}>
-        <h2>{users2.length} Students</h2>
+        <h2>Alumnos</h2>
 
         <div className={s.filtros}>
           <div className={s.orderGroup}>
             <h6>Courses</h6>
             <select onChange={(e) => handleChangeFilter(e)}>
               <option value="All">All students</option>
+
               {institucion.cursos &&
                 institucion.cursos.map((c) => {
                   return <option value={c}>{c}</option>;
                 })}
             </select>
           </div>
-
           <form>
             <input
               placeholder="Find Student..."
@@ -198,12 +209,30 @@ function Students() {
         </div>
       </div>
     );
-  // }
-  // else {
-  //   return (
-  //     <div></div>
-  //   )
-  // }
+
+  }
+  else {
+    return (
+      <div className={s.main_container}>
+        <div className={s.card}>
+          <div className={s.header}>
+            <h2>Oops!</h2>
+          </div>
+          <div className={s.description}>
+            <p>Your suscription is expired since {user.suscription}</p>
+          </div>
+          <div className={s.description}>
+            <p>Click on the button below to activate your suscription again.</p>
+          </div>
+          <div className={s.btn}>
+            <button onClick={() => history.push("/institucion/admin/payment")}>
+              Pay
+            </button>
+          </div>
+        </div>
+      </div>
+      );
+    }
 }
 
 export default Students;
