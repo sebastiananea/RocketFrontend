@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import s from "./curso.module.css";
-import { SetNewCourse } from "../../../Actions/index";
+import { useSelector } from 'react-redux';
 import foto from "../../Images/institucion.jpeg";
 import axios from "axios";
 import Swal from "sweetalert2";
 
 function Curso() {
+  let institution = useSelector((state) => state.user.suscription)
   var obj = {
     id: JSON.parse(localStorage.getItem("user"))._id,
     name: JSON.parse(localStorage.getItem("user")).name,
@@ -37,63 +38,70 @@ function Curso() {
 
     json.data === true
       ? Swal.fire(
-          "El curso fue creado con exito",
-          "El link fue copiado en el portapales!",
-          "Succes!"
-        )
+        "El curso fue creado con exito",
+        "El link fue copiado en el portapales!",
+        "Succes!"
+      )
       : Swal.fire(
-          "Ya existe un curso con este nombre",
-          "El link fue copiado en el portapales!",
-          "Succes!"
-        );
+        "Ya existe un curso con este nombre",
+        "El link fue copiado en el portapales!",
+        "Succes!"
+      );
 
   }
 
-  return (
-    <div className={s.Curso}>
-      <div className={s.primerContainer}>
-        <div className={s.titulo}>
-          <h1> ¡Hola {institucion.name}! </h1>
-          <h3>
-            Dale nombre a tu curso y comparte el Link con tus estudiantes e
-            instructores.
-          </h3>
+  if (institution) {
+    return (
+      <div className={s.Curso}>
+        <div className={s.primerContainer}>
+          <div className={s.titulo}>
+            <h1> ¡Hola {institucion.name}! </h1>
+            <h3>
+              Dale nombre a tu curso y comparte el Link con tus estudiantes e
+              instructores.
+            </h3>
+          </div>
+          <img src={foto} alt="institucion" />
         </div>
-        <img src={foto} alt="institucion" />
-      </div>
 
-      <div className={s.fomrCentrado}>
-        <div className={s.segundoContainer}>
-          <form className={s.border}>
-            <input
-              type="text"
-              placeholder="Nombre del curso"
-              required
-              name="curso"
-              onChange={(e) => handleChange(e)}
-            />
+        <div className={s.fomrCentrado}>
+          <div className={s.segundoContainer}>
+            <form className={s.border}>
+              <input
+                type="text"
+                placeholder="Nombre del curso"
+                required
+                name="curso"
+                onChange={(e) => handleChange(e)}
+              />
 
-            {/* <CopyToClipboard
+              {/* <CopyToClipboard
               text={`https://rocketprojectarg.netlify.app/login/${institucion.name.replace(
                 /\s+/g,
                 "%20"
               )}/${institucion.curso}`}
             > */}
-            <CopyToClipboard
-              text={`https://rocketprojectarg.netlify.app/signin?institution=${institucion.name.replace(
-                /\s+/g,
-                "%20"
-              )}&curso=${institucion.curso}`}
-            >
-              <button type="submit" onClick={(e) => handleClick(e)}>
-                Copiar Link
-              </button>
-            </CopyToClipboard>
-          </form>
+              <CopyToClipboard
+                text={`https://rocketprojectarg.netlify.app/signin?institution=${institucion.name.replace(
+                  /\s+/g,
+                  "%20"
+                )}&curso=${institucion.curso}`}
+              >
+                <button type="submit" onClick={(e) => handleClick(e)}>
+                  Copiar Link
+                </button>
+              </CopyToClipboard>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+  else {
+    return (
+      <div></div>
+    )
+  }
 }
 
 export default Curso;

@@ -22,7 +22,6 @@ import {
   Instructor,
   Payment,
   Tables,
-
   Cursos
 } from './components/index'
 

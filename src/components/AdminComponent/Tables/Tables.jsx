@@ -12,6 +12,8 @@ function Tables() {
     const user = JSON.parse(localStorage.getItem("user"));
     let chatRef = ref(myDatabaseChat);
     var groups = useSelector((state)=>state.groups)
+    let prueba= useSelector((state)=>state.user.moderator)
+    let institution=useSelector((state)=>state.user.suscription)
     var [group, setGroup] = useState(groups[0])
     async function assignTableRandom(){
         await axios("https://rocketproject2021.herokuapp.com/asignTableRandom",{
@@ -53,7 +55,10 @@ function Tables() {
           chatRef = child(chatRef, `${user.institution}/Grupos/${group}`);
           remove(chatRef);
     }
-    return (
+    if (!prueba && !institution){
+        return <div></div>
+      }
+    else return (
         <div className={s.container}>
             <div className={s.selectGroup}>
                 <h4>Select Group</h4>

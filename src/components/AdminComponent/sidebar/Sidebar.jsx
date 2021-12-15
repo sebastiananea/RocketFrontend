@@ -11,6 +11,10 @@ import axios from 'axios'
 
 function Sidebar({setGroups}){  
     let groups = useSelector((state)=>state.groups)
+    let prueba= useSelector((state)=>state.user.moderator)
+    let institution=useSelector((state)=>state.user.suscription)
+    console.log(institution)
+    console.log("soy el institut")
     useEffect(()=>{
       async function getGroups(){
         await axios("https://rocketproject2021.herokuapp.com/admin/getCohortes")
@@ -22,7 +26,9 @@ function Sidebar({setGroups}){
     },[setGroups, groups])
 
     var [open, setOpen] = useState(false)
-    return (
+
+    if (institution || prueba){
+      return (
         <div className={open ? s.sidebarOpen : s.sidebar}>
           <svg
             className={s.hamburger}
@@ -42,6 +48,10 @@ function Sidebar({setGroups}){
           </div>
         </div>
       );
+    }
+    if (!prueba){
+      return <div></div>
+    }
 }
 
 
