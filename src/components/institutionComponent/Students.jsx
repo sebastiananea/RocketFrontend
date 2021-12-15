@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import s from "./Students.module.css";
 import Student from "./Student/Student";
@@ -7,7 +8,7 @@ const { ordenar } = require("../utils");
 
 function Students() {
   let institution = useSelector((state) => state.user.suscription)
-
+  let history = useHistory()
   var obj = {
     id: JSON.parse(localStorage.getItem("user"))._id,
     name: JSON.parse(localStorage.getItem("user")).name,
@@ -209,9 +210,26 @@ function Students() {
   }
   else {
     return (
-      <div></div>
-    )
-  }
+      <div className={s.main_container}>
+        <div className={s.card}>
+          <div className={s.header}>
+            <h2>Oops!</h2>
+          </div>
+          <div className={s.description}>
+            <p>Your suscription is expired since {user.suscription}</p>
+          </div>
+          <div className={s.description}>
+            <p>Click on the button below to activate your suscription again.</p>
+          </div>
+          <div className={s.btn}>
+            <button onClick={() => history.push("/institucion/admin/payment")}>
+              Pay
+            </button>
+          </div>
+        </div>
+      </div>
+      );
+    }
 }
 
 export default Students;

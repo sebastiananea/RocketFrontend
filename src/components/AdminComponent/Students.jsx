@@ -4,7 +4,7 @@ import axios from "axios";
 import s from "./Students.module.css";
 import Student from "./Student/Student";
 import Details from "./Student/Details/Details";
-
+import Swal from "sweetalert2";
 
 
 function Students() {
@@ -20,51 +20,6 @@ function Students() {
     to: 7,
   });
   let [orderBy, setOrderBy] = useState("a-z");
-
-
-  async function shuffleTables() {
-    if (group !== "") {
-      await axios("https://rocketproject2021.herokuapp.com/asignTable", {
-        method: "post",
-        data: {
-          curso: group,
-          institution: JSON.parse(localStorage.getItem("user")).institution,
-        },
-      }).then(Swal.fire("Mesas mezcladas", "Satisfactoriamente!", "success"));
-
-      chatRef = child(chatRef, `${user.institution}/Grupos/${group}`);
-      remove(chatRef);
-    } else Swal.fire("Por favor, seleccione un grupo para mezclar");
-    await axios("https://rocketproject2021.herokuapp.com/addClass", {
-      method: "post",
-      data: {
-        curso: group,
-        institution: JSON.parse(localStorage.getItem("user")).institution,
-      },
-    });
-  }
-
-  async function shuffleTablesRnm() {
-    if (group !== "") {
-      await axios("https://rocketproject2021.herokuapp.com/asignTableRandom", {
-        method: "post",
-        data: {
-          curso: group,
-          institution: JSON.parse(localStorage.getItem("user")).institution,
-        },
-      }).then(Swal.fire("Mesas mezcladas", "Satisfactoriamente!", "success"));
-
-      chatRef = child(chatRef, `${user.institution}/Grupos/${group}`);
-      remove(chatRef);
-    } else Swal.fire("Por favor, seleccione un grupo para mezclar");
-    await axios("https://rocketproject2021.herokuapp.com/addClass", {
-      method: "post",
-      data: {
-        curso: group,
-        institution: JSON.parse(localStorage.getItem("user")).institution,
-      },
-    });
-  }
 
   async function getStudents() {
     let res = await axios(

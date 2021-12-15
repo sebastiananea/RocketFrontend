@@ -68,7 +68,7 @@ const Payment = ({ data }) => {
   }
   useEffect(() => {
     verifyPayment();
-    refresh();
+    if(success==="true")refresh();
   }, [success === "true"]);
   if (success === "true") {
     let compra = JSON.parse(sessionStorage.getItem("compra"));
@@ -93,6 +93,7 @@ const Payment = ({ data }) => {
           </div>
           <p>Estará activo hasta el {fecha.toLocaleDateString()}</p>
         </div>
+      </div>
       );
     } else
       return (
@@ -123,12 +124,6 @@ const Payment = ({ data }) => {
           )}
         </div>
       );
-  }
-  else {
-    return (
-      <div></div>
-    )
-  }
 };
 
 export default Payment;

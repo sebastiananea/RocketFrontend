@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import CryptoJS from 'crypto-js'
 import Google from "../../Images/google-logo-9808.png";
 import "./LandingPage.css";
 import axios from "axios";
@@ -9,7 +10,7 @@ import { setUser, saveData} from "../../Actions";
 import { googleProvider } from "../../config/authMethods";
 import Swal from "sweetalert2";
 import socialMediaAuth from "../../service/Auth";
-import CryptoJS from 'crypto-js'
+
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);

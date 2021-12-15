@@ -1,18 +1,18 @@
 import { useHistory } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import axios from "axios";
 import React, { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import Swal from "sweetalert2";
+import CryptoJS from 'crypto-js'
 import s from "./curso.module.css";
-import { useSelector } from 'react-redux';
+
 import foto from "../../Images/institucion.jpeg";
 
 
 function Curso() {
   let history = useHistory();
-  import axios from "axios";
-  import Swal from "sweetalert2";
-  import CryptoJS from 'crypto-js'
- let institution = useSelector((state) => state.user.suscription)
+  let institution = useSelector((state) => state.user.suscription)
 
   var obj = {
     id: JSON.parse(localStorage.getItem("user"))._id,
@@ -74,10 +74,10 @@ function Curso() {
         "El link fue copiado en el portapales!",
         "Succes!"
       );
+      }
 
-  
-
-    if (!vencimiento && institution) { return (
+    if (!vencimiento && institution) { 
+      return (
       <div className={s.Curso}>
         <div className={s.primerContainer}>
           <div className={s.titulo}>
@@ -100,19 +100,13 @@ function Curso() {
                 name="curso"
                 onChange={(e) => handleChange(e)}
               />
-              {/* <CopyToClipboard
-              text={`https://rocketprojectarg.netlify.app/login/${institucion.name.replace(
-                /\s+/g,
-                "%20"
-              )}/${institucion.curso}`}
-            > */}
               <CopyToClipboard
                 text={`https://rocketprojectarg.netlify.app/signin?institution=${CryptoJS.Rabbit.encrypt(institucion.name.replace(
                   /\s+/g,
                   "%20"
                 ), "contraseña")}&curso=${CryptoJS.Rabbit.encrypt(institucion.curso, "contraseña")}`}
               >
-                <button type="submit" onClick={(e) => handleClick(e)}>
+                <button type="submit" onClick={handleClick}>
                   Copiar Link
                 </button>
               </CopyToClipboard>
@@ -141,8 +135,9 @@ function Curso() {
           </div>
         </div>
       </div>
-    );
+      );
+    }
   }
-}
+
 
 export default Curso;
