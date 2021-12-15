@@ -52,7 +52,7 @@ function User({ setUser }) {
               localStorage.removeItem('user')
               setUser(null)
               axios.post(
-                'http://localhost:3001/user/changes',
+                'https://rocketproject2021.herokuapp.com/user/changes',
                 { new_status: 'Offline' }
               )
               history.push('/')

@@ -35,7 +35,7 @@ function Silla({ img, name, _id }) {
      //       if (reportText.value !== undefined) {
     //         let group=myUser.curso;
     //         let date=`${mes}-${año}`
-    //         axios.post(`http://localhost:3001/admin/report`,
+    //         axios.post(`https://rocketproject2021.herokuapp.com/admin/report`,
 
     if (e.target.value === "reports") {
       // let reportText = prompt(`¿Por qué quieres reportar a ${name}?`);

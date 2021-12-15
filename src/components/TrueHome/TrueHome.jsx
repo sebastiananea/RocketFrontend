@@ -27,7 +27,7 @@ function TrueHome() {
     if (myUser && myUser.institution) {
 
     let data = await axios
-        .post("http://localhost:3001/getUsersByInstitution", {institution: myUser.institution})
+        .post("https://rocketproject2021.herokuapp.com/getUsersByInstitution", {institution: myUser.institution})
         .then((x) => x.data.filter((x) => x._id !== myUser._id));
       setUsers(data);
       setUsers2(data);

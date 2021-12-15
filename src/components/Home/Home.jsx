@@ -9,7 +9,7 @@ const Home = () => {
   const [profiles, setProfiles] = useState([]);
   const [params, setparams] = useState(null);
   useEffect(async () => {
-    await axios("http://localhost:3001/isLog", {
+    await axios("https://rocketproject2021.herokuapp.com/isLog", {
       method: "post",
       data: { token: localStorage.getItem("token") },
     }).then((res) => localStorage.setItem("user", JSON.stringify(res.data)));
@@ -18,7 +18,7 @@ const Home = () => {
     setparams(userr);
 
     let profiles = await axios
-      .post("http://localhost:3001/filterUserByTable", {
+      .post("https://rocketproject2021.herokuapp.com/filterUserByTable", {
         table: userr.table,
         institution: userr.institution,
         curso: userr.curso,
