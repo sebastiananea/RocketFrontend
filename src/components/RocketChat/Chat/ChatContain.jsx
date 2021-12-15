@@ -37,8 +37,11 @@ function ChatContain({ params, table }) {
 
     let horaBien = [];
 
-    if (hora.length === 4) horaBien = [hora[0], hora[1], hora[2], 0, hora[3]];
-    else horaBien = hora;
+
+    if (hora.length === 4 && hora[1] === ":") horaBien = [0,hora[0],hora[1],hora[2],hora[3]];
+    else if (hora.length === 4) horaBien = [hora[0],hora[1],hora[2],0,hora[3]];
+    else if (hora.length === 3) horaBien = [0,hora[0],hora[1],0,hora[2]];
+    else horaBien = hora
 
     horaBien = horaBien.join("");
     return horaBien;

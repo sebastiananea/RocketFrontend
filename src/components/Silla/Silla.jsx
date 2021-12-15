@@ -48,7 +48,7 @@ function Silla({ img, name, _id }) {
         },
         showCancelButton: true
       })
-      if (reportText) Swal.fire(`Reportaste a ${name}. Motivo: '${reportText.value}'.`)
+      if (reportText.value !== undefined) Swal.fire(`Reportaste a ${name}. Motivo: '${reportText.value}'.`)
       
     
       const fecha = new Date()
