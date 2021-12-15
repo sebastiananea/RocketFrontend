@@ -5,7 +5,7 @@ import firebase from "firebase/compat";
 import s from "./Input.module.css";
 import Swal from "sweetalert2";
 // import { AiOutlineSend } from "react-icons/ai";
-import { FiSend } from "react-icons/fi";
+import { FiSend, FiPaperclip } from "react-icons/fi"; 
 
 
 function RocketChat({ name, img, table, id }) {
@@ -130,7 +130,7 @@ function RocketChat({ name, img, table, id }) {
                     :
                     null}
                     <input id="file" type="file" onChange={readFile} placeholder="algo" className={s.inputOculto}></input>
-                    <label for="file" style={{cursor:"pointer", marginRight:"10rem"}}>📎{archivo.seleccionado}</label>
+                    <label for="file" style={{cursor:"pointer", marginRight:"10rem"}}><FiPaperclip/>{archivo.seleccionado}</label>
             </form>
         </div>
     )

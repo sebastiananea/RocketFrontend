@@ -52,6 +52,7 @@ function ChatContain({ params, table }) {
       <input type="checkbox" className={s.checkbox} id="chat" />
       <label for="chat" className={s.chatBtn}>
         <img src="http://cdn.onlinewebfonts.com/svg/img_211250.png" alt="" width="10px"/>
+        <strong style={{marginLeft:"6px"}}>Chat</strong>
       </label>
       <div className={s.chatBox}>
         <div className={s.chatBoxWrapper}>
