@@ -13,6 +13,8 @@ function Charts() {
     let history = useHistory()
     var groups = useSelector((state)=>state.groups)
     var institution = useSelector((state)=>state.user.institution)
+    let prueba= useSelector((state)=>state.user.moderator)
+    let prueba_institution=useSelector((state)=>state.user.suscription)
 
     var [data, setData] = useState("")
     var [data1, setData1] = useState("")
@@ -32,6 +34,10 @@ function Charts() {
         }
         getData1()
     }, [selected])
+
+    if (!prueba && !prueba_institution){
+        return <div></div>
+      }
    if(data) return (
         <div className={s.container}>
             <h2>ESTADISTICAS</h2>
