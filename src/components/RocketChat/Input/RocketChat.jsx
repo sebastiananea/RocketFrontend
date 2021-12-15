@@ -9,11 +9,12 @@ function RocketChat({ name, img, table, id }) {
   const [emoji, setemoji] = useState(false);
   const [messages, setmessages] = useState({ txt: "" });
   const [file, setFile] = useState();
+  const [archivo, setArchivo] = useState({seleccionado:""});
   const d = new Date();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setArchivo({seleccionado:""})
 
     
     if(!file && messages.txt.trim()==="")return;
@@ -100,6 +101,7 @@ function RocketChat({ name, img, table, id }) {
     const readFile = (e) =>{
         e.preventDefault();
         setFile(e.target.files[0])
+        setArchivo({seleccionado:"📄"})
     }
     
 
@@ -107,7 +109,7 @@ function RocketChat({ name, img, table, id }) {
         <div className={s.inputchat_container}>
             <form onSubmit={e => handleSubmit(e)}>
                 <button className={s.inputchat_btn} name="emoji" onClick={(e) => emojiWorld(e)}>😃</button>
-                <textarea spellcheck="false" className={s.inputchat_input} type="text" value={messages.txt} name="input" onChange={(e) => handleChange(e)}></textarea>
+                <textarea spellcheck="false" className={s.inputchat_input} type="text" value={messages.txt} name="input" onChange={(e) => handleChange(e)}>{archivo.arch}</textarea>
                 <button className={s.inputchat_btn2} type="submit" >🚀</button>
                 {emoji ?
                     <div className={s.inputchat_emojiscontainer}>
@@ -126,11 +128,10 @@ function RocketChat({ name, img, table, id }) {
                     :
                     null}
                     <input id="file" type="file" onChange={readFile} placeholder="algo" className={s.inputOculto}></input>
-                    <label for="file" style={{cursor:"pointer", marginRight:"10rem"}}>📎</label>
+                    <label for="file" style={{cursor:"pointer", marginRight:"10rem"}}>📎{archivo.seleccionado}</label>
             </form>
         </div>
     )
-
 }
 
 export default RocketChat;
