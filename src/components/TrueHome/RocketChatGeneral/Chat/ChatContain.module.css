@@ -1,0 +1,35 @@
+.chatBoxTop {
+  overflow: auto;
+  overflow-y: scroll;
+  height: 53vh;
+  margin-top: 20px;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 27px;
+}
+.chatBox {
+  flex: 5.5;
+  border: 1px solid red;
+  position: absolute;
+  left: -1000px;
+}
+
+.chatBoxWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox:checked ~ .menu{
+  top: 3.9vh;
+  cursor: pointer;
+}
+
+.checkbox:checked ~ .chatBox{
+  left: 10px;
+  opacity: 1;
+}
+
