@@ -94,7 +94,7 @@ function Register() {
 
       let DefinitiveName = nameArr.join(" ");
 
-      await axios(`"https://rocketproject2021.herokuapp.com/signup`, {
+      await axios(`https://rocketproject2021.herokuapp.com/signup`, {
         method: "post",
         data: { ...data, name: DefinitiveName },
       }).then(history.push("/active-account/false"));

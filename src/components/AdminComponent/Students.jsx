@@ -76,13 +76,7 @@ function Students() {
   }
   async function getStudents() {
     let res = await axios(
-      "https://rocketproject2021.herokuapp.com/getUsersByInstitution",
-      {
-        method: "post",
-        data: {
-          institution: JSON.parse(localStorage.getItem("user")).institution,
-        },
-      }
+      `https://rocketproject2021.herokuapp.com/getUsersByInstitution/${JSON.parse(localStorage.getItem("user")).institution}`
     ).then((x) => x.data);
     setUsers(res);
     setUsers2(res);

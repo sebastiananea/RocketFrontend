@@ -19,7 +19,7 @@ function Instructors({ img, _id, name, score, reports, curso }) {
         },
       }
 
-    }).then((x) => x.data);
+    );
     Swal.fire(
       'El instructor fue removido',
       'Cambios aplicados!',

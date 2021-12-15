@@ -53,6 +53,7 @@ function LandingPage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    console.log(log)
     await axios("https://rocketproject2021.herokuapp.com/signin", {
       method: "post",
       data: log,

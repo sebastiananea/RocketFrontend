@@ -10,7 +10,7 @@ function Cursos({ id, name, institution,curso, score, reports,  }) {
   var [users, setUsers] = useState([]);
   //elimina el curso
   async function offCurso(e) {
-    var res = await axios("http://localhost:3001/institution/eliminarCurso", {
+    var res = await axios("https://rocketproject2021.herokuapp.com/institution/eliminarCurso", {
       method: "post",
       data: {
         id,
