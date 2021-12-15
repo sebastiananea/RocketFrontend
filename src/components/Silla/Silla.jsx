@@ -10,6 +10,7 @@ function Silla({ img, name, _id }) {
   const [likeOrReport, setlikeOrReport] = useState({ like: false, report: "" });
   const myUser = useSelector((state)=>state.user)
 
+
   const onChange = async (e) => {
     e.preventDefault();
     if (e.target.value === "like") {
@@ -20,14 +21,21 @@ function Silla({ img, name, _id }) {
       const año = fecha.getFullYear()
 
       let group=myUser.curso;
+      let institution=myUser.institution;
       let date=`${mes}-${año}`
-      axios.post(`http://localhost:3001/admin/like`,
+      axios.post(`https://rocketproject2021.herokuapp.com/admin/like`,
       {
-        group:group, date:date
+        group:group, date:date, institution:institution
       });
 
       setlikeOrReport({ ...likeOrReport, like: true });
     }
+      
+    // acá alguien intntó arreglar un bug o algo con eesto? lo piso a las 19:05, Atte Guille
+     //       if (reportText.value !== undefined) {
+    //         let group=myUser.curso;
+    //         let date=`${mes}-${año}`
+    //         axios.post(`https://rocketproject2021.herokuapp.com/admin/report`,
 
     if (e.target.value === "reports") {
       // let reportText = prompt(`¿Por qué quieres reportar a ${name}?`);
@@ -40,7 +48,7 @@ function Silla({ img, name, _id }) {
         },
         showCancelButton: true
       })
-      if (reportText) Swal.fire(`Reportaste a ${name}. Motivo: '${reportText.value}'.`)
+      if (reportText.value !== undefined) Swal.fire(`Reportaste a ${name}. Motivo: '${reportText.value}'.`)
       
     
       const fecha = new Date()
@@ -49,10 +57,11 @@ function Silla({ img, name, _id }) {
 
       
       let group=myUser.curso;
+      let institution=myUser.institution;
       let date=`${mes}-${año}`
-      axios.post(`http://localhost:3001/admin/report`,
+      axios.post(`https://rocketproject2021.herokuapp.com/admin/report`,
       {
-        group:group, date:date
+        group:group, date:date, institution:institution
       }).then( axios.post(
         `https://rocketproject2021.herokuapp.com/increaseReports/${_id}`,
         {
@@ -62,6 +71,8 @@ function Silla({ img, name, _id }) {
       )).then(setlikeOrReport({ ...likeOrReport, report: reportText }));
     }
   };
+
+
 
   return (
     <div className={style.silla__container}>

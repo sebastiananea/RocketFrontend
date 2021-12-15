@@ -1,7 +1,7 @@
 .chatBoxTop {
   overflow: auto;
   overflow-y: scroll;
-  height: 300px;
+  height: 53vh;
   margin-top: 20px;
 }
 

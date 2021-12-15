@@ -1,11 +1,11 @@
-import React from 'react'
-import { PieChart, Pie, Tooltip, Sector, Cell, ResponsiveContainer } from 'recharts';
+import React from "react";
+import { PieChart, Pie, Cell } from "recharts";
 
 
-  const COLORS = ['#ED5A43', '#008AFE'];
+ const COLORS = ['#ED5A43', '#008AFE'];
 function PieReportsLikes({data}) {
      return (
-        <PieChart width={220} height={250} >
+        <PieChart width={252} height={250} >
         <Pie
         data={data}
         innerRadius={60}
@@ -14,14 +14,13 @@ function PieReportsLikes({data}) {
         paddingAngle={5}
         dataKey="value"
         label
-        >
+      >
         {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
-        </Pie>
+      </Pie>
     </PieChart>
-    )
-
+  );
 }
 
-export default PieReportsLikes
+export default PieReportsLikes;

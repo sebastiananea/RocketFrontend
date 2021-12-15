@@ -1,108 +1,107 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import axios from 'axios'
-import GoBackButton from '../goBackButton/GoBackButton'
-import { country_list } from '../index'
-import avatars from '../../avatars/avatarsarr'
-import ss from './Profile.module.css'
-import Swal from 'sweetalert2';
-import avatarPorDefaultAlien from '../../avatars/avatar21-alien.png'
-import {setUser} from "../../Actions"
-import { set } from '@firebase/database'
-
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import GoBackButton from "../goBackButton/GoBackButton";
+import { country_list } from "../index";
+import avatars from "../../avatars/avatarsarr";
+import ss from "./Profile.module.css";
+import Swal from "sweetalert2";
+import avatarPorDefaultAlien from "../../avatars/avatar21-alien.png";
+import { setUser } from "../../Actions";
 
 const Profile = () => {
-  const dispatch = useDispatch()
-  const [obj, setObj] = useState({})
-  const [boolean, setBoolean] = useState(false)
+  const dispatch = useDispatch();
+  const [obj, setObj] = useState({});
+  const [boolean, setBoolean] = useState(false);
 
   const [field, setField] = useState({
     about: null,
     img: null,
     country: null,
     status: null,
-  })
+  });
 
-  let id = JSON.parse(localStorage.getItem('user'))._id
+  let id = JSON.parse(localStorage.getItem("user"))._id;
 
   useEffect(() => {
-    let profile = axios(
-      `https://rocketproject2021.herokuapp.com/searchProfileID/${id}`
-    ).then((r) => setObj(r.data))
-    setBoolean(false)
-  }, [boolean])
-  
+
+    axios(`https://rocketproject2021.herokuapp.com/searchProfileID/${id}`).then(
+      (r) => setObj(r.data)
+    );
+    setBoolean(false);
+  }, [boolean]);
+
   // const [checket, setChecket] = useState(obj?.enhableContact);
 
-  async function showContact() {
-    if (obj.enhableContact === true) {
-      // setChecket(false);
-      obj.setObj({ ...obj, enhableContact: false })
-      await axios.post('https://rocketproject2021.herokuapp.com/user/changes', {
-        new_enhableContact: false,
-        id: obj._id,
-      })
-    } else if (obj.enhableContact === false) {
-      // setChecket(true);
-      obj.setObj({ ...obj, enhableContact: true })
-      await axios.post('https://rocketproject2021.herokuapp.com/user/changes', {
-        new_enhableContact: true,
-        id: obj._id,
-      })
-    }
+  async function showContactFalse() {
+    setObj({ ...obj, enhableContact: false })
+    await axios.post('https://rocketproject2021.herokuapp.com/user/changes', {
+      new_enhableContact: false,
+      id: obj._id,
+    })
+    console.log("true", obj.enhableContact)
+  }
+  async function showContactTrue() {
+    await setObj({ ...obj, enhableContact: true })
+    await axios.post('https://rocketproject2021.herokuapp.com/user/changes', {
+      new_enhableContact: true,
+      id: obj._id,
+    })
+    console.log("false", obj.enhableContact)
   }
 
   function handleChange(e) {
     setField({
       ...field,
       [e.target.name]: e.target.value,
-    })
+    });
     setObj({
       ...obj,
       [e.target.name]: e.target.value,
-    })
+    });
   }
 
   async function handleSubmit(e) {
-    e.preventDefault()
-    Swal.fire(
-      'Cambios aplicados',
-      'satisfactoriamente!',
-      'success'
-    )
+    e.preventDefault();
+    Swal.fire("Cambios aplicados", "satisfactoriamente!", "success");
     const newChanges = {
       new_img: field.img,
       new_about: field.about,
       new_country: field.country,
       new_status: field.status,
       id: obj._id,
-    }
+    };
 
-    await axios.post(
-      'https://rocketproject2021.herokuapp.com/user/changes',
-      newChanges
-    ).then(()=>setBoolean(true))
-    let myUser = JSON.parse(localStorage.getItem('user'))
-    myUser.img = field.img
-    localStorage.setItem("user", JSON.stringify(myUser))
+
+    await axios
+      .post("https://rocketproject2021.herokuapp.com/user/changes", newChanges)
+      .then(() => setBoolean(true));
+    let myUser = JSON.parse(localStorage.getItem("user"));
+    myUser.img = field.img;
+    localStorage.setItem("user", JSON.stringify(myUser));
     setField({
       about: null,
       img: null,
       country: null,
       status: null,
-    })
-    dispatch(setUser(JSON.parse(localStorage.getItem("user"))))
+    });
+    dispatch(setUser(JSON.parse(localStorage.getItem("user"))));
   }
 
   function setButtonStatus(status) {
     switch (status) {
-      case  "Online"  : return "🟢";
-      case   "Busy"   : return "🟡";
-      case "Sleeping" : return "🔵";
-      case "Offline"  : return "⚫";
-      default: return "⚪ Status is not defined";
-    };
-  };
+      case "Online":
+        return "🟢";
+      case "Busy":
+        return "🟡";
+      case "Sleeping":
+        return "🔵";
+      case "Offline":
+        return "⚫";
+      default:
+        return "⚪ Status is not defined";
+    }
+  }
   let buttonStatus = setButtonStatus(obj.status);
 
   return (
@@ -142,7 +141,9 @@ const Profile = () => {
         <div className={ss.profile_changes}>
           <form onSubmit={(e) => handleSubmit(e)}>
             <div>
-            <span className={ss.profile_changes_label}><strong>Country</strong> </span>
+              <span className={ss.profile_changes_label}>
+                <strong>Country</strong>{" "}
+              </span>
               <select
                 className={ss.profile_select}
                 type="text"
@@ -158,9 +159,11 @@ const Profile = () => {
                 })}
               </select>
             </div>
-<hr />
+            <hr />
             <div>
-            <span className={ss.profile_changes_label}><strong>Avatar</strong> </span>
+              <span className={ss.profile_changes_label}>
+                <strong>Avatar</strong>{" "}
+              </span>
               <select
                 className={ss.profile_select}
                 name="img"
@@ -176,9 +179,11 @@ const Profile = () => {
                 ))}
               </select>
             </div>
-<hr />
+            <hr />
             <div>
-            <span className={ss.profile_changes_label}><strong>Status</strong> </span>
+              <span className={ss.profile_changes_label}>
+                <strong>Status</strong>{" "}
+              </span>
               <select
                 className={ss.profile_select}
                 type="text"
@@ -195,34 +200,37 @@ const Profile = () => {
                 <option key={4}>Offline</option>
               </select>
             </div>
-<hr />
+            <hr />
             <div>
               <span className={ss.profile_changes_label}><strong>Share Contacts</strong> </span>
-                {obj.enhableContact ? (
+                {obj.enhableContact === false ? (
                   <input
                     className={ss.form_check_input}
                     type="checkbox"
                     id="flexSwitchCheckDefault"
-                    onChange={() => showContact()}
-                    checked="true"
+                    onChange={()=> showContactTrue()}
+                    checked="false"
                   />
                 ) : (
                   <input
                     className={ss.form_check_input}
                     type="checkbox"
                     id="flexSwitchCheckDefault"
-                    onChange={() => showContact()}
-                    checked="false"
+                    onChange={()=> showContactFalse()}
+                    checked="true"
                   />
                 )}
             </div>
-<hr />        
+            <hr />
             <div>
-              <span className={ss.profile_changes_label}><strong>About</strong></span>
+              <span className={ss.profile_changes_label}>
+                <strong>About</strong>
+              </span>
             </div>
             <div>
               <textarea
                 placeholder="..."
+                spellcheck="false"
                 className={ss.profile_textarea}
                 name="about"
                 value={field.about}
@@ -238,36 +246,27 @@ const Profile = () => {
           </form>
         </div>
       </div>
-
-      <div className={ss.profile_stats}>
-        <h4>MY STATS</h4>
+      
+      <div>
+        <div className={ss.profile_stats}>
+        <h4 style={{borderLeft:"2px solid #fff", paddingLeft:"5px"}}>MY STATS</h4>
           <div>
-            <small>🚀 Rockets</small>
-            <input 
-            type="range" 
-            className={ss.profile_stats_progress} 
-            value={obj.score ? obj.score : 0}/>
-            {obj.score ? obj.score : 0}
+            <small>🚀 Rockets: </small>
+            {obj.score ? ` ${obj.score} ` : ' 0 '}
           </div>
            <div>
-            <small>❌ Abscences</small>
-            <input 
-            type="range" 
-            className={ss.profile_stats_progress} 
-            value={obj.absence ? obj.absence : 0} />
-            {obj.absence ? obj.absence : 0}
+            <small>❌ Abscences: </small>
+            {obj.absence  ? ` ${obj.absence} ` : ' 0 '}
           </div>
          <div>
-            <small>🚫 Reports</small>
-            <input 
-            type="range" 
-            className={ss.profile_stats_progress} 
-            value={obj.reports ? obj.reports : 0}/>
-            {obj.reports ? obj.reports : 0}
+            <small>🚫 Reports: </small>
+            {obj.reports  ? obj.reports.length : ' 0 '}
           </div>
+
+        </div>
       </div>
     </>
   );
 };
 
-export default Profile
+export default Profile;

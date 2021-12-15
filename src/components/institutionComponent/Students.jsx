@@ -20,27 +20,30 @@ function Students() {
   });
   var [orderBy, setOrderBy] = useState("a-z");
 
-
-
-
-  
   async function getStudents(e) {
-    var res = await axios("https://rocketproject2021.herokuapp.com/institution/alumnos", {
-      method: "post",
-      data: {
-        name: institucion.name,
-      },
-    }).then((x) => x.data);
-    console.log("alumnos", res);
+
+    var res = await axios(
+      "https://rocketproject2021.herokuapp.com/institution/alumnos",
+      {
+        method: "post",
+        data: {
+          name: institucion.name,
+        },
+      }
+    ).then((x) => x.data);
     setUsers(res);
     setUsers2(res);
   }
 
   async function getCursos() {
-    var res = await axios("https://rocketproject2021.herokuapp.com/institution/cursos", {
-      method: "post",
-      data: institucion,
-    }).then((x) => x.data);
+
+    var res = await axios(
+      "https://rocketproject2021.herokuapp.com/institution/cursos",
+      {
+        method: "post",
+        data: institucion,
+      }
+    ).then((x) => x.data);
 
     setIntitucion({
       ...institucion,
@@ -54,33 +57,28 @@ function Students() {
     console.log("EFFECT");
   }, []);
 
-
   function handleChangeFilter(e) {
     const { value } = e.target;
     if (value === "All") {
-      setUsers(users2)
-    }
-    else {
-      const alumnos = users2.filter( (u) => u.curso == value)
-      setUsers(alumnos)
+      setUsers(users2);
+    } else {
+      const alumnos = users2.filter((u) => u.curso === value);
+      setUsers(alumnos);
     }
     // setUsers(users2.filter((u) => u.curso === value));
     // console.log(value, users);
   }
 
-  
   const handleChange = (e) => {
     if (e.target.value === "") {
       setUsers(users2);
-      
     }
     setUsers(
       users2.filter((u) =>
         u.name.toLowerCase().includes(e.target.value.toLowerCase())
-        
       )
     );
-    console.log("Users", users)
+    console.log("Users", users);
   };
 
   if (users) ordenar(users, orderBy);
@@ -145,7 +143,7 @@ function Students() {
                 _id={x._id}
                 score={x.score}
                 reports={x.reports}
-                curso = {x.curso}
+                curso={x.curso}
               />
             ))}
         <div className={s.pagContainer}>

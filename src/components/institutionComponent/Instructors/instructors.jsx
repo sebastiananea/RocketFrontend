@@ -5,23 +5,29 @@ import { useHistory } from "react-router-dom";
 import Swal from 'sweetalert2';
 
 function Instructors({ img, _id, name, score, reports, curso }) {
-    let history = useHistory()
+  let history = useHistory();
 
   async function offInstructor(e) {
-    var res = await axios("https://rocketproject2021.herokuapp.com/institution/setInstructor", {
-      method: "post",
-      data: {
-        id: _id,
-        moderator: false
+
+    await axios(
+      "https://rocketproject2021.herokuapp.com/institution/setInstructor",
+      {
+        method: "post",
+        data: {
+          id: _id,
+          moderator: false,
+        },
       }
-    })
+
+    }).then((x) => x.data);
     Swal.fire(
       'El instructor fue removido',
       'Cambios aplicados!',
       'success'
     )
 
-    history.push("/institucion/admin/estudiantes")
+
+    history.push("/institucion/admin/estudiantes");
   }
 
   return (

@@ -34,6 +34,7 @@ function Curso() {
       }
     );
 
+
     json.data === true
       ? Swal.fire(
           "El curso fue creado con exito",
@@ -45,6 +46,7 @@ function Curso() {
           "El link fue copiado en el portapales!",
           "Succes!"
         );
+
   }
 
   return (

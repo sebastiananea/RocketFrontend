@@ -4,10 +4,10 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Swal from 'sweetalert2';
 
-
 function Student({ img, _id, name, score, reports, curso }) {
-  let history = useHistory()
+  let history = useHistory();
   async function instructor(e) {
+
     
     var res = await axios("https://rocketproject2021.herokuapp.com/institution/setInstructor", {
       method: "post",
@@ -26,8 +26,20 @@ function Student({ img, _id, name, score, reports, curso }) {
   }
 
 
+    await axios(
+      "https://rocketproject2021.herokuapp.com/institution/setInstructor",
+      {
+        method: "post",
+        data: {
+          id: _id,
+          moderator: true,
+        },
 
+      }
+    ).then((x) => x.data);
 
+    history.push("/institucion/admin/instructores");
+  }
 
   return (
     <div className={s.container}>

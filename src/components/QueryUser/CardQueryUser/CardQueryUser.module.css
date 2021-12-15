@@ -99,7 +99,7 @@
 
 /* //////////////////////MEDIA QUERIES ////////////////////// */
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .containerQuery {
     background-color: #fff;
     border-radius: 20px;
@@ -158,6 +158,8 @@
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
+    align-content: center;
+    align-items: center;
   }
 
   .info_estadisticas {

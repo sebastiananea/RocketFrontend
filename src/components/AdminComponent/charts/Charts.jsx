@@ -12,17 +12,26 @@ function Charts() {
 
     let history = useHistory()
     var groups = useSelector((state)=>state.groups)
+    var institution = useSelector((state)=>state.user.institution)
+
     var [data, setData] = useState("")
+    var [data1, setData1] = useState("")
     var [selected, setSelected] = useState("general")
     useEffect(() => {
         history.push("?group="+selected)
         async function getData(){
-            await axios("https://rocketproject2021.herokuapp.com/admin/stats?group="+selected)
+
+            await axios("https://rocketproject2021.herokuapp.com/admin/stats?group="+selected+"&institution="+institution)
+
             .then(x=> setData(x.data))
         }
         getData()
+        async function getData1(){
+            await axios("https://rocketproject2021.herokuapp.com/asistencias/"+JSON.parse(localStorage.getItem("user")).institution)
+            .then(x=> setData1(x.data))
+        }
+        getData1()
     }, [selected])
-    console.log(data, "esta es mi data")
    if(data) return (
         <div className={s.container}>
             <h2>ESTADISTICAS</h2>
@@ -51,6 +60,10 @@ function Charts() {
                     <div className={s.pie}>
                         Likes - Reports
                         <PieReportsLikes data={data.likesreports}/>
+                    </div>
+                    <div className={s.pie}>
+                        Asistencias
+                        <PieReportsLikes data={[{name:"Inasistencias", value:100-data1},{name:"Asistencias", value:data1}]}/>
                     </div>
                 </div>
             )}
