@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import s from "./Payment.module.css";
 
@@ -11,9 +11,18 @@ const Payment = ({ data }) => {
     { title: "Plan Anual", quantity: 1, unit_price: 12500 },
   ];
 
+  async function refresh() {
+    await axios
+      .post("http://localhost:3001/isLog", {
+        token: localStorage.getItem("token"),
+      })
+      .then((x) => localStorage.setItem("user", JSON.stringify(x.data)));
+  }
+
+  let fecha = new Date();
+  var user = JSON.parse(localStorage.getItem("user"));
   const askSlot = async (e, product) => {
     e.preventDefault();
-    let user = await JSON.parse(localStorage.getItem("user"));
 
     var rand = function () {
       return Math.random().toString(36).substr(2);
@@ -23,6 +32,16 @@ const Payment = ({ data }) => {
       return rand() + rand();
     };
     sessionStorage.setItem("compra", JSON.stringify(product));
+    let compraVencimiento = JSON.parse(sessionStorage.getItem("compra"));
+    if (compraVencimiento.title === "Plan Mensual") {
+      fecha = new Date(new Date().setMonth(new Date().getMonth() + 1));
+    }
+    if (compraVencimiento.title === "Plan Trimestral") {
+      fecha = new Date(new Date().setMonth(new Date().getMonth() + 3));
+    }
+    if (compraVencimiento.title === "Plan Anual") {
+      fecha = new Date(new Date().setYear(new Date().getFullYear() + 1));
+    }
     await axios("http://localhost:3001/payment/ask-pay", {
       method: "post",
       data: {
@@ -32,23 +51,25 @@ const Payment = ({ data }) => {
         title: product.title,
         quantity: product.quantity,
         unit_price: product.unit_price,
+        suscriptionTo: fecha.toLocaleDateString(),
       },
     }).then((r) => {
       return window.open(r.data.res, "_blank").focus();
     });
   };
+
+  async function verifyPayment() {
+    await axios.post("http://localhost:3001/payment/verifyTruePayment", {
+      institution: user.institution,
+    });
+  }
+  useEffect(() => {
+    verifyPayment();
+    refresh();
+  }, [success === "true"]);
   if (success === "true") {
     let compra = JSON.parse(sessionStorage.getItem("compra"));
-    let fecha = new Date();
-    if (compra.title === "Plan Mensual") {
-      fecha = new Date(new Date().setMonth(new Date().getMonth() + 1));
-    }
-    if (compra.title === "Plan Trimestral") {
-      fecha = new Date(new Date().setMonth(new Date().getMonth() + 3));
-    }
-    if (compra.title === "Plan Anual") {
-      fecha = new Date(new Date().setYear(new Date().getFullYear() + 1));
-    }
+
     return (
       <div className={s.main_container}>
         <h2 style={{ marginTop: "3%" }}>Genial! Compraste:</h2>

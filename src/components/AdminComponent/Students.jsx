@@ -26,7 +26,6 @@ function Students() {
 
   async function shuffleTables() {
     if (group !== "") {
-
       await axios("https://rocketproject2021.herokuapp.com/asignTable", {
         method: "post",
         data: {
@@ -35,10 +34,8 @@ function Students() {
         },
       }).then(Swal.fire("Mesas mezcladas", "Satisfactoriamente!", "success"));
 
-
       chatRef = child(chatRef, `${user.institution}/Grupos/${group}`);
       remove(chatRef);
-
     } else Swal.fire("Por favor, seleccione un grupo para mezclar");
     await axios("https://rocketproject2021.herokuapp.com/addClass", {
       method: "post",
@@ -47,7 +44,6 @@ function Students() {
         institution: JSON.parse(localStorage.getItem("user")).institution,
       },
     });
-
   }
 
   async function shuffleTablesRnm() {
@@ -58,12 +54,10 @@ function Students() {
           curso: group,
           institution: JSON.parse(localStorage.getItem("user")).institution,
         },
-
       }).then(Swal.fire("Mesas mezcladas", "Satisfactoriamente!", "success"));
-    
+
       chatRef = child(chatRef, `${user.institution}/Grupos/${group}`);
       remove(chatRef);
-    
     } else Swal.fire("Por favor, seleccione un grupo para mezclar");
     await axios("https://rocketproject2021.herokuapp.com/addClass", {
       method: "post",
@@ -73,6 +67,7 @@ function Students() {
       },
     });
   }
+
   async function getStudents() {
     let res = await axios(
       "https://rocketproject2021.herokuapp.com/getUsersByInstitution",
@@ -116,7 +111,6 @@ function Students() {
     });
   };
   var [detailsOpen, setDetailsOpen] = useState(false);
-console.log(users[0])
 
   return (
     <div className={s.container}>
@@ -178,7 +172,11 @@ console.log(users[0])
                 reports={x.reports}
                 setDetailsOpen={setDetailsOpen}
                 group={x.curso}
-                asistencia={x.classes!==0 ? (x.presences/x.classes).toFixed(3)*100 : 100}
+                asistencia={
+                  x.classes !== 0
+                    ? (x.presences / x.classes).toFixed(3) * 100
+                    : 100
+                }
               />
             ))}
         <div className={s.pagContainer}>
