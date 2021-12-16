@@ -59,7 +59,12 @@ function TrueHome() {
   }
 
   if (!myUser.institution)
-    return <div>No course or institution were found for your profile...</div>;
+    return (
+      <div className={s.truehome_sincurso}>
+        <img src="https://cdn-icons-png.flaticon.com/512/179/179386.png"/>
+        <strong>No course or institution were found for your profile...</strong>
+      </div>
+    )
   else if (myUser.institution)
     return (
       <div className={s.container}>

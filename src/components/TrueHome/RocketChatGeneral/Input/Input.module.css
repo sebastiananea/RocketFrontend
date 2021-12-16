@@ -63,12 +63,12 @@
     cursor: pointer;
     margin-right: 10rem;
     position: relative;
-    right: 4.3rem;
+    right: 4.5rem;
     bottom: 3rem;
 }
 
 .chatgral_file {
-    position: relative;
+    position: absolute;
 }
 
 @media screen and (max-width: 415px) {
