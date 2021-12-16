@@ -19,8 +19,8 @@ function LandingPage() {
   let query = useQuery();
   let institution = query.get("institution");
   let curso = query.get("curso");
-  curso = CryptoJS.Rabbit.decrypt(curso, "contraseña").toString(CryptoJS.enc.Utf8)
-  institution = CryptoJS.Rabbit.decrypt(institution, "contraseña").toString(CryptoJS.enc.Utf8)
+  curso = curso && CryptoJS.Rabbit.decrypt(curso, "contraseña").toString(CryptoJS.enc.Utf8)
+  institution = institution && CryptoJS.Rabbit.decrypt(institution, "contraseña").toString(CryptoJS.enc.Utf8)
 
   const dispatch = useDispatch();
 

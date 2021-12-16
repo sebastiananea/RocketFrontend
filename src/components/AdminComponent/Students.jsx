@@ -51,12 +51,18 @@ function Students() {
   };
 
   const onChange = (e) => {
-    setGroup(e.target.value);
-    setPag({
-      from: 0,
-      to: 7,
-    });
-  };
+    const {value} = e.target
+    console.log(value)
+
+    if (value === "general") {
+      setUsers(users2);
+      console.log(users)
+    } else {
+      const alumnos = users2.filter((u) => u.curso.toLowerCase() === value.toLowerCase());
+      console.log(alumnos)
+      setUsers(alumnos);
+    }
+  }
   var [detailsOpen, setDetailsOpen] = useState(false);
   
   if (institution || prueba){
