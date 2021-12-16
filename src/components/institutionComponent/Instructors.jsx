@@ -66,6 +66,10 @@ function Instructor() {
       const alumnos = users2.filter((u) => u.curso === value);
       setUsers(alumnos);
     }
+    setPag( {
+      from: 0,
+      to: 7,
+    })
   }
 
   const handleChange = (e) => {
@@ -77,7 +81,10 @@ function Instructor() {
         u.name.toLowerCase().includes(e.target.value.toLowerCase())
       )
     );
-    console.log("Users", users);
+    setPag( {
+      from: 0,
+      to: 7,
+    })
   };
 
   if (users) ordenar(users, orderBy);

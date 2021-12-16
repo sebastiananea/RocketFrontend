@@ -43,3 +43,12 @@
     cursor: pointer;
     transform: scale(1.02);
 }
+
+.btn{
+    border: none;
+    padding: 5px;
+    background-color:#7c40ca ;
+    color: white;
+    font-family: "Open sans";
+    font-weight: 300;
+}

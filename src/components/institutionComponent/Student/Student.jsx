@@ -73,7 +73,7 @@ function Student({ img, _id, name, score, reports, curso }) {
         </div>
       </div>
       <div className={s.details}>
-        <button onClick={() => instructor()}>Instuctor</button>
+        <button onClick={() => instructor()} className={s.btn}>Instructor</button>
         {/* <svg
           width="116"
           height="26"

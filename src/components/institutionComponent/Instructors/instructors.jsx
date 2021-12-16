@@ -44,7 +44,7 @@ function Instructors({ img, _id, name, score, reports, curso }) {
         </div>
       </div>
       <div className={s.details}>
-        <button onClick={() => offInstructor()}>Remove</button>
+        <button onClick={() => offInstructor()} className={s.btn}>Remove</button>
         
       </div>
     </div>
