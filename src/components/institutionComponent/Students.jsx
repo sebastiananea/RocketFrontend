@@ -84,6 +84,7 @@ function Students() {
   if (users) ordenar(users, orderBy);
 
 
+
   const user = JSON.parse(localStorage.getItem("user"));
   const vencimiento =
     Date.parse(
@@ -101,9 +102,10 @@ function Students() {
 
         <div className={s.filtros}>
           <div className={s.orderGroup}>
-            <h6>Curso</h6>
+            <h6>Courses</h6>
             <select onChange={(e) => handleChangeFilter(e)}>
-              <option value="All">{institucion.name}</option>
+              <option value="All">All students</option>
+
               {institucion.cursos &&
                 institucion.cursos.map((c) => {
                   return <option value={c}>{c}</option>;
@@ -112,7 +114,7 @@ function Students() {
           </div>
           <form>
             <input
-              placeholder="Buscar Estudiantes..."
+              placeholder="Find Student..."
               onChange={(e) => handleChange(e)}
               className={s.formInput}
               type="text"
@@ -134,7 +136,7 @@ function Students() {
             </button>
           </form>
           <div className={s.orderBy}>
-            <h6>Ordenar</h6>
+            <h6>Order</h6>
             <select value={orderBy} onChange={(e) => setOrderBy(e.target.value)}>
               <option value="a-z">A-Z</option>
               <option value="z-a">Z-A</option>
@@ -207,6 +209,7 @@ function Students() {
         </div>
       </div>
     );
+
   }
   else {
     return (

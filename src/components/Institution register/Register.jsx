@@ -25,20 +25,20 @@ function RegisterInstitution() {
     const regex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
     if (!data.name) {
-      errors.name = "El nombre de la institucion es obligatorio!";
+      errors.name = "institution name is required!";
       setHabilitado(false);
     }
     if (regex.test(data.email) === false) {
-      errors.email = "E-mail es obligatorio!";
+      errors.email = "E-mail is required!";
       setHabilitado(false);
     }
     if (!data.password) {
-      errors.password = "Password es obligatorio!";
+      errors.password = "Password is required!";
       setHabilitado(false);
     }
     if (data.password !== data.repeatPass) {
       console.log(data.repeatPass);
-      errors.repeatPass = "Passwords no es igual!";
+      errors.repeatPass = "Passwords do not match!";
       setHabilitado(false);
     } else setHabilitado(true);
 
@@ -67,11 +67,11 @@ function RegisterInstitution() {
       <div className={s.container}>
         <div className={s.formContainer}>
           <form onSubmit={handleSubmit}>
-            <h2>Crear Institucion</h2>
+            <h2>Sign Up Institucion</h2>
             <input
               className={s.fullname}
               type="text"
-              placeholder="Nombre Institucion"
+              placeholder="Institution name "
               required
               name="name"
               value={data.name}
@@ -113,7 +113,7 @@ function RegisterInstitution() {
             <input
               className={s.repeatPass}
               type="password"
-              placeholder="Repetir Password"
+              placeholder="Repeat Password"
               required
               name="repeatPass"
               value={data.repeatPass}
@@ -127,7 +127,7 @@ function RegisterInstitution() {
             <input
               className={s.country}
               type="text"
-              placeholder="Pais"
+              placeholder="Country"
               required
               name="country"
               value={data.country}
@@ -139,7 +139,7 @@ function RegisterInstitution() {
               onClick={(e) => handleSubmit(e)}
               className={s.creator_btn}
             >
-              Crear
+              Sign Up
             </button>
           </form>
         </div>
