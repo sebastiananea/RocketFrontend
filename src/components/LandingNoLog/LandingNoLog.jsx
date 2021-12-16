@@ -29,8 +29,12 @@ function LandingNoLog() {
       useEffect(()=>{
         window.addEventListener("scroll", handleScroll);
       }, [scrollHeight])
-    
-    
+
+      const handlerhenry = (e)=>{
+        window.open('https://www.soyhenry.com/', '_blank',)
+      }
+
+
     return (
       <div className={s.mainContainer}>
         <NavbarNoLog isScrolling={scrollHeight} />
@@ -182,7 +186,7 @@ function LandingNoLog() {
               src="https://assets.soyhenry.com/henry-landing/assets/Henry/logo-white.png"
               alt=""
             />
-            <button>APLICA</button>
+            <button onClick={handlerhenry}>APLICA</button>
           </div>
           <div className={s.img}>
             <img

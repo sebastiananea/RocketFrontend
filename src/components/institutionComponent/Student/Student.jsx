@@ -25,22 +25,6 @@ function Student({ img, _id, name, score, reports, curso }) {
     
   }
 
-
-    await axios(
-      "https://rocketproject2021.herokuapp.com/institution/setInstructor",
-      {
-        method: "post",
-        data: {
-          id: _id,
-          moderator: true,
-        },
-
-      }
-    ).then((x) => x.data);
-
-    history.push("/institucion/admin/instructores");
-  }
-
   return (
     <div className={s.container}>
       <div className={s.imgContainer}>
