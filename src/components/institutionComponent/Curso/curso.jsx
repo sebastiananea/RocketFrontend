@@ -6,6 +6,8 @@ import foto from "../../Images/institucion.jpeg";
 import axios from "axios";
 import Swal from "sweetalert2";
 import CryptoJS from 'crypto-js'
+import Cryptr from "cryptr";
+const cryptr = new Cryptr("contraseña")
 
 
 function Curso() {
@@ -84,10 +86,10 @@ function Curso() {
               )}/${institucion.curso}`}
             > */}
               <CopyToClipboard
-                text={`https://rocketprojectarg.netlify.app/signin?institution=${CryptoJS.Rabbit.encrypt(institucion.name.replace(
+                text={`https://rocketprojectarg.netlify.app/signin?institution=${cryptr.encrypt(institucion.name.replace(
                   /\s+/g,
                   "%20"
-                ), "contraseña")}&curso=${CryptoJS.Rabbit.encrypt(institucion.curso, "contraseña")}`}
+                ), "contraseña")}&curso=${cryptr.encrypt(institucion.curso, "contraseña")}`}
               >
                 <button type="submit" onClick={(e) => handleClick(e)}>
                   Copiar Link
