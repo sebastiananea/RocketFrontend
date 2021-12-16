@@ -229,12 +229,12 @@ const Profile = () => {
             </div>
             <div>
               <textarea
-                placeholder="..."
+                placeholder="maximum 130 characters..."
                 spellcheck="false"
                 className={ss.profile_textarea}
                 name="about"
                 value={field.about}
-                style={{ width: "92%" }}
+                maxlength="130"
                 onChange={(e) => handleChange(e)}
               />
             </div>
@@ -252,15 +252,15 @@ const Profile = () => {
         <h4 style={{borderLeft:"2px solid #fff", paddingLeft:"5px"}}>MY STATS</h4>
           <div>
             <small>🚀 Rockets: </small>
-            {obj.score ? ` ${obj.score} ` : ' 0 '}
+            {obj.score ? ` ${obj.score}. ` : ' 0. '}
           </div>
            <div>
             <small>❌ Abscences: </small>
-            {obj.absence  ? ` ${obj.absence} ` : ' 0 '}
+            {obj.absence  ? ` ${obj.absence}. ` : ' 0. '}
           </div>
          <div>
             <small>🚫 Reports: </small>
-            {obj.reports  ? obj.reports.length : ' 0 '}
+            {obj.reports  ? ` ${obj.reports.length}. ` : ' 0. '}
           </div>
 
         </div>

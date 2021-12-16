@@ -17,8 +17,8 @@ function Student({ img, _id, name, score, reports, curso }) {
       }
     }).then((x) => x.data);
     Swal.fire(
-      'Nuevo instructor',
-      'Cambios aplicados!',
+      'New Instructor',
+      'Changes applied!',
       'success'
     )
     history.push("/institucion/admin/instructores")

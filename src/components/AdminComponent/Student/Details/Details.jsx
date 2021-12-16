@@ -17,7 +17,7 @@ function Details({user, setDetailsOpen}) {
                     <h4 className={selected === "actions" ? s.selected : s.option} onClick={()=>setSelected("actions")}>Actions</h4>
                  </div>
                  {selected === "reports" && <Reports reports={user.reports}/>}
-                {selected === "actions" && <Actions id={user._id} name={user.name} group={user.group}/> }
+                 {selected === "actions" && <Actions id={user._id} name={user.name} group={user.group}/> }
             </div>     
         </div>
     )

@@ -9,7 +9,7 @@ function Reports({reports}) {
         <div className={s.reports}>
             {reports.slice(pag.from, pag.to).map((x)=>(
                 <div className={s.reportContainer}>
-                    {x}
+                    {x.value}
                 </div>
             ))}
            <div className={s.pagContainer}>

@@ -31,6 +31,16 @@
 
 .profile_card {
   flex: 1;
+  height: 110%;
+  z-index: 311;
+  background: #fff;
+  background: #ffffff3b;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  outline: 1.2px solid #999;
+  position: relative;
+  top: -2.7vh;
+  cursor: none;
 }
 
 .profile_changes {
@@ -63,6 +73,7 @@
 
 .profile_textarea {
   margin: 0.6rem;
+  width: 70%;
   height: 92px;
   resize: none;
   border: none;
@@ -71,7 +82,7 @@
   border-left: 1px solid #888;
   border-bottom: 1px solid #888;
   border-right: 1px solid #888;
-  padding: 10px;
+  padding: 20px;
 }
 
 .profile__button_submit {
@@ -296,7 +307,7 @@
     border-left: 1px solid #888;
     border-bottom: 1px solid #888;
     border-right: 1px solid #888;
-    padding: 10px;
+    padding: 20px;
   }
 
   .profile__button_submit {

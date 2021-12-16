@@ -1,0 +1,65 @@
+.chatBoxTop {
+  overflow: auto;
+  overflow-y: scroll;
+  height: 53vh;
+  margin-top: 20px;
+  background: url("https://cdn-icons-png.flaticon.com/512/2752/2752481.png");
+  background-size:calc(20%);
+  background-repeat: no-repeat;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 27px;
+}
+
+.chatBox {
+  flex: 5.5;
+  border: 2px solid orange;
+  border-radius: 30px;
+  position: absolute;
+  left: -1000px;
+  bottom: -2rem;
+  background: #666565cc;
+  z-index: 112;
+  transition: 0.8s;
+}
+
+.chatBoxWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox:checked ~ .menu{
+  top: 3.9vh;
+  cursor: pointer;
+}
+
+.checkbox {
+  cursor: pointer;
+  opacity: 0;
+}
+
+.checkbox:checked ~ .chatBox{
+  left: -40px;
+  opacity: 1;
+}
+
+.chatBtn {
+  cursor: pointer;
+  position: relative;
+  left: -53%;
+  transition: 0.8s;
+}
+
+.checkbox:checked ~ .chatBtn{
+  left: -15%;
+}
+
+.checkbox:checked ~ .chatBtn>img{
+  left: -15%;
+  transform: rotate(180deg)
+}
+

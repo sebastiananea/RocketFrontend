@@ -147,19 +147,19 @@ function LandingNoLog() {
                   <br />
                   Soporte Técnico: <strong>24/7</strong>
                 </p>
-                <h5 className={s.precio}>$120usd</h5>
+                <h5 className={s.precio}>$2000 ARS</h5>
               </div>
               <div className={s.priceContainer}>
-                <h4 className={s.title}>Plan 6 Meses</h4>
+                <h4 className={s.title}>Plan Trimestral</h4>
                 <p className={s.descripcion}>
                   <br />
-                  Meses: <strong>6</strong>
+                  Meses: <strong>3</strong>
                   <br />
                   Estudiantes: <strong>unlimited</strong>
                   <br />
                   Soporte Técnico: <strong>24/7</strong>
                 </p>
-                <h5 className={s.precio}>$550usd</h5>
+                <h5 className={s.precio}>$4500 ARS</h5>
               </div>
               <div className={s.priceContainer}>
                 <h4 className={s.title}>Plan Anual</h4>
@@ -171,7 +171,7 @@ function LandingNoLog() {
                   <br />
                   Soporte Técnico: <strong>24/7</strong>
                 </p>
-                <h5 className={s.precio}>$1100usd</h5>
+                <h5 className={s.precio}>$12500 ARS</h5>
               </div>
             </div>
           </div>

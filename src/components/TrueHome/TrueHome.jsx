@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import s from "./TrueHome.module.css";
 import MiniSilla from "../MiniSilla/MiniSilla";
-import ChatContain from "../RocketChat/Chat/ChatContain";
+import ChatContain from "./RocketChatGeneral/Chat/ChatContain";
 
 import FilterBar from "../Filter/FilterBar";
 
@@ -59,11 +59,16 @@ function TrueHome() {
   }
 
   if (!myUser.institution)
-    return <div>No course or institution were found for your profile...</div>;
+    return (
+      <div className={s.truehome_sincurso}>
+        <img src="https://cdn-icons-png.flaticon.com/512/179/179386.png"/>
+        <strong>No course or institution were found for your profile...</strong>
+      </div>
+    )
   else if (myUser.institution)
     return (
       <div className={s.container}>
-        <h2>Your course: {myUser.institution}</h2>
+        <h2 className={s.truehome_titulo}>Your course: {myUser.institution}.</h2>
 
         <FilterBar setOrder={setOrder} />
         <form>

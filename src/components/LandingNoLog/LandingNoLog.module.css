@@ -366,11 +366,11 @@ a{
 
 @keyframes moveSatelite {
   from {
-    left: -10px;
+    left: -550px;
   }
 
   to {
-    left: 2000px ;
+    left: 2500px ;
   }
 }
 
@@ -379,7 +379,6 @@ a{
   height: 30%;
   margin-top: 8%;
   animation-name: moveSatelite;
-  animation-duration: 30s;
   display: flex;
   z-index: -1;
   position: absolute;
@@ -389,7 +388,7 @@ a{
   position: absolute;
   width: 5%;
   animation-name: moveSatelite;
-  animation-duration: 40s;
+  animation-duration: 60s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   opacity: 1;

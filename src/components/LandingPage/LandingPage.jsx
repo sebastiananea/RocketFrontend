@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Google from "../../Images/google-logo-9808.png";
 import "./LandingPage.css";
 import axios from "axios";
-import { setUser, saveData} from "../../Actions";
+import { setUser, saveData } from "../../Actions";
 import { googleProvider } from "../../config/authMethods";
 import Swal from "sweetalert2";
 import socialMediaAuth from "../../service/Auth";
@@ -14,10 +13,9 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 function LandingPage() {
-  const query = useQuery();
-  const institution = query.get("institution");
-  const curso = query.get("curso");
-  console.log(institution, curso)
+  let query = useQuery();
+  let institution = query.get("institution");
+  let curso = query.get("curso");
 
   const dispatch = useDispatch();
 
@@ -31,17 +29,15 @@ function LandingPage() {
     password: "",
   });
 
-  useEffect(()=>{
-    if(institution && curso){
+  useEffect(() => {
+    if (institution && curso) {
       setLog({
         ...log,
         institution: institution,
-        curso: curso
-      })
+        curso: curso,
+      });
     }
-  },[])
-
-
+  }, []);
 
   function handleChange(e) {
     const value = e.target.value;
@@ -53,6 +49,7 @@ function LandingPage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    console.log(log);
     await axios("https://rocketproject2021.herokuapp.com/signin", {
       method: "post",
       data: log,
@@ -72,7 +69,6 @@ function LandingPage() {
       }
     });
 
-
     await axios("https://rocketproject2021.herokuapp.com/isLog", {
       method: "post",
       data: { token: localStorage.getItem("token") },
@@ -82,7 +78,6 @@ function LandingPage() {
     });
 
     await axios("https://rocketproject2021.herokuapp.com/user/changes", {
-
       method: "post",
       data: {
         new_status: "Online",

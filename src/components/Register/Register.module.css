@@ -50,7 +50,7 @@ input:focus, textarea:focus{
 }
 
 form>.fullname{
-    background-image: url(https://cdn-icons.flaticon.com/png/512/2550/premium/2550260.png?token=exp=1637690433~hmac=94218fd4cd8eb147d66f2c1b1da22c4b);
+    background-image: url(https://cdn-icons-png.flaticon.com/512/747/747376.png);
     background-size: 22px;
 }
 form>.email{
@@ -58,7 +58,7 @@ form>.email{
     background-size: 22px;
 }
 form>.password{
-    background-image: url(https://cdn-icons.flaticon.com/png/512/665/premium/665070.png?token=exp=1637692695~hmac=1f9a83d8dd9a537c29e931bed99bd876);
+    background-image: url(https://cdn-icons-png.flaticon.com/512/1000/1000966.png);
     background-size: 22px;
 }
 form>.repeatPass{
@@ -67,7 +67,7 @@ form>.repeatPass{
     background-position-y: -1px;
 }
 form>.country{
-    background-image: url(https://cdn-icons.flaticon.com/png/512/685/premium/685142.png?token=exp=1637855647~hmac=4411fc019d4dd3d67f4792d793b23c99);
+    background-image: url(https://cdn-icons-png.flaticon.com/512/814/814587.png);
     background-size: 22px;
 }
 
