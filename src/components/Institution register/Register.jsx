@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import s from "./Register.module.css";
 import axios from "axios";
+import foto from "./imgIntitucion.png"
 
 function RegisterInstitution() {
   let history = useHistory();
@@ -146,7 +147,7 @@ function RegisterInstitution() {
 
         <div className={s.imgContainer}>
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Creative-Tail-rocket.svg/768px-Creative-Tail-rocket.svg.png"
+            src={foto}
             alt="rocket"
             width="90%"
           />

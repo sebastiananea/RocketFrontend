@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
 import {
@@ -27,6 +28,8 @@ import {
 
 
 function App() {
+    const user = useSelector(state => state.user)
+  
   return (
     <BrowserRouter>
       <div className="App">
@@ -42,7 +45,8 @@ function App() {
         <Route path="/institution" component={InstitutionLogIn} />
         <Route path="/register" component={RegisterInstitution} />
         <Route path="/active-account/:token" component={ActiveAccount} />
-        <Route path="/admin">
+        
+        {user && user.moderator && (<Route path="/admin">
           <div className="adminContainer">
             <SideBar />
             <Route exact path='/admin/students' component={Students} />
@@ -51,8 +55,9 @@ function App() {
             
             
             </div>
-          </Route>  
+          </Route>  )}
 
+        {user && user.suscription && (
           <Route path='/institucion/admin/'> 
             <div className="adminContainer">
             <SidebarInstitution/>
@@ -63,7 +68,7 @@ function App() {
             <Route exact path='/institucion/admin/Cursos' component={Cursos} />
 
           </div>
-        </Route>
+        </Route>)}
       </div>
     </BrowserRouter>
   );
