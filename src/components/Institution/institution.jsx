@@ -53,7 +53,7 @@ function InstitutionLogIn() {
         localStorage.setItem('user', JSON.stringify(res.data))
         dispatch(setUser(JSON.parse(localStorage.getItem("user"))))})
       .then(() => {
-        if (JSON.parse(localStorage.getItem('user')) ) return history.push('/institucion/admin/curso')
+        if (JSON.parse(localStorage.getItem('user')) ) return history.push('/institucion/admin/estudiantes')
         else return history.push('/')
       })
   }
@@ -93,7 +93,7 @@ function InstitutionLogIn() {
     <div className='container'>
       <div className='create-container'>
         <div className='signIn'>
-          <h2>Ingresar Institution</h2>
+          <h2> Institution</h2>
         </div>
         <div className='create-container-child'>
           <div className='form'>
@@ -134,21 +134,21 @@ function InstitutionLogIn() {
                 </button>             
               </div>
               <div>
-                <h4> ¿No tienes cuenta?</h4>
+                <h4> Not a member ?</h4>
                 <Link to="/register">
-                  <h4>Crear Institución</h4>
+                  <h4>Create Institution </h4>
                 </Link>
                 </div>
             </form>
           </div>
           <div className='landingPage__login_image'></div>
-          <h5>or login with</h5>
+          {/* <h5>or login with</h5>
 
           <div className='landingPage__image'>
             <button onClick={() => handleOnClick(googleProvider)}>
               <img src={Google} alt='Google' />
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -21,8 +21,8 @@ function Instructors({ img, _id, name, score, reports, curso }) {
 
     );
     Swal.fire(
-      'El instructor fue removido',
-      'Cambios aplicados!',
+      'Instructor remove',
+      'Changes applied!',
       'success'
     )
 
@@ -44,7 +44,7 @@ function Instructors({ img, _id, name, score, reports, curso }) {
         </div>
       </div>
       <div className={s.details}>
-        <button onClick={() => offInstructor()}>Quitar</button>
+        <button onClick={() => offInstructor()}>Remove</button>
         
       </div>
     </div>

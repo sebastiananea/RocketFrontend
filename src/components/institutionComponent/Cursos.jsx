@@ -65,8 +65,6 @@ function Cursoss() {
       const cursoss = cursosMap2.filter((u) => u == value);
       setCursosMap(cursoss);
     }
-    // setUsers(users2.filter((u) => u.curso === value));
-    // console.log(value, users);
   }
 
   //Busca por nombre
@@ -84,13 +82,13 @@ function Cursoss() {
 
   return (
     <div className={s.container}>
-      <h2>{institucion.cursos.length} Cursos</h2>
+      <h2>{institucion.cursos.length} Courses</h2>
 
       <div className={s.filtros}>
         <div className={s.orderGroup}>
           <h6>Curso</h6>
           <select onChange={(e) => handleChangeFilter(e)}>
-            <option value="All">Todos</option>
+            <option value="All">All courses</option>
             {institucion.cursos &&
               institucion.cursos.map((c) => {
                 return <option value={c}>{c}</option>;
@@ -100,7 +98,7 @@ function Cursoss() {
 
         <form>
           <input
-            placeholder="Buscar Curso..."
+            placeholder="Find Course..."
             onChange={(e) => handleChange(e)}
             className={s.formInput}
             type="text"
@@ -121,6 +119,9 @@ function Cursoss() {
             </svg>
           </button>
         </form>
+        <div>
+          
+        </div>
       </div>
       <div className={s.studentsContainer}>
         {cursosMap &&

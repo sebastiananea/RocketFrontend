@@ -4,7 +4,7 @@ import axios from "axios";
 import s from "./Students.module.css";
 import Student from "./Student/Student";
 import Details from "./Student/Details/Details";
-
+import Swal from "sweetalert2";
 
 
 function Students() {
@@ -21,7 +21,6 @@ function Students() {
   });
   let [orderBy, setOrderBy] = useState("a-z");
 
-  
   async function getStudents() {
     let res = await axios(
       `https://rocketproject2021.herokuapp.com/getUsersByInstitution/${JSON.parse(localStorage.getItem("user")).institution}`
@@ -52,14 +51,20 @@ function Students() {
   };
 
   const onChange = (e) => {
-    setGroup(e.target.value);
-    setPag({
-      from: 0,
-      to: 7,
-    });
-  };
-  var [detailsOpen, setDetailsOpen] = useState(false);
+    const {value} = e.target
+    console.log(value)
 
+    if (value === "general") {
+      setUsers(users2);
+      console.log(users)
+    } else {
+      const alumnos = users2.filter((u) => u.curso.toLowerCase() === value.toLowerCase());
+      console.log(alumnos)
+      setUsers(alumnos);
+    }
+  }
+  var [detailsOpen, setDetailsOpen] = useState(false);
+  
   if (institution || prueba){
     return (
       <div className={s.container}>

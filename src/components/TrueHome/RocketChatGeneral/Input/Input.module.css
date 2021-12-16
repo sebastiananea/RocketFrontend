@@ -1,0 +1,88 @@
+.inputchat_container {
+    background: #ffa600dd;
+    height: 80px;
+    width: 70%;
+    border-radius: 20px;
+    padding: 4px;
+    box-sizing: border-box;
+    margin-bottom: 0.5rem;
+    
+}
+
+.inputchat_input {
+    outline: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 2px;
+    width: 210px;
+    margin: auto;
+    resize: none;
+    height: 50px;
+    background: #ffffffcc;
+    border: 1px groove #111;
+    
+}
+
+.inputchat_btn, .inputchat_btn2 {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transform: scale(115%);
+    position: relative;
+    bottom: 20px;
+}
+
+.inputchat_btn {
+    margin-right: 7px;
+}
+
+.inputchat_btn2 {
+    margin-left: 8px;
+    margin-right: 5px;
+    bottom: 18px;
+  z-index: 5;
+}
+
+.inputchat_btnemoji {
+    background: #111111b2;
+    border: none;
+    padding: 1px;
+    cursor: pointer;
+}
+
+.inputchat_emojiscontainer {
+    position: absolute;
+    bottom: 5.5rem;
+}
+
+.inputOculto {
+    display: none;
+}
+
+@media screen and (max-width: 415px) {
+    /* .inputchat_emojiscontainer {
+        position: absolute;
+        bottom: -135px;
+    } */
+    .inputchat_container {
+        background: #ffa600dd;
+        height: 80px;
+        border-radius: 20px;
+        padding: 4px;
+        box-sizing: border-box;
+        position: relative;
+    }
+    .inputchat_emojiscontainer {
+       bottom: 5rem; 
+    }
+}
+
+.inputchat_palabraemojis {
+    background: #fff;
+    padding: 0 4px 0 4px;
+}
+
+
+
+
+

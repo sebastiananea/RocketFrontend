@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import s from "./TrueHome.module.css";
 import MiniSilla from "../MiniSilla/MiniSilla";
-import ChatContain from "../RocketChat/Chat/ChatContain";
+import ChatContain from "./RocketChatGeneral/Chat/ChatContain";
 
 import FilterBar from "../Filter/FilterBar";
 
