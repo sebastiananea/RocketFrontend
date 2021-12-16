@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import foto from "../../Images/institucion.jpeg";
 import axios from "axios";
 import Swal from "sweetalert2";
-import CryptoJS from 'crypto-js'
 import Cryptr from "cryptr";
 const cryptr = new Cryptr("contraseña")
 
