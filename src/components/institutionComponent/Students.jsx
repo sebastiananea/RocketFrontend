@@ -219,10 +219,13 @@ function Students() {
             <h2>Oops!</h2>
           </div>
           <div className={s.description}>
-            <p>Your suscription is expired since {user.suscription}</p>
+          {user.suscription === "01/01/2001" ? <p>
+              You are not suscribed yet
+            </p> :
+            <p>Your suscription is expired since {user.suscription}</p>}
           </div>
           <div className={s.description}>
-            <p>Click on the button below to activate your suscription again.</p>
+            <p>Click on the button below to activate your suscription.</p>
           </div>
           <div className={s.btn}>
             <button onClick={() => history.push("/institucion/admin/payment")}>

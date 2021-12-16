@@ -53,7 +53,7 @@ function InstitutionLogIn() {
         localStorage.setItem('user', JSON.stringify(res.data))
         dispatch(setUser(JSON.parse(localStorage.getItem("user"))))})
       .then(() => {
-        if (JSON.parse(localStorage.getItem('user')) ) return history.push('/institucion/admin/curso')
+        if (JSON.parse(localStorage.getItem('user')) ) return history.push('/institucion/admin/estudiantes')
         else return history.push('/')
       })
   }

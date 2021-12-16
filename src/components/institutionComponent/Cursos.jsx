@@ -119,6 +119,9 @@ function Cursoss() {
             </svg>
           </button>
         </form>
+        <div>
+          
+        </div>
       </div>
       <div className={s.studentsContainer}>
         {cursosMap &&

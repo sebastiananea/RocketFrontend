@@ -90,8 +90,8 @@ const Payment = ({ data }) => {
               </p>
             </div>
           </div>
-          <p>Estará activo hasta el {fecha.toLocaleDateString()}</p>
         </div>
+        <p>Estará activo hasta el {fecha.toLocaleDateString()}</p>
       </div>
     );
   } else
@@ -121,6 +121,9 @@ const Payment = ({ data }) => {
             ))}
           </div>
         )}
+        {user.suscription === "01/01/2001" ? <p>
+            </p> :
+            <p>Your suscription will expire on {user.suscription}</p>}
       </div>
     );
 };

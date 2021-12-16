@@ -58,7 +58,7 @@ function RegisterInstitution() {
       axios("http://localhost:3001/institution/signup", {
         method: "post",
         data: data,
-      }).then(history.push("/"));
+      }).then(history.push("/institution"));
     }
   }
 
