@@ -34,7 +34,7 @@ function Curso() {
 
   const user = JSON.parse(localStorage.getItem("user"));
   const vencimiento =
-    Date.parse(
+  user.suscription &&  Date.parse(
       new Date(
         user.suscription.split("/")[2],
         user.suscription.split("/")[1],
