@@ -13,8 +13,8 @@ function  Message({ currentId, img, txt, hour, day, id, file, table }) {
   }
 
   const handlerClick = ()=>{
-    var w = window.open('about:blank', '_blank');
-    w.location.href = url;
+    var w = window.open('about:blank', '_blank',);
+    w.location.href = encodeURI(url);
   }
 
   useEffect(() => {
