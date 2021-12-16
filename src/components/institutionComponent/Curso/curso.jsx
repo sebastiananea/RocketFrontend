@@ -4,10 +4,11 @@ import axios from "axios";
 import React, { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Swal from "sweetalert2";
-import CryptoJS from 'crypto-js'
+import Cryptr from "cryptr";
+const cryptr = new Cryptr("contraseña")
 import s from "./curso.module.css";
-
 import foto from "../../Images/institucion.jpeg";
+
 
 
 function Curso() {
@@ -94,10 +95,12 @@ function Curso() {
               />
 
               <CopyToClipboard
-                text={`https://rocketprojectarg.netlify.app/signin?institution=${CryptoJS.Rabbit.encrypt(JSON.stringify(institucion.name.replace(
+
+                text={`https://rocketprojectarg.netlify.app/signin?institution=${cryptr.encrypt(institucion.name.replace(
                   /\s+/g,
                   "%20"
-                ), "contraseña"))}&curso=${CryptoJS.Rabbit.encrypt(JSON.stringify(institucion.curso, "contraseña"))}`}
+                ), "contraseña")}&curso=${cryptr.encrypt(institucion.curso, "contraseña")}`}
+
               >
                 <button type="submit" onClick={(e) => handleClick(e)}>
                 Copy link
