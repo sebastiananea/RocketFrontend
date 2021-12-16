@@ -63,7 +63,7 @@ function TrueHome() {
   else if (myUser.institution)
     return (
       <div className={s.container}>
-        <h2>Your course: {myUser.institution}</h2>
+        <h2 className={s.truehome_titulo}>Your course: {myUser.institution}.</h2>
 
         <FilterBar setOrder={setOrder} />
         <form>

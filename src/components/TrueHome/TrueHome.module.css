@@ -2,6 +2,7 @@
   width: 100%;
   height: 89vh;
   position: relative;
+  bottom: 1.2rem;
   transform: scale(90%);
 }
 
@@ -30,7 +31,7 @@
   cursor: pointer;
   background: #7c40ca;
 }
-
+ 
 .truehome__boton_violeta:active,
 .truehome__boton_violeta:focus {
   box-shadow: inset 0 0 6px 0 #222;
@@ -62,6 +63,8 @@
 .containerPagination{
   display: flex;
   justify-content: center;
+  position: relative;
+  bottom: 0.4rem;
 }
 
 .pagContainer{
@@ -97,6 +100,12 @@
 }
 .pagContainer>button:hover{
   transform: scale(1.02);
+}
+
+.truehome_titulo {
+  position: absolute;
+  right: 20vh;
+  top: 4vh;
 }
 
 /* //////////////////////MEDIA QUERIES ////////////////////// */
@@ -208,5 +217,11 @@
     padding: none;
     cursor: pointer;
     transform: scale(130%);
+  }
+  .truehome_titulo {
+    position: absolute;
+    right: -1.8vh;
+    top: 1vh;
+    font-size: 11px;
   }
 }

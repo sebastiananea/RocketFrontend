@@ -4,6 +4,10 @@ textarea:focus, input:focus, select:focus{
     outline: none;
 }
 
+.container {
+    position: relative;
+    top: 1.3rem;
+}
 
 .orderBy>span{
     font-family: 'Montserrat', sans-serif;
@@ -44,12 +48,12 @@ textarea:focus, input:focus, select:focus{
     transform: rotate(270deg);
 }
 .checkbox:checked ~ .menu{
-    top: 3.9vh;
+    top: 6.9vh;
     cursor: pointer;
 }
 .topPanel{
     width: 20%;
-    height: 9vh;
+    height: 12.5vh;
     opacity: 0;
     position: fixed;
     display: flex;
@@ -67,7 +71,7 @@ textarea:focus, input:focus, select:focus{
     background-color:  #fa9725;
 }
 .checkbox:checked ~ .topPanel{
-    top: -5vh;
+    top: -1.5vh;
     opacity: 1;
 }
 
