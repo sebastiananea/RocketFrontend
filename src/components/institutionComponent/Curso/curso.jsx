@@ -8,6 +8,7 @@ import s from "./curso.module.css";
 import foto from "../../Images/institucion.jpeg";
 
 
+
 function Curso() {
  
   let history = useHistory();
