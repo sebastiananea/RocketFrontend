@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import { useSelector } from 'react-redux'
 import axios from "axios"
 import s from "./Actions.module.css"
+import Swal from 'sweetalert2';
+
 function Actions({id, name, group}) {
     var groups = useSelector((state)=>state.groups)
     var [selected, setSelected] = useState("change")
@@ -11,19 +13,19 @@ function Actions({id, name, group}) {
     async function submitChangeGroup(e){
         e.preventDefault()
         await axios.post("http://localhost:3001/admin/changegroup",{id:id, togroup:toGroup})
-        alert("grupo cambiado")
+        Swal.fire("grupo cambiado")
         window.location.reload()
     }
     async function submitDeleteUser(e){
         e.preventDefault()
         await axios.post("http://localhost:3001/admin/removeuser",{id:id})
-        alert("usuario eliminado")
+        Swal.fire("usuario eliminado")
         window.location.reload()
     }
     async function submitDeleteGroup(e){
         e.preventDefault()
         await axios.post("http://localhost:3001/admin/removegroup",{id:id})
-        alert("grupo eliminado de usuario")
+        Swal.fire("grupo eliminado de usuario")
         window.location.reload()
     }
     return (

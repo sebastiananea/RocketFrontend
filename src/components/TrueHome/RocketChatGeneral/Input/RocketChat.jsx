@@ -130,7 +130,7 @@ function RocketChat({ name, img, table, id }) {
                     :
                     null}
                     <input id="file" type="file" onChange={readFile} placeholder="algo" className={s.inputOculto}></input>
-                    <label for="file" className={s.chatgral_clip}><FiPaperclip/>{archivo.seleccionado}</label>
+                    <label for="file" className={s.chatgral_clip}><span className={s.chatgral_file}><FiPaperclip/>{archivo.seleccionado}</span></label>
             </form>
         </div>
     )

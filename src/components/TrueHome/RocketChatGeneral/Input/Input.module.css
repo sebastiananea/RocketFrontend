@@ -67,6 +67,10 @@
     bottom: 3rem;
 }
 
+.chatgral_file {
+    position: relative;
+}
+
 @media screen and (max-width: 415px) {
     /* .inputchat_emojiscontainer {
         position: absolute;
