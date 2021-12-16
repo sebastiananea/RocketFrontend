@@ -12,19 +12,19 @@ function Actions({id, name, group}) {
     
     async function submitChangeGroup(e){
         e.preventDefault()
-        await axios.post("http://localhost:3001/admin/changegroup",{id:id, togroup:toGroup})
+        await axios.post("https://rocketproject2021.herokuapp.com/admin/changegroup",{id:id, togroup:toGroup})
         Swal.fire("grupo cambiado")
         window.location.reload()
     }
     async function submitDeleteUser(e){
         e.preventDefault()
-        await axios.post("http://localhost:3001/admin/removeuser",{id:id})
+        await axios.post("https://rocketproject2021.herokuapp.com/admin/removeuser",{id:id})
         Swal.fire("usuario eliminado")
         window.location.reload()
     }
     async function submitDeleteGroup(e){
         e.preventDefault()
-        await axios.post("http://localhost:3001/admin/removegroup",{id:id})
+        await axios.post("https://rocketproject2021.herokuapp.com/admin/removegroup",{id:id})
         Swal.fire("grupo eliminado de usuario")
         window.location.reload()
     }

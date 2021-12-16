@@ -15,7 +15,7 @@ const Payment = ({ data }) => {
 
   async function refresh() {
     await axios
-      .post("http://localhost:3001/institution/isLog", {
+      .post("https://rocketproject2021.herokuapp.com/institution/isLog", {
         token: localStorage.getItem("token"),
       })
       .then((x) => localStorage.setItem("user", JSON.stringify(x.data)));
@@ -45,7 +45,7 @@ const Payment = ({ data }) => {
     if (compraVencimiento.title === "Plan Anual") {
       fecha = new Date(new Date().setYear(new Date().getFullYear() + 1));
     }
-    await axios("http://localhost:3001/payment/ask-pay", {
+    await axios("https://rocketproject2021.herokuapp.com/payment/ask-pay", {
       method: "post",
       data: {
         institution: user.institution,
@@ -61,7 +61,7 @@ const Payment = ({ data }) => {
     });
   };
   async function verifyPayment() {
-    await axios.post("http://localhost:3001/payment/verifyTruePayment", {
+    await axios.post("https://rocketproject2021.herokuapp.com/payment/verifyTruePayment", {
       institution: user.institution,
     });
   }
