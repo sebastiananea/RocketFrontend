@@ -4,14 +4,12 @@ import axios from "axios";
 import React, { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Swal from "sweetalert2";
-import Cryptr from "cryptr";
-const cryptr = new Cryptr("contraseña")
 import s from "./curso.module.css";
 import foto from "../../Images/institucion.jpeg";
 
 
-
 function Curso() {
+ 
   let history = useHistory();
   let institution = useSelector((state) => state.user.suscription)
 
@@ -95,11 +93,11 @@ function Curso() {
               />
 
               <CopyToClipboard
-
-                text={`https://rocketprojectarg.netlify.app/signin?institution=${cryptr.encrypt(institucion.name.replace(
+    
+                text={`https://rocketprojectarg.netlify.app/signin?institution=${institucion.name.replace(
                   /\s+/g,
                   "%20"
-                ), "contraseña")}&curso=${cryptr.encrypt(institucion.curso, "contraseña")}`}
+                )}&curso=${institucion.curso}`}
 
               >
                 <button type="submit" onClick={(e) => handleClick(e)}>

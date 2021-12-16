@@ -9,8 +9,7 @@ import { setUser, saveData } from "../../Actions";
 import { googleProvider } from "../../config/authMethods";
 import Swal from "sweetalert2";
 import socialMediaAuth from "../../service/Auth";
-import Cryptr from "cryptr";
-const cryptr = new Cryptr("contraseña")
+
 
 
 function useQuery() {
@@ -18,7 +17,6 @@ function useQuery() {
 }
 function LandingPage() {
   let query = useQuery();
-
   let institution = query.get("institution");
   let curso = query.get("curso");
 
@@ -27,9 +25,6 @@ function LandingPage() {
 
   if (institution && curso) {
     dispatch(saveData([institution, curso]));
-    curso =cryptr.decrypt(curso)
-    institution = cryptr.decrypt(institution);
-    console.log(curso, institution)
   }
 
   let history = useHistory();
